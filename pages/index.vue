@@ -1,3 +1,6 @@
 <template>
-    <HomeHero />
+    <div class="">
+        <HomeHero />
+        <HomeFeaturedSection />
+    </div>
 </template>

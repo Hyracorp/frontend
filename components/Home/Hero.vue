@@ -55,7 +55,7 @@ const search = (event) => {
             </div>
             <!-- Hero Search Card -->
             <div class="">
-                <Card class="">
+                <Card class="" :pt="{ 'root': 'shadow-2xl' }">
                     <template #title>
                         <div class="text-center">
                             <h3>Search by location</h3>
@@ -66,8 +66,8 @@ const search = (event) => {
 
                     <template #content>
                         <form class="flex flex-col gap-3 justify-center items-center" @submit.prevent="() => {
-                            console.log('form submitted');
-                        }">
+                    console.log('form submitted');
+                }">
                             <div class="">
                                 <SelectButton :pt="{ 'button': 'px-3 py-2' }" v-model="searchForm.bhkNo"
                                     :options="bhkOptions" optionLabel="name" multiple aria-labelledby="multiple" />
@@ -82,14 +82,16 @@ const search = (event) => {
                                     <AutoComplete v-model="searchForm.location" optionLabel="name"
                                         :suggestions="filteredSuggestions" @complete="search"
                                         placeholder="Auto Detect or Search Location" />
+
                                 </InputGroup>
+                                <small id="location-help">Where are you looking for the property?</small>
                             </div>
 
                             <div class="w-full ">
                                 <label for="slider" class="text-lg text-gray-500 my-3 block">Price Range(₹{{
-                            searchForm.priceRange[0] *
-                            1000 }} - ₹{{
-                            searchForm.priceRange[1] * 1000 }})</label>
+                    searchForm.priceRange[0] *
+                    1000 }} - ₹{{
+                    searchForm.priceRange[1] * 1000 }})</label>
                                 <div class="px-2">
                                     <Slider v-model="searchForm.priceRange" range class="w-14rem" />
                                 </div>
@@ -97,7 +99,7 @@ const search = (event) => {
                             <Button type="submit" class="w-full flex gap-3">
                                 <Icon name="ph:magnifying-glass" />
                                 <div class="">
-                                    Search
+                                    Find Property..
                                 </div>
                             </Button>
                         </form>
