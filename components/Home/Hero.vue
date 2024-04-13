@@ -69,8 +69,9 @@ const search = (event) => {
                     console.log('form submitted');
                 }">
                             <div class="">
-                                <SelectButton :pt="{ 'button': 'px-3 py-2' }" v-model="searchForm.bhkNo"
-                                    :options="bhkOptions" optionLabel="name" multiple aria-labelledby="multiple" />
+                                <SelectButton :pt="{ 'button': 'px-3 py-2', 'label': 'text-sm md:text-lg' }"
+                                    v-model="searchForm.bhkNo" :options="bhkOptions" optionLabel="name" multiple
+                                    aria-labelledby="multiple" />
 
                             </div>
                             <div class=" ">
