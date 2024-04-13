@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     modules: [
-    '@nuxtjs/tailwindcss','nuxt-primevue'],
+    '@nuxtjs/tailwindcss','nuxt-primevue','nuxt-icon'],
    primevue: {
     options: {
       ripple: true,
