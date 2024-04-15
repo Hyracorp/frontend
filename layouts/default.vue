@@ -23,7 +23,7 @@ onUnmounted(() => {
 <template>
     <div>
         <Nav v-if="showMenu" class="fixed top-0 w-full z-50 bg-white" />
-        <div class="py-32">
+        <div class="">
             <slot />
         </div>
     </div>
