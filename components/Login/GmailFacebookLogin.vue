@@ -1,13 +1,13 @@
 <template>
     <div class="flex flex-col items-center mt-4 gap-3">
-            <Button type="submit" class="w-full flex gap-3">
-                <Icon name="ph:google-logo-fill" />
+            <Button type="submit" label="Info" severity="info" outlined class="w-full flex gap-3">
+                <Icon name="ph:google-logo-bold" />
                     <div class="">
                         Continue with Google
                     </div>
             </Button>
-            <Button type="submit" class="w-full flex gap-3">
-                <Icon name="ph:facebook-logo-fill" class=""/>
+            <Button type="submit" label="Info" severity="info" outlined class="w-full flex gap-3">
+                <Icon name="ph:facebook-logo-bold" class=""/>
                     <div class="">
                         Continue with Facebook
                     </div>
