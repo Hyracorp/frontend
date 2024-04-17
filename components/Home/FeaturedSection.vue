@@ -1,5 +1,5 @@
 <script setup lang="ts">
-let collectionData = ref([
+const collectionData = ref([
     {
         id: 1,
         title: 'Luxury House in Dhaka',
@@ -40,7 +40,7 @@ let collectionData = ref([
                 <Card class="max-w-md min-w-72 w-full rounded-xl" v-for="data in collectionData" :key="data.id">
                     <template #header>
                         <div class="overflow-hidden rounded-t-xl">
-                            <img alt="user header" :src="data.image" class="w-72 md:w-full" />
+                            <img alt="user header" :src="data.image" class="w-72 md:w-full">
                         </div>
                     </template>
                     <template #title> {{ data.title }} </template>

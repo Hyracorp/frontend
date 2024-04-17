@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-let searchForm = ref({
+const searchForm = ref({
 
     location: '',
     bhkNo: [{ name: '2BHK', value: 2 }],
@@ -10,7 +10,7 @@ let searchForm = ref({
 
 // BHK OPTIONS
 
-let bhkOptions = ref([{
+const bhkOptions = ref([{
     name: '1BHK',
     value: 1
 }, {
@@ -28,8 +28,7 @@ let bhkOptions = ref([{
 ])
 // LOCATION SEARCH
 const locations = ref([])
-let selectedLocation = ref()
-let filteredSuggestions = ref([])
+const filteredSuggestions = ref([])
 const search = (event) => {
     setTimeout(() => {
         if (!event.query.trim().length) {
@@ -69,9 +68,9 @@ const search = (event) => {
                     console.log('form submitted');
                 }">
                             <div class="">
-                                <SelectButton :pt="{ 'button': 'px-3 py-2', 'label': 'text-sm md:text-lg' }"
-                                    v-model="searchForm.bhkNo" :options="bhkOptions" optionLabel="name" multiple
-                                    aria-labelledby="multiple" />
+                                <SelectButton v-model="searchForm.bhkNo"
+                                    :pt="{ 'button': 'px-3 py-2', 'label': 'text-sm md:text-lg' }" :options="bhkOptions"
+                                    optionLabel="name" multiple aria-labelledby="multiple" />
 
                             </div>
                             <div class=" ">
