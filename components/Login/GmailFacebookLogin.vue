@@ -7,7 +7,7 @@
                     </div>
             </Button>
             <Button label="Info" severity="info" outlined type="submit" class="w-full flex gap-3">
-                <Icon name="ph:facebook-logo-bold" class=""/>
+                <Icon name="ph:facebook-logo" class=""/>
                     <div class="">
                         Continue with Facebook
                     </div>
