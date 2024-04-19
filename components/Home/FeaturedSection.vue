@@ -35,7 +35,7 @@ const collectionData = ref([
         <div class="py-10">
             <h1 class="text-3xl font-bold text-gray-600">Featured Properties</h1>
         </div>
-        <div class="w-screen overflow-hidden overflow-x-auto">
+        <div class="max-w-screen overflow-hidden overflow-x-auto">
             <div class="flex gap-3">
                 <Card v-for="data in collectionData" :key="data.id" class="max-w-md min-w-72 w-full rounded-xl">
                     <template #header>
