@@ -4,7 +4,9 @@ const value = ref('Cochin')
 <template>
     <div class="">
         <div class="">
-            <h1 class="text-xl font-bold text-gray-600">Search</h1>
+            <div class="">
+                <h1 class="text-xl font-bold text-gray-600">Search</h1>
+            </div>
             <div class="py-2 flex flex-col md:flex-row flex-wrap gap-2 md:items-center">
                 <div class="flex gap-2">
                     <InputText v-model="value" type="text" disabled />
