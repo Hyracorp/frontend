@@ -22,9 +22,10 @@ onUnmounted(() => {
 </script>
 <template>
     <div>
-        <Nav v-if="showMenu" class="fixed top-0 w-full z-50 bg-white" />
-        <div class="py-32">
+        <NavBar v-if="showMenu" class="fixed top-0 w-full z-50 bg-white" />
+        <div class="py-32 min-h-[90vh]">
             <slot />
         </div>
+        <!-- <FooterSection /> -->
     </div>
 </template>

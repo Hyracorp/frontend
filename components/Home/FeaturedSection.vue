@@ -37,7 +37,7 @@ const collectionData = ref([
         </div>
         <div class="w-screen overflow-hidden overflow-x-auto">
             <div class="flex gap-3">
-                <Card class="max-w-md min-w-72 w-full rounded-xl" v-for="data in collectionData" :key="data.id">
+                <Card v-for="data in collectionData" :key="data.id" class="max-w-md min-w-72 w-full rounded-xl">
                     <template #header>
                         <div class="overflow-hidden rounded-t-xl">
                             <img alt="user header" :src="data.image" class="w-72 md:w-full">
