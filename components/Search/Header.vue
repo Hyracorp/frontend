@@ -11,7 +11,7 @@ const value = ref('Cochin')
                 <h1 class="text-xl font-bold text-gray-600">Search</h1>
             </div>
             <div class="py-2 flex flex-col md:flex-row flex-wrap gap-2 md:items-center">
-                <div class="flex gap-2">
+                <div class="flex gap-2 ">
                     <InputText v-model="value" type="text" disabled />
                     <Button class="" :pt="{ 'root': 'p-0' }" @click="$router.push('/')">
                         <Icon name="ph:pencil" class="text-xl w-12" />
@@ -20,5 +20,6 @@ const value = ref('Cochin')
                 <small class="px-2 text-gray-500">Price Range: ₹ 2,000 - ₹ 80,000</small>
             </div>
         </div>
+
     </div>
 </template>

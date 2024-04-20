@@ -40,6 +40,17 @@ const search = (event) => {
         }
     }, 250);
 }
+
+const router = useRouter()
+const searchSubmit = () => {
+    // console.log(searchForm.value)
+    // convert searchForm.bhkNo from array to URI and join with '+'
+
+    let bhkNoQuery = searchForm.value.bhkNo.map((bhk) => bhk.value).join('+')
+
+
+    router.push({ path: '/search', query: { location: searchForm.value.location, bhkNo: `${bhkNoQuery}`, priceRange: searchForm.value.priceRange } })
+}
 </script>
 
 <template>
@@ -64,9 +75,7 @@ const search = (event) => {
 
 
                     <template #content>
-                        <form class="flex flex-col gap-3 justify-center items-center" @submit.prevent="() => {
-                    console.log('form submitted');
-                }">
+                        <form class="flex flex-col gap-3 justify-center items-center" @submit.prevent="searchSubmit">
                             <div class="">
                                 <SelectButton v-model="searchForm.bhkNo"
                                     :pt="{ 'button': 'px-3 py-2', 'label': 'text-sm md:text-lg' }" :options="bhkOptions"
