@@ -56,12 +56,14 @@ const onSortChange = (event: any) => {
         <DataView :dataKey="'id'" :value="searchResults" layout="grid" :sortOrder="sortOrder" :sortField="sortField">
 
             <template #header>
-                <Dropdown v-model="sortKey" :options="sortOptions" optionLabel="label" placeholder="Sort By Price"
-                    @change="onSortChange($event)" />
+                <div class="max-w-7xl mx-auto">
+                    <Dropdown v-model="sortKey" :options="sortOptions" optionLabel="label" placeholder="Sort By Price"
+                        @change="onSortChange($event)" />
+                </div>
             </template>
             <template #grid="results">
 
-                <div class="flex flex-wrap">
+                <div class="flex flex-wrap max-w-7xl mx-auto my-3">
                     <div v-for="(item, index) in results.items" :key="index" class="w-full p-3 max-w-sm">
                         <Card class="max-w-sm">
                             <template #header>

@@ -10,7 +10,7 @@ const value = ref('Cochin')
                 </Button>
                 <h1 class="text-xl font-bold text-gray-600">Search</h1>
             </div>
-            <div class="py-2 flex flex-col md:flex-row flex-wrap gap-2 md:items-center">
+            <div class="py-2 flex flex-col md:flex-row flex-wrap gap-2 md:items-center max-w-7xl mx-auto">
                 <div class="flex gap-2 ">
                     <InputText v-model="value" type="text" disabled />
                     <Button class="" :pt="{ 'root': 'p-0' }" @click="$router.push('/')">
