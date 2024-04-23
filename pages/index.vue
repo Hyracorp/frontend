@@ -1,7 +1,7 @@
 <template>
-    <div class="max-w-screen overflow-hidden">
+    <div class="max-w-7xl mx-auto overflow-hidden">
         <HomeHero />
-        <HomeFeaturedSection />
+        <HomeFeaturedSection class="" />
     </div>
 </template>
 <script setup lang="ts">
