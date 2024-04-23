@@ -65,7 +65,7 @@ const searchSubmit = () => {
             </div>
             <!-- Hero Search Card -->
             <div class="">
-                <Card class="" :pt="{ 'root': 'shadow-2xl' }">
+                <Card class="md:p-5" :pt="{ 'root': 'shadow-2xl' }">
                     <template #title>
                         <div class="text-center">
                             <h3>Search by location</h3>
@@ -82,7 +82,7 @@ const searchSubmit = () => {
                                     optionLabel="name" multiple aria-labelledby="multiple" />
 
                             </div>
-                            <div class=" ">
+                            <div class="w-full">
                                 <label for="slider" class="text-lg text-gray-500 my-3 block">Location</label>
                                 <InputGroup class="bg-none">
                                     <InputGroupAddon class="relative">
@@ -96,7 +96,7 @@ const searchSubmit = () => {
                                 <small id="location-help">Where are you looking for the property?</small>
                             </div>
 
-                            <div class="w-full ">
+                            <div class="w-full">
                                 <label for="slider" class="text-lg text-gray-500 my-3 block">Price Range(₹{{
                     searchForm.priceRange[0] *
                     1000 }} - ₹{{
@@ -105,7 +105,7 @@ const searchSubmit = () => {
                                     <Slider v-model="searchForm.priceRange" range class="w-14rem" />
                                 </div>
                             </div>
-                            <Button type="submit" class="w-full flex gap-3">
+                            <Button type="submit" class="flex gap-3 w-full">
                                 <Icon name="ph:magnifying-glass" />
                                 <div class="">
                                     Find Property..
