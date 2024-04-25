@@ -14,6 +14,9 @@
 
 
 <script setup lang="ts">
+    import { useAuthStore } from '../../stores/auth';
+
+    const authStore = useAuthStore()
 
     import { ref } from 'vue';
 
@@ -22,9 +25,16 @@
         password: ""
     });
 
-    function formSubmit() {
-            console.log(formData.value);
-    }
+    const toast = useToast();
+    async function formSubmit() {
+            const logincheck = await(authStore.login(formData.value));
+            console.log(logincheck);
+            if(logincheck==true){
+                toast.add({ severity: 'info', summary: 'Info', detail: 'Message Content', life: 3000 });
+            }else{
+                toast.add({ severity: 'error', summary: 'Error', detail: 'Message Content', life: 3000 });
+            }
+            }
 </script>
 
 <style  scoped>

@@ -11,8 +11,12 @@ export const useAuthStore = defineStore("auth", {
     getAuthStatus: (state) => state.isAuthenticated,
   },
   actions: {
-    async login() {
-      this.isAuthenticated = true;
+    async login(data) {
+      if(data.email == this.user.username && data.password == this.user.password){
+          this.isAuthenticated = true;
+          return true;
+      }
+      return false;
     },
     async logout() {
       this.isAuthenticated = false;
