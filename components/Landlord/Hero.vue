@@ -161,19 +161,19 @@ const search = (event) => {
                             </form>
                             <div v-if="showCard" class="fixed inset-0 overflow-y-auto bg-black bg-opacity-50 z-50 pt-10 pb-10">
                                 <div class="flex justify-center items-center min-h-screen">
-                                    <div class="bg-white p-8 rounded-lg shadow-xl max-w-[50%] w-full">
+                                    <div class="bg-white p-8 rounded-lg shadow-xl max-w-[90%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[60%] xl:max-w-[50%] w-full">
                                         <div class="text-center mb-4">
                                             <h3 class="text-lg font-bold">Add Your Property</h3>
                                             <p class="text-sm text-gray-500">Add your property so that we can show it to our users</p>
                                         </div>
                                         <div class="mt-4">
                                             <!-- First pair of inputs -->
-                                            <div class="flex justify-between">
-                                                <div class="w-[49%] relative">
+                                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                                <div class="relative">
                                                     <Dropdown v-model="selectedSpec" :options="spec" showClear optionLabel="Property Specification" placeholder="Select a City" class="w-full" />
                                                     <small id="property-spec-help">Property Specification<span class="text-red-400"> *</span></small>
                                                 </div>
-                                                <div class="w-[49%]">
+                                                <div>
                                                     <div class="flex flex-col gap-2">
                                                         <InputText id="location" v-model="value" aria-describedby="location-help" placeholder="Your property location"/>
                                                         <small id="location-help">Area<span class="text-red-400"> *</span></small>
@@ -181,14 +181,14 @@ const search = (event) => {
                                                 </div>
                                             </div>
                                             <!-- Second pair of inputs -->
-                                            <div class="mt-4 flex justify-between">
-                                                <div class="w-[49%]">
+                                            <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                                <div>
                                                     <div class="flex flex-col gap-2">
                                                         <InputText id="rent" v-model="rentValue" aria-describedby="rent-help" placeholder="Rent"/>
                                                         <small id="rent-help">Price per month<span class="text-red-400"> *</span></small>
                                                     </div>
                                                 </div>
-                                                <div class="w-[49%]">
+                                                <div>
                                                     <div class="flex flex-col gap-2">
                                                         <InputText id="map-location" v-model="mapValue" aria-describedby="map-location-help" placeholder="Map location"/>
                                                         <small id="map-location-help">Exact map location<span class="text-red-400"> *</span></small>
@@ -201,166 +201,150 @@ const search = (event) => {
 
                                             <!-- Amenities -->
                                             <div class="mb-4">
-                                                <h3 class="text-lg font-bold mt-3">Aminities</h3>
+                                                <h3 class="text-lg font-bold mt-3">Amenities</h3>
                                                 <p class="text-sm text-gray-500">Select all that apply</p>
                                             </div>
-                                                <!-- Row 1 -->
-                                                <div class="mt-4 flex justify-between">
-                                                    <div class="w-[25%]">
-                                                        <div class="flex items-center relative">
-                                                            <Checkbox v-model="wifi" inputId="ingredient1" name="wifi" value="Cheese" />
-                                                            <label for="ingredient1" class="ml-2"> Wifi </label>
-                                                            <Icon name="ph:wifi-high-bold" class="ml-2 w-6 h-6"/>
-                                                        </div>
+                                                <!-- Amenities Grid -->
+                                                <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
+                                                    <!-- WiFi -->
+                                                    <div class="flex items-center">
+                                                        <Checkbox v-model="wifi" inputId="wifi" name="wifi" value="wifi" />
+                                                        <label for="wifi" class="ml-2">WiFi</label>
+                                                        <Icon name="ph:wifi-high-bold" class="ml-2 w-6 h-6" />
                                                     </div>
-                                                    <div class="w-[25%]">
-                                                        <div class="flex items-center">
-                                                            <Checkbox v-model="power" inputId="ingredient1" name="power" value="Cheese" />
-                                                            <label for="ingredient1" class="ml-2"> Power </label>
-                                                            <Icon name="ph:power-bold" class="ml-2 w-6 h-6"/>
-                                                        </div>
+                                                    <!-- Power -->
+                                                    <div class="flex items-center">
+                                                        <Checkbox v-model="power" inputId="power" name="power" value="power" />
+                                                        <label for="power" class="ml-2">Power</label>
+                                                        <Icon name="ph:power-bold" class="ml-2 w-6 h-6" />
                                                     </div>
-                                                    <div class="w-[25%]">
-                                                        <div class="flex items-center">
-                                                            <Checkbox v-model="water" inputId="ingredient1" name="water" value="Cheese" />
-                                                            <label for="ingredient1" class="ml-2"> Water </label>
-                                                            <Icon name="ph:drop-bold" class="ml-2 w-6 h-6"/>
-                                                        </div>
+                                                    <!-- Water -->
+                                                    <div class="flex items-center">
+                                                        <Checkbox v-model="water" inputId="water" name="water" value="water" />
+                                                        <label for="water" class="ml-2">Water</label>
+                                                        <Icon name="ph:drop-bold" class="ml-2 w-6 h-6" />
                                                     </div>
-                                                    <div class="w-[25%]">
-                                                        <div class="flex items-center">
-                                                            <Checkbox v-model="parking" inputId="ingredient1" name="parking" value="Cheese" />
-                                                            <label for="ingredient1" class="ml-2"> Parking </label>
-                                                            <Icon name="ph:car-profile-bold" class="ml-2 w-6 h-6"/>
-                                                        </div>
+                                                    <!-- Parking -->
+                                                    <div class="flex items-center">
+                                                        <Checkbox v-model="parking" inputId="parking" name="parking" value="parking" />
+                                                        <label for="parking" class="ml-2">Parking</label>
+                                                        <Icon name="ph:car-profile-bold" class="ml-2 w-6 h-6" />
                                                     </div>
                                                 </div>
                                                 <!-- Row 2 -->
-                                                <div class="mt-4 flex justify-between">
-                                                    <div class="w-[25%]">
-                                                        <div class="flex items-center relative">
-                                                            <Checkbox v-model="elevator" inputId="ingredient1" name="elevator" value="Cheese" />
-                                                            <label for="ingredient1" class="ml-2"> Elevator </label>
-                                                            <Icon name="ph:elevator-bold" class="ml-2 w-6 h-6"/>
-                                                        </div>
+                                                <div class="mt-4 grid grid-cols-2 gap-4 md:grid-cols-4">
+                                                    <!-- Elevator -->
+                                                    <div class="flex items-center">
+                                                        <Checkbox v-model="elevator" inputId="elevator" name="elevator" value="elevator" />
+                                                        <label for="elevator" class="ml-2">Elevator</label>
+                                                        <Icon name="ph:elevator-bold" class="ml-2 w-6 h-6" />
                                                     </div>
-                                                    <div class="w-[25%]">
-                                                        <div class="flex items-center">
-                                                            <Checkbox v-model="ac" inputId="ingredient1" name="ac" value="Cheese" />
-                                                            <label for="ingredient1" class="ml-2"> AC </label>
-                                                            <Icon name="ph:snowflake-bold" class="ml-2 w-6 h-6"/>
-                                                        </div>
+                                                    <!-- AC -->
+                                                    <div class="flex items-center">
+                                                        <Checkbox v-model="ac" inputId="ac" name="ac" value="ac" />
+                                                        <label for="ac" class="ml-2">AC</label>
+                                                        <Icon name="ph:snowflake-bold" class="ml-2 w-6 h-6" />
                                                     </div>
-                                                    <div class="w-[25%]">
-                                                        <div class="flex items-center">
-                                                            <Checkbox v-model="paper" inputId="ingredient1" name="paper" value="Cheese" />
-                                                            <label for="ingredient1" class="ml-2"> Paper </label>
-                                                            <Icon name="ph:newspaper-bold" class="ml-2 w-6 h-6"/>
-                                                        </div>
+                                                    <!-- Paper -->
+                                                    <div class="flex items-center">
+                                                        <Checkbox v-model="paper" inputId="paper" name="paper" value="paper" />
+                                                        <label for="paper" class="ml-2">Paper</label>
+                                                        <Icon name="ph:newspaper-bold" class="ml-2 w-6 h-6" />
                                                     </div>
-                                                    <div class="w-[25%]">
-                                                        <div class="flex items-center">
-                                                            <Checkbox v-model="laundry" inputId="ingredient1" name="laundry" value="Cheese" />
-                                                            <label for="ingredient1" class="ml-2"> Laundry </label>
-                                                            <Icon name="ph:washing-machine-bold" class="ml-2 w-6 h-6"/>
-                                                        </div>
+                                                    <!-- Laundry -->
+                                                    <div class="flex items-center">
+                                                        <Checkbox v-model="laundry" inputId="laundry" name="laundry" value="laundry" />
+                                                        <label for="laundry" class="ml-2">Laundry</label>
+                                                        <Icon name="ph:washing-machine-bold" class="ml-2 w-6 h-6" />
                                                     </div>
                                                 </div>
+
                                                 <!-- Row 3 -->
-                                                <div class="mt-4 flex justify-between">
-                                                    <div class="w-[25%]">
-                                                        <div class="flex items-center relative">
-                                                            <Checkbox v-model="pool" inputId="ingredient1" name="pool" value="Cheese" />
-                                                            <label for="ingredient1" class="ml-2"> Pool </label>
-                                                            <Icon name="ph:person-simple-swim-bold" class="ml-2 w-6 h-6"/>
-                                                        </div>
+                                                <div class="mt-4 grid grid-cols-2 gap-4 md:grid-cols-4">
+                                                    <!-- Pool -->
+                                                    <div class="flex items-center">
+                                                        <Checkbox v-model="pool" inputId="pool" name="pool" value="pool" />
+                                                        <label for="pool" class="ml-2">Pool</label>
+                                                        <Icon name="ph:person-simple-swim-bold" class="ml-2 w-6 h-6" />
                                                     </div>
-                                                    <div class="w-[25%]">
-                                                        <div class="flex items-center">
-                                                            <Checkbox v-model="cctv" inputId="ingredient1" name="cctv" value="Cheese" />
-                                                            <label for="ingredient1" class="ml-2"> CCTV </label>
-                                                            <Icon name="ph:security-camera-bold" class="ml-2 w-6 h-6"/>
-                                                        </div>
+                                                    <!-- CCTV -->
+                                                    <div class="flex items-center">
+                                                        <Checkbox v-model="cctv" inputId="cctv" name="cctv" value="cctv" />
+                                                        <label for="cctv" class="ml-2">CCTV</label>
+                                                        <Icon name="ph:security-camera-bold" class="ml-2 w-6 h-6" />
                                                     </div>
-                                                    <div class="w-[25%]">
-                                                        <div class="flex items-center">
-                                                            <Checkbox v-model="extinguisher" inputId="ingredient1" name="extinguisher" value="Cheese" />
-                                                            <label for="ingredient1" class="ml-2 text-sm">Extinguisher</label>
-                                                            <Icon name="ph:fire-extinguisher-bold" class="ml-1 w-6 h-6"/>
-                                                        </div>
+                                                    <!-- Extinguisher -->
+                                                    <div class="flex items-center">
+                                                        <Checkbox v-model="extinguisher" inputId="extinguisher" name="extinguisher" value="extinguisher" />
+                                                        <label for="extinguisher" class="ml-2 text-sm">Extinguisher</label>
+                                                        <Icon name="ph:fire-extinguisher-bold" class="ml-1 w-6 h-6" />
                                                     </div>
-                                                    <div class="w-[25%]">
-                                                        <div class="flex items-center">
-                                                            <Checkbox v-model="alarm" inputId="ingredient1" name="alarm" value="Cheese" />
-                                                            <label for="ingredient1" class="ml-2"> Alarm </label>
-                                                            <Icon name="ph:speaker-simple-high-bold" class="ml-2 w-6 h-6"/>
-                                                        </div>
+                                                    <!-- Alarm -->
+                                                    <div class="flex items-center">
+                                                        <Checkbox v-model="alarm" inputId="alarm" name="alarm" value="alarm" />
+                                                        <label for="alarm" class="ml-2">Alarm</label>
+                                                        <Icon name="ph:speaker-simple-high-bold" class="ml-2 w-6 h-6" />
                                                     </div>
                                                 </div>
+
                                                 <!-- Row 4 -->
-                                                <div class="mt-4 flex justify-between">
-                                                    <div class="w-[25%]">
-                                                        <div class="flex items-center relative">
-                                                            <Checkbox v-model="gym" inputId="ingredient1" name="gym" value="Cheese" />
-                                                            <label for="ingredient1" class="ml-2"> Gym </label>
-                                                            <Icon name="ph:person-arms-spread-bold" class="ml-2 w-6 h-6"/>
-                                                        </div>
+                                                <div class="mt-4 grid grid-cols-2 gap-4 md:grid-cols-4">
+                                                    <!-- Gym -->
+                                                    <div class="flex items-center">
+                                                        <Checkbox v-model="gym" inputId="gym" name="gym" value="gym" />
+                                                        <label for="gym" class="ml-2">Gym</label>
+                                                        <Icon name="ph:person-arms-spread-bold" class="ml-2 w-6 h-6" />
                                                     </div>
-                                                    <div class="w-[25%]">
-                                                        <div class="flex items-center">
-                                                            <Checkbox v-model="firstaid" inputId="ingredient1" name="firstaid" value="Cheese" />
-                                                            <label for="ingredient1" class="ml-2"> First-Aid </label>
-                                                            <Icon name="ph:bandaids-bold" class="ml-2 w-6 h-6"/>
-                                                        </div>
+                                                    <!-- First-Aid -->
+                                                    <div class="flex items-center">
+                                                        <Checkbox v-model="firstaid" inputId="firstaid" name="firstaid" value="firstaid" />
+                                                        <label for="firstaid" class="ml-2">First-Aid</label>
+                                                        <Icon name="ph:bandaids-bold" class="ml-2 w-6 h-6" />
                                                     </div>
-                                                    <div class="w-[25%]">
-                                                        <div class="flex items-center">
-                                                            <Checkbox v-model="security" inputId="ingredient1" name="security" value="Cheese" />
-                                                            <label for="ingredient1" class="ml-2">Security</label>
-                                                            <Icon name="material-symbols:security" class="ml-2 w-6 h-6"/>
-                                                        </div>
+                                                    <!-- Security -->
+                                                    <div class="flex items-center">
+                                                        <Checkbox v-model="security" inputId="security" name="security" value="security" />
+                                                        <label for="security" class="ml-2">Security</label>
+                                                        <Icon name="material-symbols:security" class="ml-2 w-6 h-6" />
                                                     </div>
-                                                    <div class="w-[25%]">
-                                                        <div class="flex items-center">
-                                                            <Checkbox v-model="storage" inputId="ingredient1" name="storage" value="Cheese" />
-                                                            <label for="ingredient1" class="ml-2"> Storage </label>
-                                                            <Icon name="streamline:travel-airport-baggage-check-baggage-travel-adventure-luggage-bag-checked" class="ml-2 w-6 h-6"/>
-                                                        </div>
+                                                    <!-- Storage -->
+                                                    <div class="flex items-center">
+                                                        <Checkbox v-model="storage" inputId="storage" name="storage" value="storage" />
+                                                        <label for="storage" class="ml-2">Storage</label>
+                                                        <Icon name="streamline:travel-airport-baggage-check-baggage-travel-adventure-luggage-bag-checked" class="ml-2 w-6 h-6" />
                                                     </div>
                                                 </div>
+
                                                 <!-- Row 5 -->
-                                                <div class="mt-4 flex justify-between">
-                                                    <div class="w-[25%]">
-                                                        <div class="flex items-center relative">
-                                                            <Checkbox v-model="restaurant" inputId="ingredient1" name="restaurant" value="Cheese" />
-                                                            <label for="ingredient1" class="ml-2 text-sm"> Restaurant </label>
-                                                            <Icon name="ion:restaurant-outline" class="ml-2 w-6 h-6"/>
-                                                        </div>
+                                                <div class="mt-4 grid grid-cols-2 gap-4 md:grid-cols-4">
+                                                    <!-- Restaurant -->
+                                                    <div class="flex items-center">
+                                                        <Checkbox v-model="restaurant" inputId="restaurant" name="restaurant" value="restaurant" />
+                                                        <label for="restaurant" class="ml-2 text-sm">Restaurant</label>
+                                                        <Icon name="ion:restaurant-outline" class="ml-2 w-6 h-6" />
                                                     </div>
-                                                    <div class="w-[25%]">
-                                                        <div class="flex items-center">
-                                                            <Checkbox v-model="furnished" inputId="ingredient1" name="furnished" value="Cheese" />
-                                                            <label for="ingredient1" class="ml-2"> Furnished </label>
-                                                            <Icon name="streamline:shopping-catergories-sofa-decoration-furniture-interior-design-couch-sofa-decorate" class="ml-2 w-6 h-6"/>
-                                                        </div>
+                                                    <!-- Furnished -->
+                                                    <div class="flex items-center">
+                                                        <Checkbox v-model="furnished" inputId="furnished" name="furnished" value="furnished" />
+                                                        <label for="furnished" class="ml-2">Furnished</label>
+                                                        <Icon name="streamline:shopping-catergories-sofa-decoration-furniture-interior-design-couch-sofa-decorate" class="ml-2 w-6 h-6" />
                                                     </div>
-                                                    <div class="w-[25%]">
-                                                        <div class="flex items-center">
-                                                            <Checkbox v-model="hospital" inputId="ingredient1" name="hospital" value="Cheese" />
-                                                            <label for="ingredient1" class="ml-2">Hospital</label>
-                                                            <Icon name="mdi:hospital-building" class="ml-2 w-6 h-6"/>
-                                                        </div>
+                                                    <!-- Hospital -->
+                                                    <div class="flex items-center">
+                                                        <Checkbox v-model="hospital" inputId="hospital" name="hospital" value="hospital" />
+                                                        <label for="hospital" class="ml-2">Hospital</label>
+                                                        <Icon name="mdi:hospital-building" class="ml-2 w-6 h-6" />
                                                     </div>
-                                                    <div class="w-[25%]">
-                                                        <div class="flex items-center">
-                                                            <Checkbox v-model="helper" inputId="ingredient1" name="helper" value="Cheese" />
-                                                            <label for="ingredient1" class="ml-2"> Helper </label>
-                                                            <Icon name="mdi:human-dolly" class="ml-2 w-6 h-6"/>
-                                                        </div>
+                                                    <!-- Helper -->
+                                                    <div class="flex items-center">
+                                                        <Checkbox v-model="helper" inputId="helper" name="helper" value="helper" />
+                                                        <label for="helper" class="ml-2">Helper</label>
+                                                        <Icon name="mdi:human-dolly" class="ml-2 w-6 h-6" />
                                                     </div>
                                                 </div>
-                                                <!-- Add Aminity -->
-                                                <div class="mt-4 flex justify-between">
+
+                                                <!-- Add Aminity (for larger screens) -->
+                                                <div class="hidden sm:block mt-4 flex justify-between">
                                                     <div class="w-[25%] flex items-center">
                                                         <div class="flex flex-col gap-2">
                                                             <Button label="Submit" @click="addInputField" class="flex items-center">
@@ -370,17 +354,50 @@ const search = (event) => {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div v-for="(input, index) in aminityInputs" :key="index" class="mt-4 flex justify-between">
-                                                    <div class="w-full">
-                                                        <div class="flex flex-col gap-2">
-                                                            <InputText v-model="input.value" :id="'aminity_' + index" :aria-describedby="'aminity-help_' + index" placeholder="Enter amenity"/>
-                                                            <small :id="'aminity-help_' + index">Additional Amenity<span class="text-red-400"> *</span></small>
+
+                                                <!-- Aminity Inputs (for larger screens) -->
+                                                <div class="hidden sm:block">
+                                                    <div v-for="(input, index) in aminityInputs" :key="index" class="mt-4 flex justify-between">
+                                                        <div class="w-full">
+                                                            <div class="flex flex-col gap-2">
+                                                                <InputText v-model="input.value" :id="'aminity_' + index" :aria-describedby="'aminity-help_' + index" placeholder="Enter amenity"/>
+                                                                <small :id="'aminity-help_' + index">Additional Amenity<span class="text-red-400"> *</span></small>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="ml-4 items-center">
+                                                        <div class="ml-4 items-center">
                                                             <Button label="Submit" @click="removeInputField(index)" class="flex items-center bg-red-500 text-white hover:bg-red-600">
                                                                 <Icon name="material-symbols:delete-outline" class="ml-1 mr-1 w-6 h-6"/>
                                                             </Button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Add Aminity (for smaller screens) -->
+                                                <div class="block sm:hidden mt-4">
+                                                    <div class="w-[25%] flex items-center">
+                                                        <div class="flex flex-col gap-2">
+                                                            <Button label="Submit" @click="addInputField" class="flex items-center">
+                                                                <Icon name="material-symbols:add" class="ml-1 mr-1 w-6 h-6"/>
+                                                                Add
+                                                            </Button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Aminity Inputs (for smaller screens) -->
+                                                <div class="block sm:hidden">
+                                                    <div v-for="(input, index) in aminityInputs" :key="index" class="mt-4">
+                                                        <div class="w-full">
+                                                            <div class="flex flex-col gap-2">
+                                                                <InputText v-model="input.value" :id="'aminity_' + index" :aria-describedby="'aminity-help_' + index" placeholder="Enter amenity"/>
+                                                                <small :id="'aminity-help_' + index">Additional Amenity<span class="text-red-400"> *</span></small>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mt-2 flex justify-end">
+                                                            <Button label="Submit" @click="removeInputField(index)" class="flex items-center bg-red-500 text-white hover:bg-red-600">
+                                                                <Icon name="material-symbols:delete-outline" class="ml-1 mr-1 w-6 h-6"/>
+                                                            </Button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                         </div>
@@ -392,35 +409,13 @@ const search = (event) => {
                                             <h3 class="text-lg font-bold mt-3">Photos</h3>
                                             <p class="text-sm text-gray-500">Add a minimum of 5 to a maximum of 10 photos</p>
                                         </div>
-                                        <div class="mt-4 flex justify-between">
-                                        <div class="w-full">
-                                            <div class="flex flex-col gap-2">
-                                                <InputText v-model="photoValue1" :placeholder="photoValue1"/>
-                                                <small id="property-spec-help">Picture from outside<span class="text-red-400"> *</span></small>
-                                            </div>
-                                        </div>
-                                        <div class="ml-4 items-center">
-                                            <div class="flex items-center text-white">
-                                                <Button>
-                                                    <label for="file-upload" class="cursor-pointer flex items-center">
-                                                        <Icon name="ph:upload-simple-bold" class="ml-1 mr-1 w-6 h-6 "/>
-                                                    </label>
-                                                </Button>
-                                                <input
-                                                    type="file"
-                                                    id="file-upload"
-                                                    ref="fileInput"
-                                                    class="hidden"
-                                                    @change="handleFileUpload"
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                        <div class="mt-4 flex justify-between">
+                                        
+                                        <!-- Photo Upload (for larger screens) -->
+                                        <div class="hidden sm:flex mt-4 justify-between">
                                             <div class="w-full">
                                                 <div class="flex flex-col gap-2">
-                                                    <InputText v-model="photoValue1" placeholder= photoValue1 />
-                                                    <small id="property-spec-help">Picture of Hall<span class="text-red-400"> *</span></small>
+                                                    <InputText v-model="photoValue1" placeholder=""/>
+                                                    <small id="property-spec-help">Picture from outside<span class="text-red-400"> *</span></small>
                                                 </div>
                                             </div>
                                             <div class="ml-4 items-center">
@@ -440,7 +435,87 @@ const search = (event) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="mt-4 flex justify-between">
+
+                                        <!-- Photo Upload (for smaller screens) -->
+                                        <div class="block sm:hidden mt-4">
+                                            <div class="w-full">
+                                                <div class="flex flex-col gap-2">
+                                                    <InputText v-model="photoValue1" placeholder=""/>
+                                                    <small id="property-spec-help">Picture from outside<span class="text-red-400"> *</span></small>
+                                                </div>
+                                            </div>
+                                            <div class="mt-0 flex justify-end">
+                                                <div class="flex items-center text-white">
+                                                    <Button>
+                                                        <label for="file-upload" class="cursor-pointer flex items-center">
+                                                            <Icon name="ph:upload-simple-bold" class="ml-1 mr-1 w-6 h-6 "/>
+                                                        </label>
+                                                    </Button>
+                                                    <input
+                                                        type="file"
+                                                        id="file-upload"
+                                                        ref="fileInput"
+                                                        class="hidden"
+                                                        @change="handleFileUpload"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Photo Upload (for larger screens) -->
+                                        <div class="hidden sm:flex mt-4 justify-between">
+                                            <div class="w-full">
+                                                <div class="flex flex-col gap-2">
+                                                    <InputText v-model="photoValue1" placeholder=""/>
+                                                    <small id="property-spec-help">Picture from outside<span class="text-red-400"> *</span></small>
+                                                </div>
+                                            </div>
+                                            <div class="ml-4 items-center">
+                                                <div class="flex items-center text-white">
+                                                    <Button>
+                                                        <label for="file-upload" class="cursor-pointer flex items-center">
+                                                            <Icon name="ph:upload-simple-bold" class="ml-1 mr-1 w-6 h-6 "/>
+                                                        </label>
+                                                    </Button>
+                                                    <input
+                                                        type="file"
+                                                        id="file-upload"
+                                                        ref="fileInput"
+                                                        class="hidden"
+                                                        @change="handleFileUpload"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Photo Upload (for smaller screens) -->
+                                        <div class="block sm:hidden mt-4">
+                                            <div class="w-full">
+                                                <div class="flex flex-col gap-2">
+                                                    <InputText v-model="photoValue1" placeholder=""/>
+                                                    <small id="property-spec-help">Picture from outside<span class="text-red-400"> *</span></small>
+                                                </div>
+                                            </div>
+                                            <div class="mt-0 flex justify-end">
+                                                <div class="flex items-center text-white">
+                                                    <Button>
+                                                        <label for="file-upload" class="cursor-pointer flex items-center">
+                                                            <Icon name="ph:upload-simple-bold" class="ml-1 mr-1 w-6 h-6 "/>
+                                                        </label>
+                                                    </Button>
+                                                    <input
+                                                        type="file"
+                                                        id="file-upload"
+                                                        ref="fileInput"
+                                                        class="hidden"
+                                                        @change="handleFileUpload"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Photo Upload (for larger screens) -->
+                                        <div class="hidden sm:flex mt-4 justify-between">
                                             <div class="w-full">
                                                 <div class="flex flex-col gap-2">
                                                     <InputText v-model="photoValue1" placeholder=""/>
@@ -464,7 +539,35 @@ const search = (event) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="mt-4 flex justify-between">
+
+                                        <!-- Photo Upload (for smaller screens) -->
+                                        <div class="block sm:hidden mt-4">
+                                            <div class="w-full">
+                                                <div class="flex flex-col gap-2">
+                                                    <InputText v-model="photoValue1" placeholder=""/>
+                                                    <small id="property-spec-help">Picture of Bedroom<span class="text-red-400"> *</span></small>
+                                                </div>
+                                            </div>
+                                            <div class="mt-0 flex justify-end">
+                                                <div class="flex items-center text-white">
+                                                    <Button>
+                                                        <label for="file-upload" class="cursor-pointer flex items-center">
+                                                            <Icon name="ph:upload-simple-bold" class="ml-1 mr-1 w-6 h-6 "/>
+                                                        </label>
+                                                    </Button>
+                                                    <input
+                                                        type="file"
+                                                        id="file-upload"
+                                                        ref="fileInput"
+                                                        class="hidden"
+                                                        @change="handleFileUpload"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Photo Upload (for larger screens) -->
+                                        <div class="hidden sm:flex mt-4 justify-between">
                                             <div class="w-full">
                                                 <div class="flex flex-col gap-2">
                                                     <InputText v-model="photoValue1" placeholder=""/>
@@ -488,7 +591,35 @@ const search = (event) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="mt-4 flex justify-between">
+
+                                        <!-- Photo Upload (for smaller screens) -->
+                                        <div class="block sm:hidden mt-4">
+                                            <div class="w-full">
+                                                <div class="flex flex-col gap-2">
+                                                    <InputText v-model="photoValue1" placeholder=""/>
+                                                    <small id="property-spec-help">Picture of Kitchen<span class="text-red-400"> *</span></small>
+                                                </div>
+                                            </div>
+                                            <div class="mt-0 flex justify-end">
+                                                <div class="flex items-center text-white">
+                                                    <Button>
+                                                        <label for="file-upload" class="cursor-pointer flex items-center">
+                                                            <Icon name="ph:upload-simple-bold" class="ml-1 mr-1 w-6 h-6 "/>
+                                                        </label>
+                                                    </Button>
+                                                    <input
+                                                        type="file"
+                                                        id="file-upload"
+                                                        ref="fileInput"
+                                                        class="hidden"
+                                                        @change="handleFileUpload"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Photo Upload (for larger screens) -->
+                                        <div class="hidden sm:flex mt-4 justify-between">
                                             <div class="w-full">
                                                 <div class="flex flex-col gap-2">
                                                     <InputText v-model="photoValue1" placeholder=""/>
@@ -512,25 +643,16 @@ const search = (event) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- Add Photo -->
-                                        <div class="mt-4 flex justify-between">
-                                                    <div class="w-[25%] flex items-center">
-                                                        <div class="flex flex-col gap-2">
-                                                            <Button label="Submit" @click="addPhotoField" class="flex items-center">
-                                                                <Icon name="material-symbols:add" class="ml-1 mr-1 w-6 h-6"/>
-                                                                Add
-                                                            </Button>
-                                                        </div>
-                                                    </div>
+
+                                        <!-- Photo Upload (for smaller screens) -->
+                                        <div class="block sm:hidden mt-4">
+                                            <div class="w-full">
+                                                <div class="flex flex-col gap-2">
+                                                    <InputText v-model="photoValue1" placeholder=""/>
+                                                    <small id="property-spec-help">Picture of Bathroom<span class="text-red-400"> *</span></small>
                                                 </div>
-                                                <div v-for="(input, index) in photoInputs" :key="index" class="mt-4 flex justify-between">
-                                                    <div class="w-full">
-                                                        <div class="flex flex-col gap-2">
-                                                            <InputText v-model="input.value" :id="'aminity_' + index" :aria-describedby="'aminity-help_' + index" placeholder=""/>
-                                                            <small :id="'aminity-help_' + index">Add More Photo</small>
-                                                        </div>
-                                                    </div>
-                                                    <div class="ml-4 items-center">
+                                            </div>
+                                            <div class="mt-0 flex justify-end">
                                                 <div class="flex items-center text-white">
                                                     <Button>
                                                         <label for="file-upload" class="cursor-pointer flex items-center">
@@ -546,13 +668,97 @@ const search = (event) => {
                                                     />
                                                 </div>
                                             </div>
-                                                    <div class="ml-4 items-center">
-                                                            <Button label="Submit" @click="removePhotoField(index)" class="flex items-center bg-red-500 text-white hover:bg-red-600">
-                                                                <Icon name="material-symbols:delete-outline" class="ml-1 mr-1 w-6 h-6"/>
-                                                            </Button>
+                                        </div>
+
+                                        <!-- Add Photo (for larger screens) -->
+                                        <div class="hidden sm:block mt-4 flex justify-between">
+                                            <div class="w-[25%] flex items-center">
+                                                <div class="flex flex-col gap-2">
+                                                    <Button label="Submit" @click="addPhotoField" class="flex items-center">
+                                                        <Icon name="material-symbols:add" class="ml-1 mr-1 w-6 h-6"/>
+                                                        Add
+                                                    </Button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Photo Inputs (for larger screens) -->
+                                        <div class="hidden sm:block">
+                                            <div v-for="(input, index) in photoInputs" :key="index" class="mt-4 flex justify-between">
+                                                <div class="w-full">
+                                                    <div class="flex flex-col gap-2">
+                                                        <InputText v-model="input.value" :id="'photo_' + index" :aria-describedby="'photo-help_' + index" placeholder="Add Photo"/>
+                                                        <small :id="'photo-help_' + index">Add More Photo</small>
                                                     </div>
                                                 </div>
+                                                <div class="ml-4 items-center">
+                                                    <div class="flex items-center text-white">
+                                                        <Button>
+                                                            <label for="file-upload" class="cursor-pointer flex items-center">
+                                                                <Icon name="ph:upload-simple-bold" class="ml-1 mr-1 w-6 h-6 "/>
+                                                            </label>
+                                                        </Button>
+                                                        <input
+                                                            type="file"
+                                                            id="file-upload"
+                                                            ref="fileInput"
+                                                            class="hidden"
+                                                            @change="handleFileUpload"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div class="ml-4 items-center">
+                                                    <Button label="Submit" @click="removePhotoField(index)" class="flex items-center bg-red-500 text-white hover:bg-red-600">
+                                                        <Icon name="material-symbols:delete-outline" class="ml-1 mr-1 w-6 h-6"/>
+                                                    </Button>
+                                                </div>
+                                            </div>
+                                        </div>
 
+                                        <!-- Add Photo (for smaller screens) -->
+                                        <div class="block sm:hidden mt-4">
+                                            <div class="w-[25%] flex items-center">
+                                                <div class="flex flex-col gap-2">
+                                                    <Button label="Submit" @click="addPhotoField" class="flex items-center">
+                                                        <Icon name="material-symbols:add" class="ml-1 mr-1 w-6 h-6"/>
+                                                        Add
+                                                    </Button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Photo Inputs (for smaller screens) -->
+                                        <div class="block sm:hidden mt-4">
+                                            <div v-for="(input, index) in photoInputs" :key="index" >
+                                                <div class="w-full mt-4">
+                                                    <div class="flex flex-col gap-2">
+                                                        <InputText v-model="input.value" :id="'photo_' + index" :aria-describedby="'photo-help_' + index" placeholder="Add Photo"/>
+                                                        <small :id="'photo-help_' + index">Add More Photo</small>
+                                                    </div>
+                                                </div>
+                                                <div class="flex items-center mt-0 justify-end">
+                                                    <div class="flex items-center text-white mr-2">
+                                                        <Button> 
+                                                            <label for="file-upload" class="cursor-pointer flex items-center">
+                                                                <Icon name="ph:upload-simple-bold" class="ml-1 mr-1 w-6 h-6 "/>
+                                                            </label>
+                                                        </Button>
+                                                        <input
+                                                            type="file"
+                                                            id="file-upload"
+                                                            ref="fileInput"
+                                                            class="hidden"
+                                                            @change="handleFileUpload"
+                                                        />
+                                                    </div>
+                                                    <div class="flex items-center text-white">
+                                                        <Button label="Submit" @click="removePhotoField(index)" class="flex items-center bg-red-500 text-white hover:bg-red-600">
+                                                            <Icon name="material-symbols:delete-outline" class="ml-1 mr-1 w-6 h-6"/>
+                                                        </Button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                                 <!-- Line -->
                                                 <hr class="w-full mt-8 mb-5 border-t border-gray-300">
 
