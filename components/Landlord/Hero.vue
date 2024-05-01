@@ -1,21 +1,8 @@
-<script lang="ts">
-
-export default {
-  methods: {
-    handleFileUpload(event) {
-      const file = event.target.files[0];
-      // Set the value of photoValue1 to the file name or path
-      this.photoValue1 = file.name; // or file.path if you want the full path
-    }
-  }
-}
-</script>
 <script setup lang="ts">
 
 import { ref } from 'vue';
 
 const showCard = ref(false);
-const backgroundImage = ref("url('../../../assets/img/background/bedroom_1.jpg')");
 
 const selectedSpec = ref();
 const spec = ref([
@@ -24,6 +11,7 @@ const spec = ref([
     { name: '3 BHK', code: 'three_bhk' },
     { name: '3+ BHK', code: 'three_plus_bhk' }
 ]);
+
 const value = ref(null);
 const rentValue = ref(null);
 const mapValue = ref(null);
@@ -54,70 +42,76 @@ const helper = ref(null);
 const selectedOption = ref(null);
 
 const addInputField = () => {
-        aminityInputs.value.push({ value: '' });
-    };
+  aminityInputs.value.push({ value: '' });
+};
 
 const removeInputField = (index) => {
-        aminityInputs.value.splice(index, 1);
-    };
+  aminityInputs.value.splice(index, 1);
+};
+
 const addPhotoField = () => {
-        photoInputs.value.push({ value: '' });
-    };
+  photoInputs.value.push({ value: '' });
+};
 
 const removePhotoField = (index) => {
-        photoInputs.value.splice(index, 1);
-    };
+  photoInputs.value.splice(index, 1);
+};
 
 const searchForm = ref({
-
-    location: '',
-    bhkNo: [{ name: '2BHK', value: 2 }]
-})
-
+  location: '',
+  bhkNo: [{ name: '2BHK', value: 2 }]
+});
 
 // BHK OPTIONS
+const bhkOptions = ref([
+  { name: '1BHK', value: 1 },
+  { name: '2BHK', value: 2 },
+  { name: '3BHK', value: 3 },
+  { name: '3BHK+', value: 0 }
+]);
 
-const bhkOptions = ref([{
-    name: '1BHK',
-    value: 1
-}, {
-    name: '2BHK',
-    value: 2
-},
-{
-    name: '3BHK',
-    value: 3
-},
-{
-    name: '3BHK+',
-    value: 0
-}
-])
 // LOCATION SEARCH
-const locations = ref([])
-const filteredSuggestions = ref([])
+const locations = ref([]);
+const filteredSuggestions = ref([]);
 const search = (event) => {
-    setTimeout(() => {
-        if (!event.query.trim().length) {
-            filteredSuggestions.value = [...locations.value];
-        } else {
-            filteredSuggestions.value = locations.value.filter((location) => {
-                return location.name.toLowerCase().startsWith(event.query.toLowerCase());
-            });
-        }
-    }, 250);
-}
+  setTimeout(() => {
+    if (!event.query.trim().length) {
+      filteredSuggestions.value = [...locations.value];
+    } else {
+      filteredSuggestions.value = locations.value.filter((location) => {
+        return location.name.toLowerCase().startsWith(event.query.toLowerCase());
+      });
+    }
+  }, 250);
+};
+
+const handleFileUpload = (event) => {
+  const file = event.target.files[0];
+  // Set the value of photoValue1 to the file name or path
+  photoValue1.value = file.name; // or file.path if you want the full path
+};
+
+</script>
+<script lang="ts">
+import bedroomImage from '../../assets/img/background/bedroom_1.jpg'; // Adjust the path as per your project structure
+
+export { bedroomImage };
 </script>
 
 <template>
-     <div class="py-10 p-5 flex flex-col justify-center items-center bg-cover bg-center bg-no-repeat bg-gray-200" :class="'bg-' + backgroundImage">
+      <div class="py-10 p-5 flex flex-col justify-center items-center" 
+     :style="{ backgroundImage: 'url(' + bedroomImage + ')', 
+                backgroundSize: 'cover', 
+                backgroundPosition: 'center', 
+                width: '100%', 
+                height: '100%' }">
+
         <div class="max-w-xl flex flex-col gap-8">
             <!-- Main Text -->
             <div class="">
-                <h3 class="text-xl font-bold text-gray-600">Welcome Landlord</h3>
-                <p class=" text-gray-500">List your property with us to a wide range of audience.
+                <h3 class="text-xl font-bold text-white">Welcome Landlord</h3>
+                <p class=" text-white">List your property with us to a wide range of audience.
                 </p>
-
             </div>
 
             <!-- Hero Add Property Card -->
