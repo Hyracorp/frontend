@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col md:flex-row">
-        <div class="fixed left-0 top-0 w-full md:w-[24%] p-5 overflow-y-auto h-full scrollbar-hidden md:static md:overflow-visible md:h-auto md:scrollbar-auto">
+        <div class="w-full md:w-[24%] p-5 overflow-y-auto h-full scrollbar-hidden md:overflow-visible md:h-auto md:scrollbar-auto">
             <div class="">
                 <Card class="" :pt="{ 'root': 'shadow-xl' }">
                     <template #title>
@@ -51,8 +51,8 @@
                 </Card>
             </div>
         </div>
-        <div class="w-full md:w-[76%] p-5 items-center mt-20 md:mt-0">
-            <Card>
+        <div class="w-[100%] flex-1 p-5 items-center">
+            <Card class="w-full">
                 <template #title class="text-gray-500 font-light">
                     Complete Your Profile
                     <p class="text-sm font-medium text-gray-500">Great ! Your have completed {{ value }}% of your profile.</p>
@@ -70,7 +70,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             Profile
-                            <p class="text-sm font-medium text-gray-500">Complete basic info for better experience</p>
+                            <p class="text-sm font-medium text-gray-500">Complete profile </p>
                         </div>
 
                         <form class="flex flex-col gap-3 justify-center items-center" @submit.prevent="() => {
@@ -83,10 +83,11 @@
                         <div v-if="showCard" class="fixed inset-0 overflow-y-auto bg-black bg-opacity-50 z-50 pt-10 pb-10">
                                 <div class="flex justify-center items-center min-h-screen">
                                     <div class="bg-white p-8 rounded-lg shadow-xl max-w-[90%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[60%] xl:max-w-[50%] w-full">
-                                        <div class="mb-4">
+                                        <div class="text-center mb-4">
                                             <h2 class="text-lg font-bold">Edit Your Profile</h2>
                                         </div>
                                         <div class="mt-4 text-sm font-medium text-black-500">
+                                            
                                             <!-- First pair of inputs -->
                                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                                 <div class="flex flex-col gap-2">
@@ -153,7 +154,7 @@
                                             <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
                                                 <div>
                                                     <div class="flex flex-col gap-2">
-                                                        <Calendar v-model="birthday" showIcon inputId="buttondisplay" />
+                                                        <Calendar v-model="birthday" showIcon inputId="birthday"  placeholder="Select your Birthday"/>
                                                         <small id="rent-help">Birthday<span class="text-red-400"> *</span></small>
                                                     </div>
                                                 </div>
@@ -171,6 +172,32 @@
                                                                     <Button>
                                                                         <label for="file-upload" class="cursor-pointer flex items-center">
                                                                             <Icon name="ph:upload-simple-bold" class="ml-1 mr-1 w-5 h-5 "/>
+                                                                        </label>
+                                                                    </Button>
+                                                                    <input
+                                                                        type="file"
+                                                                        id="file-upload"
+                                                                        ref="fileInput"
+                                                                        class="hidden"
+                                                                        @change="handleFileUpload"
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- For small screens -->
+                                                        <div class="block sm:hidden mt-4">
+                                                            <div class="w-full">
+                                                                <div class="flex flex-col gap-2">
+                                                                    <InputText v-model="photoValue1" placeholder="ID Proof"/>
+                                                                    <small id="property-spec-help">ID Proof<span class="text-red-400"> *</span></small>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mt-0 flex justify-end">
+                                                                <div class="flex items-center text-white">
+                                                                    <Button>
+                                                                        <label for="file-upload" class="cursor-pointer flex items-center">
+                                                                            <Icon name="ph:upload-simple-bold" class="ml-1 mr-1 w-6 h-6 "/>
                                                                         </label>
                                                                     </Button>
                                                                     <input
@@ -537,21 +564,25 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.scrollbar-hidden::-webkit-scrollbar {
-  display: none;
-}
 
-.scrollbar-hidden {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
+/* Adjustments for small screens */
+@media screen and (max-width: 640px) {
+        .flex-col .mr-64 {
+            margin-right: 0; /* Remove margin right for smaller screens */
+        }
+    }
 
-@media (max-width: 768px) {
-  .fixed {
-    position: static !important;
-    overflow: visible !important;
-    height: auto !important;
-    scrollbar-width: auto !important;
-  }
-}
+    /* Adjustments for medium screens */
+@media screen and (min-width: 641px) and (max-width: 1024px) {
+        .flex-col .mr-64 {
+            margin-right: 2rem; /* Adjust margin right for medium screens */
+        }
+    }
+
+    /* Adjustments for large screens */
+@media screen and (min-width: 1025px) {
+        .flex-col .mr-64 {
+            margin-right: 4rem; /* Adjust margin right for large screens */
+        }
+    }
 </style>
