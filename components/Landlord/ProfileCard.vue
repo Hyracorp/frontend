@@ -4,8 +4,82 @@
             <div class="">
                 <Card class="" :pt="{ 'root': 'shadow-xl' }">
                     <template #title>
-                        <div class="rounded-lg overflow-hidden justify-center items-center text-center">
+                        <div class="relative rounded-lg overflow-hidden justify-center items-center text-center">
                             <Image class="rounded-2xl" src="https://www.befunky.com/images/wp/wp-2021-01-linkedin-profile-picture-after.jpg?auto=avif,webp&format=jpg&width=944" alt="Image" style="max-width: 50%; max-height: 50%;"/>
+                            <Button type="submit" @click="showProfileEditCard = !showProfileEditCard" rounded aria-label="Filter" class="absolute bottom-2 right-2 transform translate-x-3/3 -translate-y-3/3">
+                                <Icon name="bx:bxs-pencil" class="w-6 h-6"/>
+                            </Button>
+                        </div>
+                        <div v-if="showProfileEditCard" class="fixed inset-0 overflow-y-auto bg-black bg-opacity-50 z-50 pt-10 pb-10">
+                                <div class="flex justify-center items-center min-h-screen">
+                                    <div class="bg-white p-8 rounded-lg shadow-xl max-w-[90%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[60%] xl:max-w-[50%] w-full">
+                                        <div class="mb-4">
+                                            <h2 class="text-lg font-bold">Add/Change Profile Picture</h2>
+                                        </div>
+                                        <div class="mt-4 text-sm font-medium text-black-500">
+                                            <!-- Fifth pair of inputs -->
+                                                <div>
+                                                    <div class="flex flex-col gap-2">
+                                                        <div class="hidden sm:flex justify-between">
+                                                            <div class="w-full">
+                                                                <div class="flex flex-col gap-2">
+                                                                    <InputText v-model="photoValue1" placeholder="Upload Profile Picture"/>
+                                                                    <small id="property-spec-help">Upload Profile Picture<span class="text-red-400"> *</span></small>
+                                                                </div>
+                                                            </div>
+                                                            <div class="ml-4 items-center">
+                                                                <div class="flex items-center text-white">
+                                                                    <Button>
+                                                                        <label for="file-upload" class="cursor-pointer flex items-center">
+                                                                            <Icon name="ph:upload-simple-bold" class="ml-1 mr-1 w-5 h-5 "/>
+                                                                        </label>
+                                                                    </Button>
+                                                                    <input
+                                                                        type="file"
+                                                                        id="file-upload"
+                                                                        ref="fileInput"
+                                                                        class="hidden"
+                                                                        @change="handleFileUpload"
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- For small screens -->
+                                                        <div class="block sm:hidden mt-4">
+                                                            <div class="w-full">
+                                                                <div class="flex flex-col gap-2">
+                                                                    <InputText v-model="photoValue1" placeholder="Upload Profile Picture"/>
+                                                                    <small id="property-spec-help">Upload Profile Picture<span class="text-red-400"> *</span></small>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mt-0 flex justify-end">
+                                                                <div class="flex items-center text-white">
+                                                                    <Button>
+                                                                        <label for="file-upload" class="cursor-pointer flex items-center">
+                                                                            <Icon name="ph:upload-simple-bold" class="ml-1 mr-1 w-6 h-6 "/>
+                                                                        </label>
+                                                                    </Button>
+                                                                    <input
+                                                                        type="file"
+                                                                        id="file-upload"
+                                                                        ref="fileInput"
+                                                                        class="hidden"
+                                                                        @change="handleFileUpload"
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                        <div class="mt-6 flex justify-end">
+                                            <Button @click="showProfileEditCard = false" class="mr-4">Cancel</Button>
+                                            <Button @click="">Save Changes</Button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="text-center">
                             <h3 class="mt-3" >Your Name</h3>
@@ -13,25 +87,25 @@
                         </div>
 
                         <div class="flex flex-col gap-2 mt-4">
-                            <Button label="Submit" @click="addInputField" class="flex items-center" outlined >
+                            <Button label="Submit" @click="scrollToTarget('profileDivision')" class="flex items-center" outlined >
                                 <Icon name="material-symbols:account-box" class="ml-1 mr-1 w-6 h-6"/>
                                     Profile
                              </Button>
                         </div>
                         <div class="flex flex-col gap-2 mt-4">
-                            <Button label="Submit" @click="addInputField" class="flex items-center" outlined >
+                            <Button label="Submit" @click="scrollToTarget('loginDivision')" class="flex items-center" outlined >
                                 <Icon name="ic:baseline-log-in" class="ml-1 mr-1 w-6 h-6"/>
                                     Login Details
                              </Button>
                         </div>
                         <div class="flex flex-col gap-2 mt-4">
-                            <Button label="Submit" @click="addInputField" class="flex items-center" outlined >
+                            <Button label="Submit" @click="scrollToTarget('propertiesDivision')" class="flex items-center" outlined >
                                 <Icon name="material-symbols:list-alt" class="ml-1 mr-1 w-6 h-6"/>
                                     Listed Properties
                              </Button>
                         </div>
                         <div class="flex flex-col gap-2 mt-4">
-                            <Button label="Submit" @click="addInputField" class="flex items-center" outlined >
+                            <Button label="Submit" @click="scrollToTarget('reportsDivision')" class="flex items-center" outlined >
                                 <Icon name="tabler:report" class="ml-1 mr-1 w-6 h-6"/>
                                     Report
                              </Button>
@@ -52,7 +126,7 @@
             </div>
         </div>
         <div class="w-[100%] flex-1 p-5 items-center">
-            <Card class="w-full">
+            <Card class="w-full" :pt="{ 'root': 'shadow-xl' }">
                 <template #title class="text-gray-500 font-light">
                     Complete Your Profile
                     <p class="text-sm font-medium text-gray-500">Great ! Your have completed {{ value }}% of your profile.</p>
@@ -65,7 +139,7 @@
             </Card>
 
             <!-- Profile -->
-            <Card class="mt-10">
+            <Card id="profileDivision" class="mt-10" :pt="{ 'root': 'shadow-xl' }">
                 <template #title class="text-gray-500 flex flex-col">
                     <div class="flex items-center justify-between">
                         <div>
@@ -83,7 +157,7 @@
                         <div v-if="showCard" class="fixed inset-0 overflow-y-auto bg-black bg-opacity-50 z-50 pt-10 pb-10">
                                 <div class="flex justify-center items-center min-h-screen">
                                     <div class="bg-white p-8 rounded-lg shadow-xl max-w-[90%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[60%] xl:max-w-[50%] w-full">
-                                        <div class="text-center mb-4">
+                                        <div class="mb-4">
                                             <h2 class="text-lg font-bold">Edit Your Profile</h2>
                                         </div>
                                         <div class="mt-4 text-sm font-medium text-black-500">
@@ -318,7 +392,7 @@
             </Card>
 
             <!-- Login Details -->
-            <Card class="mt-10">
+            <Card id="loginDivision" class="mt-10" :pt="{ 'root': 'shadow-xl' }">
                 <template #title class="text-gray-500 flex flex-col">
                     <div class="flex items-center justify-between">
                         <div>
@@ -461,7 +535,7 @@
             </Card>
 
             <!-- Listed Properties -->
-            <Card class="mt-10">
+            <Card id="propertiesDivision" class="mt-10" :pt="{ 'root': 'shadow-xl' }">
                 <template #title class="text-gray-500 flex flex-col">
                     <div class="flex items-center justify-between">
                         <div>
@@ -493,7 +567,8 @@
             </Card>
 
             <!-- Report -->
-            <Card class="mt-10">
+            <Card id="reportsDivision" class="mt-10" :pt="{ 'root': 'shadow-xl' }">
+                <div class="line"></div>
                 <template #title class="text-gray-500 flex flex-col">
                     <div class="flex items-center justify-between">
                         <div>
@@ -501,7 +576,8 @@
                             <p class="text-sm font-medium text-gray-500">View/Print your reports</p>
                         </div>
                     </div>
-                </template>
+                </template >
+                
                 <template #content class="flex flex-col">
 
                     <!-- First card -->
@@ -530,10 +606,13 @@
 <script setup>
 
 import { ref, onMounted } from "vue";
+
 const value = ref(30);
 const showCard = ref(false);
 const showEditCard = ref(false);
 const showChangePasswordCard = ref(false);
+const showProfileEditCard = ref(false);
+
 const address = ref();
 const pincode = ref();
 const occupation = ref();
@@ -562,6 +641,21 @@ onMounted(() => {
   });
 });
 </script>
+<script>
+    
+export default {
+        methods: {
+            scrollToTarget(targetId) {
+                // Get the target division by its ID
+                const targetDivision = document.getElementById(targetId);
+                if (targetDivision) {
+                    // Scroll to the target division
+                    targetDivision.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        }
+    }
+</script>
 
 <style scoped>
 
@@ -585,4 +679,14 @@ onMounted(() => {
             margin-right: 4rem; /* Adjust margin right for large screens */
         }
     }
+
+    .line {
+    position: relative;
+    top: 0;
+    left: 0;
+    border-radius: 0 5px 5px 0;
+    width: 10px; /* Adjust width as needed */
+    height: 50px; /* Ensure it spans the full height of the card */
+    background-color: rgb(100, 99, 99); /* Adjust color as needed */
+}
 </style>
