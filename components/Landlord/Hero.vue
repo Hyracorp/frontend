@@ -5,7 +5,7 @@ import { ref } from 'vue';
 const showCard = ref(false);
 
 const selectedSpec = ref();
-const spec = ref([
+const specifications = ref([
     { name: '1 BHK', code: 'one_bhk' },
     { name: '2 BHK', code: 'two_bhk' },
     { name: '3 BHK', code: 'three_bhk' },
@@ -163,9 +163,11 @@ export { bedroomImage };
                                         <div class="mt-4">
                                             <!-- First pair of inputs -->
                                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                                <div class="relative">
-                                                    <Dropdown v-model="selectedSpec" :options="spec" showClear optionLabel="Property Specification" placeholder="Select a City" class="w-full" />
-                                                    <small id="property-spec-help">Property Specification<span class="text-red-400"> *</span></small>
+                                                <div class="relative card flex justify-center">
+                                                    <div class="flex flex-col gap-2 w-full">
+                                                        <Dropdown v-model="selectedSpec" editable :options="specifications" showClear optionLabel="name" placeholder="Select a City" class="w-full" />
+                                                        <small id="location-help">Property Specification<span class="text-red-400"> *</span></small>
+                                                    </div>
                                                 </div>
                                                 <div>
                                                     <div class="flex flex-col gap-2">
