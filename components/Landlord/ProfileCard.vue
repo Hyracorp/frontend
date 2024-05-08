@@ -165,12 +165,12 @@
                                             <!-- First pair of inputs -->
                                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                                 <div class="flex flex-col gap-2">
-                                                        <InputText id="map-location" v-model="mapValue" aria-describedby="map-location-help" placeholder="Your Name"/>
+                                                        <InputText id="map-location" disabled v-model="mapValue" aria-describedby="map-location-help" placeholder="Your Name"/>
                                                         <small id="map-location-help">Full Name<span class="text-red-400"> *</span></small>
                                                 </div>
                                                 <div>
                                                     <div class="flex flex-col gap-2">
-                                                        <InputText id="location" v-model="emailvalue" aria-describedby="location-help" placeholder="youremail@gmail.com"/>
+                                                        <InputText id="location" disabled v-model="emailvalue" aria-describedby="location-help" placeholder="youremail@gmail.com"/>
                                                         <small id="location-help">Email<span class="text-red-400"> *</span></small>
                                                     </div>
                                                 </div>
@@ -417,12 +417,12 @@
                                             <!-- First pair of inputs -->
                                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                                 <div class="flex flex-col gap-2">
-                                                        <InputText id="map-location" v-model="mapValue" aria-describedby="map-location-help" placeholder="Your Name"/>
+                                                        <InputText id="map-location" disabled v-model="mapValue" aria-describedby="map-location-help" placeholder="Your Name"/>
                                                         <small id="map-location-help">Full Name<span class="text-red-400"> *</span></small>
                                                 </div>
                                                 <div>
                                                     <div class="flex flex-col gap-2">
-                                                        <InputText id="location" v-model="emailvalue" aria-describedby="location-help" placeholder="youremail@gmail.com"/>
+                                                        <InputText id="location" disabled v-model="emailvalue" aria-describedby="location-help" placeholder="youremail@gmail.com"/>
                                                         <small id="location-help">Email<span class="text-red-400"> *</span></small>
                                                     </div>
                                                 </div>
