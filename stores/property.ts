@@ -45,7 +45,44 @@ export const usePropertyStore = defineStore("property", {
         bhkNo: 3,
       },
     ],
-    featuredProperties: [],
+    featuredProperties: [
+      {
+        id: 1,
+        title: "Property1 In Kochi",
+        image:
+          "https://imgs.search.brave.com/5ug_4dSkMCYhjwxk_Xx0QAdfxeY9IYeoCHtFtcXzRf8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9hcC5y/ZGNwaXguY29tLzQy/ZmNlN2QyYTU5YTI5/NjEzZjk3YzMxYzhl/NDgxZDQ4bC1tMjEx/OTYxNzM1OG9kLXc0/ODBfaDM2MF94Mi5q/cGc",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        price: 80000,
+        location: "Kakkanad, Kochi",
+        locationCode: "kl-Kochi",
+        bhkNo: 3,
+      },
+      {
+        id: 2,
+        title: "Property2 In Kochi",
+        image:
+          "https://imgs.search.brave.com/5ug_4dSkMCYhjwxk_Xx0QAdfxeY9IYeoCHtFtcXzRf8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9hcC5y/ZGNwaXguY29tLzQy/ZmNlN2QyYTU5YTI5/NjEzZjk3YzMxYzhl/NDgxZDQ4bC1tMjEx/OTYxNzM1OG9kLXc0/ODBfaDM2MF94Mi5q/cGc",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        price: 90000,
+        location: "Kakkanad, Kochi",
+        locationCode: "kl-Kochi",
+        bhkNo: 3,
+      },
+      {
+        id: 3,
+        title: "Property3 in Kozhikode",
+        image:
+          "https://imgs.search.brave.com/5ug_4dSkMCYhjwxk_Xx0QAdfxeY9IYeoCHtFtcXzRf8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9hcC5y/ZGNwaXguY29tLzQy/ZmNlN2QyYTU5YTI5/NjEzZjk3YzMxYzhl/NDgxZDQ4bC1tMjEx/OTYxNzM1OG9kLXc0/ODBfaDM2MF94Mi5q/cGc",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        price: 100000,
+        location: "Kozhikode",
+        locationCode: "kl-Kozhikode",
+        bhkNo: 3,
+      },
+    ],
     searchResults: [],
     property: {},
   }),
@@ -59,13 +96,13 @@ export const usePropertyStore = defineStore("property", {
   actions: {
     async searchCityByName(query: string) {
       const result = this.cities.filter((city) =>
-        city.name.toLocaleLowerCase().includes(query.toLocaleLowerCase())
+        city.name.toLowerCase().includes(query.toLowerCase())
       );
       return result;
     },
     async searchCityByCode(query: string) {
       const result = this.cities.filter((city) =>
-        city.city.toLocaleLowerCase().includes(query.toLocaleLowerCase())
+        city.city.toLowerCase().includes(query.toLowerCase())
       );
       return result;
     },
@@ -81,6 +118,9 @@ export const usePropertyStore = defineStore("property", {
           )
       );
       this.searchResults = this.property;
+    },
+    async fetchProperty(id) {
+      this.property = this.properties.filter((prop) => prop.id == id);
     },
   },
 });
