@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { } from '@/stores/property'
+
 const collectionData = ref([
     {
         id: 1,

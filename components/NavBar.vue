@@ -3,7 +3,7 @@
 </script>
 <template>
     <div class="">
-        <div class="w-screen px-5 py-3  flex justify-between items-center">
+        <div class="max-w-screen w-full px-5 py-3  flex justify-between items-center">
             <div class="">
                 <img src="/img/logo.png" alt="logo" class="w-40">
             </div>
@@ -17,7 +17,7 @@
             </div>
 
         </div>
-        <Divider />
+
     </div>
 
 

@@ -1,12 +1,16 @@
 <script setup lang="ts">
+import { usePropertyStore } from '@/stores/property'
+import { searchSchema } from '@/schemas/searchSchema'
+import { z } from "zod";
+let propertyStore = usePropertyStore()
 
 const searchForm = ref({
 
-    location: '',
+    location: {},
     bhkNo: [{ name: '2BHK', value: 2 }],
     priceRange: [2, 80]
 })
-
+const toast = useToast();
 
 // BHK OPTIONS
 
@@ -27,7 +31,7 @@ const bhkOptions = ref([{
 }
 ])
 // LOCATION SEARCH
-const locations = ref([])
+const locations = computed(() => propertyStore.cities)
 const filteredSuggestions = ref([])
 const search = (event) => {
     setTimeout(() => {
@@ -43,23 +47,63 @@ const search = (event) => {
 
 const router = useRouter()
 const searchSubmit = () => {
-    // console.log(searchForm.value)
-    // convert searchForm.bhkNo from array to URI and join with '+'
 
-    let bhkNoQuery = searchForm.value.bhkNo.map((bhk) => bhk.value).join('+')
+    try {
+        searchSchema.parse(searchForm.value)
+        const bhkNoQuery = searchForm.value.bhkNo.map((bhk) => bhk.value).join('+')
+        router.push({ path: '/search', query: { location: searchForm.value.location.city, bhkNo: `${bhkNoQuery}`, priceRange: searchForm.value.priceRange } })
+    } catch (err) {
+        if (err instanceof z.ZodError) {
+
+            toast.add({ severity: 'error', summary: 'Error', detail: ` ${err.issues[0].path[0]}: ${err.issues[0].message}` })
+        } else {
+            console.error('Error:', err)
+        }
+    }
 
 
-    router.push({ path: '/search', query: { location: searchForm.value.location, bhkNo: `${bhkNoQuery}`, priceRange: searchForm.value.priceRange } })
+
+
 }
+// onMounted
+
+onMounted(async () => {
+
+})
+
+function getLocation() {
+    if ("geolocation" in navigator) {
+        // Geolocation is supported
+
+        navigator.geolocation.getCurrentPosition((position) => {
+            $fetch(`https://nominatim.openstreetmap.org/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&format=json`).then(async (res) => {
+                const searchCity = await propertyStore.searchCityByName(res.address.city)
+                searchForm.value.location = { name: searchCity[0].name, city: searchCity[0].city }
+            })
+                .catch((err) => {
+                    toast.add({ severity: 'error', summary: 'Error', detail: `Location Auto detect error: ${err.message}` })
+                })
+        })
+
+    } else {
+        toast.add({ severity: 'error', summary: 'Error', detail: 'Geolocation is not supported by this browser.' })
+    }
+}
+
 </script>
 
 <template>
-    <div class="py-10 p-5 flex flex-col justify-center items-center ">
-        <div class="max-w-xl flex flex-col gap-8">
+    <div class="flex flex-col justify-center items-center">
+        <div class="absolute top-0 left-0 w-screen h-1/2  -z-10 bg-blue-800">
+            <img src="https://assets.lummi.ai/assets/QmXiqJnBwdNhTuuWUpTdbzVGcJsgHez2Te61WcEaHxfxeo?auto=format&w=1500"
+                alt="" class="h-full w-screen object-cover opacity-70">
+        </div>
+
+        <div class="max-w-xl flex flex-col gap-8 p-5 py-10 ">
             <!-- Main Text -->
             <div class="">
-                <h3 class="text-xl font-bold text-gray-600">Feel Home Stay With Us</h3>
-                <p class=" text-gray-500">Search your next stay and get a room that fits all of your needs.
+                <h3 class="text-3xl font-bold text-white">Feel Home Stay With Us</h3>
+                <p class=" text-gray-100">Search your next stay and get a room that fits all of your needs.
                 </p>
 
             </div>
@@ -69,7 +113,8 @@ const searchSubmit = () => {
                     <template #title>
                         <div class="text-center">
                             <h3>Search by location</h3>
-                            <p class="text-sm font-medium text-gray-500">Find your perfect property all over india</p>
+                            <p class="text-sm font-medium text-gray-500">Find your perfect property all over india
+                            </p>
                         </div>
                     </template>
 
@@ -84,23 +129,32 @@ const searchSubmit = () => {
                             </div>
                             <div class="w-full">
                                 <label for="slider" class="text-lg text-gray-500 my-3 block">Location</label>
+
                                 <InputGroup class="bg-none">
                                     <InputGroupAddon class="relative">
                                         <Icon name="ph:magnifying-glass" class="text-gray-500 absolute top-2/4 -mt-2" />
                                     </InputGroupAddon>
+
                                     <AutoComplete v-model="searchForm.location" optionLabel="name"
                                         :suggestions="filteredSuggestions" @complete="search"
-                                        placeholder="Auto Detect or Search Location" />
+                                        placeholder="Auto Detect or Search Location" required />
+
+                                    <InputGroupAddon>
+                                        <Button type="button" @click="getLocation" iconOnly text>
+                                            <Icon name="ph:map-pin" />
+                                        </Button>
+                                    </InputGroupAddon>
 
                                 </InputGroup>
+
                                 <small id="location-help">Where are you looking for the property?</small>
                             </div>
 
                             <div class="w-full">
                                 <label for="slider" class="text-lg text-gray-500 my-3 block">Price Range(₹{{
-                    searchForm.priceRange[0] *
-                    1000 }} - ₹{{
-                    searchForm.priceRange[1] * 1000 }})</label>
+                                    searchForm.priceRange[0] *
+                                    1000 }} - ₹{{
+                                        searchForm.priceRange[1] * 1000 }})</label>
                                 <div class="px-2">
                                     <Slider v-model="searchForm.priceRange" range class="w-14rem" />
                                 </div>
