@@ -73,9 +73,56 @@ const collectionData = ref([
 
 import bedroomImage from '../../assets/img/background/bedroom_1.jpg';
 import livingImage from '../../assets/img/background/living_2.jpg';
+import bedroomImage2 from '../../assets/img/background/bedroom_2.jpg';
+import ceilinImage from '../../assets/img/background/ceiling_1.jpg';
+import ceilinImage2 from '../../assets/img/background/ceiling_2.jpg';
 
 export { bedroomImage };
 export { livingImage };
+export { bedroomImage2 };
+export { ceilinImage };
+export { ceilinImage2 };
+
+export default {
+  data() {
+    return {
+      currentIndex: 0,
+      images: [
+        bedroomImage,
+        livingImage,
+        bedroomImage2,
+        ceilinImage,
+        ceilinImage2
+      ],
+      autoSlideInterval: null,
+    };
+  },
+  methods: {
+    prevSlide() {
+      this.currentIndex = (this.currentIndex > 0) ? this.currentIndex - 1 : this.images.length - 1;
+      this.resetAutoSlide();
+    },
+    nextSlide() {
+      this.currentIndex = (this.currentIndex < this.images.length - 1) ? this.currentIndex + 1 : 0;
+      this.resetAutoSlide();
+    },
+    startAutoSlide() {
+      this.autoSlideInterval = setInterval(() => {
+        this.nextSlide();
+      }, 10000);
+    },
+    resetAutoSlide() {
+      clearInterval(this.autoSlideInterval);
+      this.startAutoSlide();
+    },
+  },
+  mounted() {
+    this.startAutoSlide();
+  },
+  beforeDestroy() {
+    clearInterval(this.autoSlideInterval);
+  },
+};
 
 const isMobile = computed(() => {
   if (typeof window !== 'undefined') {
@@ -89,19 +136,22 @@ const isMobile = computed(() => {
 </script>
 
 <template>
-    <div class="relative h-screen w-screen overflow-hidden">
-      <div class="absolute inset-0 bg-cover bg-center" :style="{ backgroundImage: 'url(' + bedroomImage + ')' }"></div>
+    <div>
+        <div class="relative h-screen w-screen overflow-hidden">
+        <div ref="slider" class="relative h-full w-full flex transition-transform duration-700 ease-in-out" :style="{ transform: `translateX(-${currentIndex * 100}%)` }">
+            <div v-for="(image, index) in images" :key="index" class="h-full w-full flex-shrink-0 bg-cover bg-center" :style="{ backgroundImage: `url(${image})` }"></div>
+        </div>
+        <button @click="prevSlide" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full">‹</button>
+        <button @click="nextSlide" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full">›</button>
+        <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+            <span v-for="(image, index) in images" :key="index" class="block w-3 h-3 rounded-full" :class="{ 'bg-white': index === currentIndex, 'bg-gray-500': index !== currentIndex }"></span>
+        </div>
+        </div>
     </div>
-    <div v-if="isMobile"> <!-- Show content only on mobile devices -->
-  Mobile Content
-    </div>
-    <div v-else> <!-- Show content only on desktop devices -->
-  Desktop Content
-</div>
     <div class="relative mr-5 inset-0 flex flex-col justify-end items-end">
         <div class="max-w-[90%] overflow-hidden overflow-x-auto">
             <div class="flex gap-3">
-                <Card class="max-w-md min-w-72 w-full rounded-xl" v-for="data in collectionData" :key="data.id">
+                <Card class="max-w-md min-w-72 w-full rounded-xl mt-6" v-for="data in collectionData" :key="data.id">
                     <template #header>
                         <div class="overflow-hidden rounded-t-xl">
                             <img alt="user header" :src="data.image" class="w-72 md:w-full">
