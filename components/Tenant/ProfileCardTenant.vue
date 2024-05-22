@@ -756,19 +756,19 @@
                                 <div class="flex justify-center items-center min-h-screen">
                                     <div class="bg-white p-8 rounded-lg shadow-xl max-w-[90%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[60%] xl:max-w-[50%] w-full">
                                         <div class="mb-4">
-                                            <h2 class="text-lg font-bold">Add a Room-mate</h2>
+                                            <h2 class="text-lg font-bold">Room-mate Details</h2>
                                         </div>
                                         <div class="mt-4 text-sm font-medium text-black-500">
                                             
                                             <!-- First pair of inputs -->
                                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                                 <div class="flex flex-col gap-2">
-                                                        <InputText id="map-location" v-model="mapValue" aria-describedby="map-location-help" placeholder="Room-mate's Name"/>
+                                                        <InputText id="map-location" v-model="mapValue" aria-describedby="map-location-help" disabled placeholder="Room-mate's Name"/>
                                                         <small id="map-location-help">Room-mate's Full Name<span class="text-red-400"> *</span></small>
                                                 </div>
                                                 <div>
                                                     <div class="flex flex-col gap-2">
-                                                        <InputText id="rent" v-model="rentValue" aria-describedby="rent-help" placeholder="Room-mate's Phone number"/>
+                                                        <InputText id="rent" v-model="rentValue" aria-describedby="rent-help" disabled placeholder="Room-mate's Phone number"/>
                                                         <small id="rent-help">Room-mate's Phone<span class="text-red-400"> *</span></small>
                                                     </div>
                                                 </div>
@@ -778,7 +778,7 @@
                                                 <div>
                                                     <div class="relative card flex justify-center">
                                                         <div class="flex flex-col gap-2 w-full">
-                                                            <Dropdown v-model="selectedGender" editable :options="genders" showClear optionLabel="name" placeholder="Room-mate's Gender" class="w-full" />
+                                                            <Dropdown v-model="selectedGender" editable :options="genders" disabled showClear optionLabel="name" placeholder="Room-mate's Gender" class="w-full" />
                                                             <small id="location-help">Room-mate's Gender<span class="text-red-400"> *</span></small>
                                                         </div>
                                                     </div>
@@ -786,7 +786,7 @@
                                                 <div>
                                                     <div class="relative card flex justify-center">
                                                         <div class="flex flex-col gap-2 w-full">
-                                                            <Dropdown v-model="selectedMarital" editable :options="maritalstatus" showClear optionLabel="name" placeholder="Select your Room-mate's Marital Status" class="w-full" />
+                                                            <Dropdown v-model="selectedMarital" editable :options="maritalstatus" disabled showClear optionLabel="name" placeholder="Select your Room-mate's Marital Status" class="w-full" />
                                                             <small id="location-help">Room-mate's Marital Status<span class="text-red-400"> *</span></small>
                                                         </div>
                                                     </div>
@@ -796,13 +796,13 @@
                                             <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
                                                 <div>
                                                     <div class="flex flex-col gap-2">
-                                                        <InputText id="rent" v-model="address" aria-describedby="rent-help" placeholder="Room-mate's Address"/>
+                                                        <InputText id="rent" v-model="address" aria-describedby="rent-help" disabled placeholder="Room-mate's Address"/>
                                                         <small id="rent-help">Room-mate's Permanant Address<span class="text-red-400"> *</span></small>
                                                     </div>
                                                 </div>
                                                 <div>
                                                     <div class="flex flex-col gap-2">
-                                                        <InputText id="rent" v-model="pincode" aria-describedby="rent-help" placeholder="Room-mate's Pincode"/>
+                                                        <InputText id="rent" v-model="pincode" aria-describedby="rent-help" disabled placeholder="Room-mate's Pincode"/>
                                                         <small id="rent-help">Room-mate's Pincode<span class="text-red-400"> *</span></small>
                                                     </div>
                                                 </div>
@@ -814,25 +814,14 @@
                                                         <div class="hidden sm:flex justify-between">
                                                             <div class="w-full">
                                                                 <div class="flex flex-col gap-2">
-                                                                    <InputText v-model="photoValue1" placeholder="Room-mate's ID Proof"/>
-                                                                    <small id="property-spec-help">Room-mate's ID Proof<span class="text-red-400"> *</span></small>
+                                                                    <div class="relative rounded-lg overflow-hidden justify-center items-center text-center">
+                                                                    <Image class="rounded-2xl" src="https://www.paisabazaar.com/wp-content/uploads/2018/06/Aadhaar-helps-the-government-and-the-citizens.jpg" alt="Image" style="max-width: 50%; max-height: 50%;"/>
+                                                                </div>
+                                                                <small id="property-spec-help">Room-mate's ID Proof<span class="text-red-400"> *</span></small>
                                                                 </div>
                                                             </div>
                                                             <div class="ml-4 items-center">
-                                                                <div class="flex items-center text-white">
-                                                                    <Button>
-                                                                        <label for="file-upload" class="cursor-pointer flex items-center">
-                                                                            <Icon name="ph:upload-simple-bold" class="ml-1 mr-1 w-5 h-5 "/>
-                                                                        </label>
-                                                                    </Button>
-                                                                    <input
-                                                                        type="file"
-                                                                        id="file-upload"
-                                                                        ref="fileInput"
-                                                                        class="hidden"
-                                                                        @change="handleFileUpload"
-                                                                    />
-                                                                </div>
+                                                                
                                                             </div>
                                                         </div>
 
@@ -840,24 +829,10 @@
                                                         <div class="block sm:hidden mt-4">
                                                             <div class="w-full">
                                                                 <div class="flex flex-col gap-2">
-                                                                    <InputText v-model="photoValue1" placeholder="Room-mate's ID Proof"/>
-                                                                    <small id="property-spec-help">Room-mate's ID Proof<span class="text-red-400"> *</span></small>
+                                                                    <div class="relative rounded-lg overflow-hidden justify-center items-center text-center">
+                                                                    <Image class="rounded-2xl" src="https://www.paisabazaar.com/wp-content/uploads/2018/06/Aadhaar-helps-the-government-and-the-citizens.jpg" alt="Image" style="max-width: 50%; max-height: 50%;"/>
                                                                 </div>
-                                                            </div>
-                                                            <div class="mt-0 flex justify-end">
-                                                                <div class="flex items-center text-white">
-                                                                    <Button>
-                                                                        <label for="file-upload" class="cursor-pointer flex items-center">
-                                                                            <Icon name="ph:upload-simple-bold" class="ml-1 mr-1 w-6 h-6 "/>
-                                                                        </label>
-                                                                    </Button>
-                                                                    <input
-                                                                        type="file"
-                                                                        id="file-upload"
-                                                                        ref="fileInput"
-                                                                        class="hidden"
-                                                                        @change="handleFileUpload"
-                                                                    />
+                                                                <small id="property-spec-help">Room-mate's ID Proof<span class="text-red-400"> *</span></small>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -867,137 +842,133 @@
 
                                         <div class="mt-6 flex justify-end">
                                             <Button @click="showRoommateDetailsCard = false" class="mr-4">Cancel</Button>
-                                            <Button @click="">Add Room-mate</Button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="w-full mt-2 mb-5 border-t border-gray-300">
-
-                    <!-- Second card -->
-                    <div class="flex items-start justify-between mr-64">
-                        <h6 class="text-gray-500">Room-mate 02</h6>
-                        <div class="flex flex-1 items-end justify-end mr-64">
-                            <a type="submit" @click="showRoommateDetailsCard = !showRoommateDetailsCard" class="text-blue-600 items-end justify-end">View Details</a>
-                        </div>
-                        <div v-if="showRoommateDetailsCard" class="fixed inset-0 overflow-y-auto bg-black bg-opacity-50 z-50 pt-10 pb-10">
-                                <div class="flex justify-center items-center min-h-screen">
-                                    <div class="bg-white p-8 rounded-lg shadow-xl max-w-[90%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[60%] xl:max-w-[50%] w-full">
-                                        <div class="mb-4">
-                                            <h2 class="text-lg font-bold">Add a Room-mate</h2>
-                                        </div>
-                                        <div class="mt-4 text-sm font-medium text-black-500">
+                                            <Button @click="editRoommateDetails = !editRoommateDetails"><Icon name="material-symbols:edit-outline" class="ml-1 mr-1 w-6 h-6"/>Edit</Button>
                                             
-                                            <!-- First pair of inputs -->
-                                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                                <div class="flex flex-col gap-2">
-                                                        <InputText id="map-location" v-model="mapValue" aria-describedby="map-location-help" placeholder="Room-mate's Name"/>
-                                                        <small id="map-location-help">Room-mate's Full Name<span class="text-red-400"> *</span></small>
-                                                </div>
-                                                <div>
-                                                    <div class="flex flex-col gap-2">
-                                                        <InputText id="rent" v-model="rentValue" aria-describedby="rent-help" placeholder="Room-mate's Phone number"/>
-                                                        <small id="rent-help">Room-mate's Phone<span class="text-red-400"> *</span></small>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Second pair of inputs -->
-                                            <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                                <div>
-                                                    <div class="relative card flex justify-center">
-                                                        <div class="flex flex-col gap-2 w-full">
-                                                            <Dropdown v-model="selectedGender" editable :options="genders" showClear optionLabel="name" placeholder="Room-mate's Gender" class="w-full" />
-                                                            <small id="location-help">Room-mate's Gender<span class="text-red-400"> *</span></small>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div class="relative card flex justify-center">
-                                                        <div class="flex flex-col gap-2 w-full">
-                                                            <Dropdown v-model="selectedMarital" editable :options="maritalstatus" showClear optionLabel="name" placeholder="Select your Room-mate's Marital Status" class="w-full" />
-                                                            <small id="location-help">Room-mate's Marital Status<span class="text-red-400"> *</span></small>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Third pair of inputs -->
-                                            <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                                <div>
-                                                    <div class="flex flex-col gap-2">
-                                                        <InputText id="rent" v-model="address" aria-describedby="rent-help" placeholder="Room-mate's Address"/>
-                                                        <small id="rent-help">Room-mate's Permanant Address<span class="text-red-400"> *</span></small>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div class="flex flex-col gap-2">
-                                                        <InputText id="rent" v-model="pincode" aria-describedby="rent-help" placeholder="Room-mate's Pincode"/>
-                                                        <small id="rent-help">Room-mate's Pincode<span class="text-red-400"> *</span></small>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Fifth pair of inputs -->
-                                            <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                                <div>
-                                                    <div class="flex flex-col gap-2">
-                                                        <div class="hidden sm:flex justify-between">
-                                                            <div class="w-full">
-                                                                <div class="flex flex-col gap-2">
-                                                                    <InputText v-model="photoValue1" placeholder="Room-mate's ID Proof"/>
-                                                                    <small id="property-spec-help">Room-mate's ID Proof<span class="text-red-400"> *</span></small>
-                                                                </div>
+                                            <div v-if="editRoommateDetails" class="fixed inset-0 overflow-y-auto bg-black bg-opacity-50 z-50 pt-10 pb-10">
+                                                    <div class="flex justify-center items-center min-h-screen">
+                                                        <div class="bg-white p-8 rounded-lg shadow-xl max-w-[90%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[60%] xl:max-w-[50%] w-full">
+                                                            <div class="mb-4">
+                                                                <h2 class="text-lg font-bold">Edit Room-mate Details</h2>
                                                             </div>
-                                                            <div class="ml-4 items-center">
-                                                                <div class="flex items-center text-white">
-                                                                    <Button>
-                                                                        <label for="file-upload" class="cursor-pointer flex items-center">
-                                                                            <Icon name="ph:upload-simple-bold" class="ml-1 mr-1 w-5 h-5 "/>
-                                                                        </label>
-                                                                    </Button>
-                                                                    <input
-                                                                        type="file"
-                                                                        id="file-upload"
-                                                                        ref="fileInput"
-                                                                        class="hidden"
-                                                                        @change="handleFileUpload"
-                                                                    />
+                                                            <div class="mt-4 text-sm font-medium text-black-500">
+                                                                
+                                                                <!-- First pair of inputs -->
+                                                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                                                    <div class="flex flex-col gap-2">
+                                                                            <InputText id="map-location" v-model="mapValue" aria-describedby="map-location-help" placeholder="Room-mate's Name"/>
+                                                                            <small id="map-location-help">Room-mate's Full Name<span class="text-red-400"> *</span></small>
+                                                                    </div>
+                                                                    <div>
+                                                                        <div class="flex flex-col gap-2">
+                                                                            <InputText id="rent" v-model="rentValue" aria-describedby="rent-help" placeholder="Room-mate's Phone number"/>
+                                                                            <small id="rent-help">Room-mate's Phone<span class="text-red-400"> *</span></small>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </div>
+                                                                <!-- Second pair of inputs -->
+                                                                <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                                                    <div>
+                                                                        <div class="relative card flex justify-center">
+                                                                            <div class="flex flex-col gap-2 w-full">
+                                                                                <Dropdown v-model="selectedGender" editable :options="genders" showClear optionLabel="name" placeholder="Room-mate's Gender" class="w-full" />
+                                                                                <small id="location-help">Room-mate's Gender<span class="text-red-400"> *</span></small>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div>
+                                                                        <div class="relative card flex justify-center">
+                                                                            <div class="flex flex-col gap-2 w-full">
+                                                                                <Dropdown v-model="selectedMarital" editable :options="maritalstatus" showClear optionLabel="name" placeholder="Select your Room-mate's Marital Status" class="w-full" />
+                                                                                <small id="location-help">Room-mate's Marital Status<span class="text-red-400"> *</span></small>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- Third pair of inputs -->
+                                                                <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                                                    <div>
+                                                                        <div class="flex flex-col gap-2">
+                                                                            <InputText id="rent" v-model="address" aria-describedby="rent-help" placeholder="Room-mate's Address"/>
+                                                                            <small id="rent-help">Room-mate's Permanant Address<span class="text-red-400"> *</span></small>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div>
+                                                                        <div class="flex flex-col gap-2">
+                                                                            <InputText id="rent" v-model="pincode" aria-describedby="rent-help" placeholder="Room-mate's Pincode"/>
+                                                                            <small id="rent-help">Room-mate's Pincode<span class="text-red-400"> *</span></small>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- Fifth pair of inputs -->
+                                                                <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                                                    <div>
+                                                                        <div class="flex flex-col gap-2">
+                                                                            <div class="hidden sm:flex justify-between">
+                                                                                <div class="w-full">
+                                                                                    <div class="flex flex-col gap-2">
+                                                                                        <div class="relative rounded-lg overflow-hidden justify-center items-center text-center">
+                                                                                        <Image class="rounded-2xl" src="https://www.paisabazaar.com/wp-content/uploads/2018/06/Aadhaar-helps-the-government-and-the-citizens.jpg" alt="Image" style="max-width: 50%; max-height: 50%;"/>
+                                                                                    </div>
+                                                                                    <small id="property-spec-help">Room-mate's ID Proof<span class="text-red-400"> *</span></small>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="ml-4 items-center">
+                                                                                    <div class="flex items-center text-white">
+                                                                                        <Button>
+                                                                                            <label for="file-upload" class="cursor-pointer flex items-center">
+                                                                                                <Icon name="ph:upload-simple-bold" class="ml-1 mr-1 w-5 h-5 "/>
+                                                                                            </label>
+                                                                                        </Button>
+                                                                                        <input
+                                                                                            type="file"
+                                                                                            id="file-upload"
+                                                                                            ref="fileInput"
+                                                                                            class="hidden"
+                                                                                            @change="handleFileUpload"
+                                                                                        />
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
 
-                                                        <!-- For small screens -->
-                                                        <div class="block sm:hidden mt-4">
-                                                            <div class="w-full">
-                                                                <div class="flex flex-col gap-2">
-                                                                    <InputText v-model="photoValue1" placeholder="Room-mate's ID Proof"/>
-                                                                    <small id="property-spec-help">Room-mate's ID Proof<span class="text-red-400"> *</span></small>
+                                                                            <!-- For small screens -->
+                                                                            <div class="block sm:hidden mt-4">
+                                                                                <div class="w-full">
+                                                                                    <div class="flex flex-col gap-2">
+                                                                                        <div class="relative rounded-lg overflow-hidden justify-center items-center text-center">
+                                                                                        <Image class="rounded-2xl" src="https://www.paisabazaar.com/wp-content/uploads/2018/06/Aadhaar-helps-the-government-and-the-citizens.jpg" alt="Image" style="max-width: 50%; max-height: 50%;"/>
+                                                                                    </div>
+                                                                                    <small id="property-spec-help">Room-mate's ID Proof<span class="text-red-400"> *</span></small>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="mt-0 flex justify-end">
+                                                                                    <div class="flex items-center text-white">
+                                                                                        <Button>
+                                                                                            <label for="file-upload" class="cursor-pointer flex items-center">
+                                                                                                <Icon name="ph:upload-simple-bold" class="ml-1 mr-1 w-6 h-6 "/>
+                                                                                            </label>
+                                                                                        </Button>
+                                                                                        <input
+                                                                                            type="file"
+                                                                                            id="file-upload"
+                                                                                            ref="fileInput"
+                                                                                            class="hidden"
+                                                                                            @change="handleFileUpload"
+                                                                                        />
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="mt-0 flex justify-end">
-                                                                <div class="flex items-center text-white">
-                                                                    <Button>
-                                                                        <label for="file-upload" class="cursor-pointer flex items-center">
-                                                                            <Icon name="ph:upload-simple-bold" class="ml-1 mr-1 w-6 h-6 "/>
-                                                                        </label>
-                                                                    </Button>
-                                                                    <input
-                                                                        type="file"
-                                                                        id="file-upload"
-                                                                        ref="fileInput"
-                                                                        class="hidden"
-                                                                        @change="handleFileUpload"
-                                                                    />
-                                                                </div>
+
+                                                            <div class="mt-6 flex justify-end">
+                                                                <Button @click="editRoommateDetails = false" class="mr-4">Cancel</Button>
+                                                                <Button @click="">Save Changes</Button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-
-                                        <div class="mt-6 flex justify-end">
-                                            <Button @click="showRoommateDetailsCard = false" class="mr-4">Cancel</Button>
-                                            <Button @click="">Add Room-mate</Button>
                                         </div>
                                     </div>
                                 </div>
@@ -1090,6 +1061,8 @@ const showChangePasswordCard = ref(false);
 const showProfileEditCard = ref(false);
 const showRoommateCard = ref(false);
 const showRoommateDetailsCard = ref(false);
+const showRoommateDetailsCard02 = ref(false);
+const editRoommateDetails = ref(false);
 
 const address = ref();
 const pincode = ref();
