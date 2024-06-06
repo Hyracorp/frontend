@@ -17,6 +17,16 @@ export default defineNuxtConfig({
     storesDirs: ["./stores/**"],
   },
   css: ["primevue/resources/themes/lara-light-blue/theme.css"],
+  app: {
+    head: {
+      script: [
+        {
+          src: "https://accounts.google.com/gsi/client",
+          async: true,
+        },
+      ],
+    },
+  },
 
   devtools: { enabled: true },
 });

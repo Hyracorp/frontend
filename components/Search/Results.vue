@@ -1,0 +1,95 @@
+<script setup lang="ts">
+
+
+const props = defineProps({
+    results: {
+        type: Array,
+        default: () => []
+    }
+})
+const sortKey = ref();
+const sortOrder = ref();
+const sortField = ref();
+const sortOptions = ref([
+    { label: 'Price High to Low', value: '!price' },
+    { label: 'Price Low to High', value: 'price' },
+]);
+const onSortChange = (event: any) => {
+
+    const value = event.value.value;
+    const sortValue = event.value;
+
+    if (value.indexOf('!') === 0) {
+        sortOrder.value = -1;
+        sortField.value = value.substring(1, value.length);
+        sortKey.value = sortValue;
+    }
+    else {
+        sortOrder.value = 1;
+        sortField.value = value;
+        sortKey.value = sortValue;
+    }
+};
+const visible = ref(false)
+</script>
+<template>
+    <div class="max-w-screen">
+        <Dialog v-model:visible="visible">
+            <div class="p-5 flex justify-center items-center flex-col gap-3">
+                <Icon name="ph:info" class="text-5xl text-red-400" />
+                <p>
+
+                    Please login into view more
+                </p>
+                <Button class="" @click="visible = !visible">Login</Button>
+            </div>
+        </Dialog>
+
+        <DataView v-if="results.length > 0" :dataKey="'id'" :value="results" layout="grid" :sortOrder="sortOrder"
+            :sortField="sortField">
+
+            <template #header>
+                <div class="max-w-7xl mx-auto">
+                    <Dropdown v-model="sortKey" :options="sortOptions" optionLabel="label" placeholder="Sort By Price"
+                        @change="onSortChange($event)" />
+                </div>
+            </template>
+            <template #grid="results">
+
+                <div class="flex flex-wrap max-w-7xl mx-auto my-3">
+                    <div v-for="(item, index) in results.items" :key="index" class="w-full p-3 max-w-sm">
+                        <Card class="max-w-sm">
+                            <template #header>
+                                <div class="overflow-hidden rounded-t-xl">
+                                    <img alt="user header" :src="item.image" class="w-full">
+                                </div>
+                            </template>
+                            <template #title> {{ item.title }} ({{ item.bhkNo }} BHK) </template>
+                            <template #subtitle> {{ item.location }} </template>
+                            <template #content>
+
+                                <p class="m-0">
+                                    {{ item.description }}
+                                </p>
+                            </template>
+                            <template #footer>
+
+                                <div class="flex justify-between items-center">
+                                    <div class="">
+                                        <h3 class="text-xl font-bold">₹ {{ item.price }}</h3>
+                                        <p class="text-sm font-medium text-gray-500">Per Month</p>
+                                    </div>
+                                    <Button class="" @click="visible = !visible">View Details</Button>
+                                </div>
+                            </template>
+                        </Card>
+                    </div>
+                </div>
+            </template>
+
+        </DataView>
+        <div class="" v-else>
+            <p class="p-5">No Results found</p>
+        </div>
+    </div>
+</template>

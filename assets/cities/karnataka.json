@@ -1,0 +1,1454 @@
+[
+  {
+    "city": "ka-Afzalpur",
+    "name": "Afzalpur",
+    "lat": "17.19986000",
+    "longi": "76.36018000"
+  },
+  {
+    "city": "ka-Ajjampur",
+    "name": "Ajjampur",
+    "lat": "13.72794000",
+    "longi": "76.00680000"
+  },
+  {
+    "city": "ka-Aland",
+    "name": "Aland",
+    "lat": "17.56425000",
+    "longi": "76.56854000"
+  },
+  {
+    "city": "ka-Alnavar",
+    "name": "Alnavar",
+    "lat": "15.42727000",
+    "longi": "74.74111000"
+  },
+  {
+    "city": "ka-Alur",
+    "name": "Alur",
+    "lat": "12.97805000",
+    "longi": "75.99094000"
+  },
+  {
+    "city": "ka-Anekal",
+    "name": "Anekal",
+    "lat": "12.71110000",
+    "longi": "77.69557000"
+  },
+  {
+    "city": "ka-Ankola",
+    "name": "Ankola",
+    "lat": "14.66049000",
+    "longi": "74.30470000"
+  },
+  {
+    "city": "ka-Annigeri",
+    "name": "Annigeri",
+    "lat": "15.42513000",
+    "longi": "75.43350000"
+  },
+  {
+    "city": "ka-Arkalgud",
+    "name": "Arkalgud",
+    "lat": "12.76171000",
+    "longi": "76.06035000"
+  },
+  {
+    "city": "ka-Arsikere",
+    "name": "Arsikere",
+    "lat": "13.31446000",
+    "longi": "76.25704000"
+  },
+  {
+    "city": "ka-Athni",
+    "name": "Athni",
+    "lat": "16.72613000",
+    "longi": "75.06421000"
+  },
+  {
+    "city": "ka-Aurad",
+    "name": "Aurad",
+    "lat": "18.25397000",
+    "longi": "77.41761000"
+  },
+  {
+    "city": "ka-Badami",
+    "name": "Badami",
+    "lat": "15.91495000",
+    "longi": "75.67683000"
+  },
+  {
+    "city": "ka-Bagalkot",
+    "name": "Bagalkot",
+    "lat": "16.18000000",
+    "longi": "75.69000000"
+  },
+  {
+    "city": "ka-Bagepalli",
+    "name": "Bagepalli",
+    "lat": "13.78338000",
+    "longi": "77.79667000"
+  },
+  {
+    "city": "ka-Bail-Hongal",
+    "name": "Bail-Hongal",
+    "lat": "15.81370000",
+    "longi": "74.85895000"
+  },
+  {
+    "city": "ka-Ballari",
+    "name": "Ballari",
+    "lat": "15.15000000",
+    "longi": "76.55000000"
+  },
+  {
+    "city": "ka-Ballary",
+    "name": "Ballary",
+    "lat": "15.14205000",
+    "longi": "76.92398000"
+  },
+  {
+    "city": "ka-Banavar",
+    "name": "Banavar",
+    "lat": "13.41029000",
+    "longi": "76.16314000"
+  },
+  {
+    "city": "ka-Bangalore Rural",
+    "name": "Bangalore Rural",
+    "lat": "13.22567000",
+    "longi": "77.57501000"
+  },
+  {
+    "city": "ka-Bangalore Urban",
+    "name": "Bangalore Urban",
+    "lat": "13.00000000",
+    "longi": "77.58333000"
+  },
+  {
+    "city": "ka-Bangarapet",
+    "name": "Bangarapet",
+    "lat": "12.99116000",
+    "longi": "78.17804000"
+  },
+  {
+    "city": "ka-Bannur",
+    "name": "Bannur",
+    "lat": "12.33295000",
+    "longi": "76.86201000"
+  },
+  {
+    "city": "ka-Bantval",
+    "name": "Bantval",
+    "lat": "12.89050000",
+    "longi": "75.03489000"
+  },
+  {
+    "city": "ka-Basavakalyan",
+    "name": "Basavakalyan",
+    "lat": "17.87445000",
+    "longi": "76.94972000"
+  },
+  {
+    "city": "ka-Basavana Bagevadi",
+    "name": "Basavana Bagevadi",
+    "lat": "16.57278000",
+    "longi": "75.97252000"
+  },
+  {
+    "city": "ka-Belagavi",
+    "name": "Belagavi",
+    "lat": "16.33333000",
+    "longi": "74.75000000"
+  },
+  {
+    "city": "ka-Belluru",
+    "name": "Belluru",
+    "lat": "12.98140000",
+    "longi": "76.73308000"
+  },
+  {
+    "city": "ka-Beltangadi",
+    "name": "Beltangadi",
+    "lat": "13.98333000",
+    "longi": "75.30000000"
+  },
+  {
+    "city": "ka-Belur",
+    "name": "Belur",
+    "lat": "13.16558000",
+    "longi": "75.86519000"
+  },
+  {
+    "city": "ka-Bengaluru",
+    "name": "Bengaluru",
+    "lat": "12.97194000",
+    "longi": "77.59369000"
+  },
+  {
+    "city": "ka-Bhadravati",
+    "name": "Bhadravati",
+    "lat": "13.84846000",
+    "longi": "75.70502000"
+  },
+  {
+    "city": "ka-Bhalki",
+    "name": "Bhalki",
+    "lat": "18.04348000",
+    "longi": "77.20600000"
+  },
+  {
+    "city": "ka-Bhatkal",
+    "name": "Bhatkal",
+    "lat": "13.98534000",
+    "longi": "74.55531000"
+  },
+  {
+    "city": "ka-Bidar",
+    "name": "Bidar",
+    "lat": "18.08333000",
+    "longi": "77.33333000"
+  },
+  {
+    "city": "ka-Bilgi",
+    "name": "Bilgi",
+    "lat": "16.34714000",
+    "longi": "75.61804000"
+  },
+  {
+    "city": "ka-Birur",
+    "name": "Birur",
+    "lat": "13.59723000",
+    "longi": "75.97167000"
+  },
+  {
+    "city": "ka-Byadgi",
+    "name": "Byadgi",
+    "lat": "14.67325000",
+    "longi": "75.48680000"
+  },
+  {
+    "city": "ka-Byndoor",
+    "name": "Byndoor",
+    "lat": "13.86667000",
+    "longi": "74.63333000"
+  },
+  {
+    "city": "ka-Canacona",
+    "name": "Canacona",
+    "lat": "14.99590000",
+    "longi": "74.05056000"
+  },
+  {
+    "city": "ka-Challakere",
+    "name": "Challakere",
+    "lat": "14.31800000",
+    "longi": "76.65165000"
+  },
+  {
+    "city": "ka-Chamrajnagar",
+    "name": "Chamrajnagar",
+    "lat": "11.96000000",
+    "longi": "77.09000000"
+  },
+  {
+    "city": "ka-Channagiri",
+    "name": "Channagiri",
+    "lat": "14.02399000",
+    "longi": "75.92577000"
+  },
+  {
+    "city": "ka-Channapatna",
+    "name": "Channapatna",
+    "lat": "12.65143000",
+    "longi": "77.20672000"
+  },
+  {
+    "city": "ka-Channarayapatna",
+    "name": "Channarayapatna",
+    "lat": "12.90642000",
+    "longi": "76.38775000"
+  },
+  {
+    "city": "ka-Chik Ballapur",
+    "name": "Chik Ballapur",
+    "lat": "13.43512000",
+    "longi": "77.72787000"
+  },
+  {
+    "city": "ka-Chikkaballapur",
+    "name": "Chikkaballapur",
+    "lat": "13.55000000",
+    "longi": "77.87000000"
+  },
+  {
+    "city": "ka-Chikkamagaluru",
+    "name": "Chikkamagaluru",
+    "lat": "13.49000000",
+    "longi": "75.73000000"
+  },
+  {
+    "city": "ka-Chiknayakanhalli",
+    "name": "Chiknayakanhalli",
+    "lat": "13.41609000",
+    "longi": "76.62063000"
+  },
+  {
+    "city": "ka-Chikodi",
+    "name": "Chikodi",
+    "lat": "16.42898000",
+    "longi": "74.58591000"
+  },
+  {
+    "city": "ka-Chincholi",
+    "name": "Chincholi",
+    "lat": "17.46508000",
+    "longi": "77.41874000"
+  },
+  {
+    "city": "ka-Chintamani",
+    "name": "Chintamani",
+    "lat": "13.40051000",
+    "longi": "78.05172000"
+  },
+  {
+    "city": "ka-Chitapur",
+    "name": "Chitapur",
+    "lat": "17.12357000",
+    "longi": "77.08240000"
+  },
+  {
+    "city": "ka-Chitradurga",
+    "name": "Chitradurga",
+    "lat": "14.20000000",
+    "longi": "76.50000000"
+  },
+  {
+    "city": "ka-Closepet",
+    "name": "Closepet",
+    "lat": "12.72181000",
+    "longi": "77.28149000"
+  },
+  {
+    "city": "ka-Coondapoor",
+    "name": "Coondapoor",
+    "lat": "13.63126000",
+    "longi": "74.69020000"
+  },
+  {
+    "city": "ka-Dakshina Kannada",
+    "name": "Dakshina Kannada",
+    "lat": "12.84000000",
+    "longi": "75.29000000"
+  },
+  {
+    "city": "ka-Dandeli",
+    "name": "Dandeli",
+    "lat": "15.26667000",
+    "longi": "74.61667000"
+  },
+  {
+    "city": "ka-Davanagere",
+    "name": "Davanagere",
+    "lat": "14.43000000",
+    "longi": "75.90000000"
+  },
+  {
+    "city": "ka-Devanhalli",
+    "name": "Devanhalli",
+    "lat": "13.24655000",
+    "longi": "77.71183000"
+  },
+  {
+    "city": "ka-Dharwad",
+    "name": "Dharwad",
+    "lat": "15.37000000",
+    "longi": "75.14000000"
+  },
+  {
+    "city": "ka-Dod Ballapur",
+    "name": "Dod Ballapur",
+    "lat": "13.29452000",
+    "longi": "77.53777000"
+  },
+  {
+    "city": "ka-French Rocks",
+    "name": "French Rocks",
+    "lat": "12.50094000",
+    "longi": "76.67416000"
+  },
+  {
+    "city": "ka-Gadag",
+    "name": "Gadag",
+    "lat": "15.49835000",
+    "longi": "75.65187000"
+  },
+  {
+    "city": "ka-Gadag-Betageri",
+    "name": "Gadag-Betageri",
+    "lat": "15.41670000",
+    "longi": "75.61670000"
+  },
+  {
+    "city": "ka-Gajendragarh",
+    "name": "Gajendragarh",
+    "lat": "15.73628000",
+    "longi": "75.96976000"
+  },
+  {
+    "city": "ka-Gangawati",
+    "name": "Gangawati",
+    "lat": "15.43130000",
+    "longi": "76.52933000"
+  },
+  {
+    "city": "ka-Gangolli",
+    "name": "Gangolli",
+    "lat": "13.65024000",
+    "longi": "74.67072000"
+  },
+  {
+    "city": "ka-Gokak",
+    "name": "Gokak",
+    "lat": "16.16901000",
+    "longi": "74.82393000"
+  },
+  {
+    "city": "ka-Gokarna",
+    "name": "Gokarna",
+    "lat": "14.55000000",
+    "longi": "74.31667000"
+  },
+  {
+    "city": "ka-Goribidnur",
+    "name": "Goribidnur",
+    "lat": "13.61072000",
+    "longi": "77.51738000"
+  },
+  {
+    "city": "ka-Gorur",
+    "name": "Gorur",
+    "lat": "12.82297000",
+    "longi": "76.06463000"
+  },
+  {
+    "city": "ka-Gubbi",
+    "name": "Gubbi",
+    "lat": "13.31216000",
+    "longi": "76.94102000"
+  },
+  {
+    "city": "ka-Gudibanda",
+    "name": "Gudibanda",
+    "lat": "13.67099000",
+    "longi": "77.70414000"
+  },
+  {
+    "city": "ka-Guledagudda",
+    "name": "Guledagudda",
+    "lat": "16.05025000",
+    "longi": "75.78997000"
+  },
+  {
+    "city": "ka-Gundlupēt",
+    "name": "Gundlupēt",
+    "lat": "11.81004000",
+    "longi": "76.69027000"
+  },
+  {
+    "city": "ka-Gurmatkal",
+    "name": "Gurmatkal",
+    "lat": "16.86773000",
+    "longi": "77.39088000"
+  },
+  {
+    "city": "ka-Hadagalli",
+    "name": "Hadagalli",
+    "lat": "15.02048000",
+    "longi": "75.93185000"
+  },
+  {
+    "city": "ka-Haliyal",
+    "name": "Haliyal",
+    "lat": "15.32864000",
+    "longi": "74.75638000"
+  },
+  {
+    "city": "ka-Hampi",
+    "name": "Hampi",
+    "lat": "15.33520000",
+    "longi": "76.46030000"
+  },
+  {
+    "city": "ka-Hangal",
+    "name": "Hangal",
+    "lat": "14.76465000",
+    "longi": "75.12460000"
+  },
+  {
+    "city": "ka-Harihar",
+    "name": "Harihar",
+    "lat": "14.51288000",
+    "longi": "75.80716000"
+  },
+  {
+    "city": "ka-Harpanahalli",
+    "name": "Harpanahalli",
+    "lat": "14.78766000",
+    "longi": "75.98863000"
+  },
+  {
+    "city": "ka-Hassan",
+    "name": "Hassan",
+    "lat": "12.95000000",
+    "longi": "76.08333000"
+  },
+  {
+    "city": "ka-Haveri",
+    "name": "Haveri",
+    "lat": "14.73732000",
+    "longi": "75.41062000"
+  },
+  {
+    "city": "ka-Heggadadevankote",
+    "name": "Heggadadevankote",
+    "lat": "12.08809000",
+    "longi": "76.32957000"
+  },
+  {
+    "city": "ka-Hirekerur",
+    "name": "Hirekerur",
+    "lat": "14.45506000",
+    "longi": "75.39520000"
+  },
+  {
+    "city": "ka-Hiriyur",
+    "name": "Hiriyur",
+    "lat": "13.94455000",
+    "longi": "76.61723000"
+  },
+  {
+    "city": "ka-Holalkere",
+    "name": "Holalkere",
+    "lat": "14.04295000",
+    "longi": "76.18496000"
+  },
+  {
+    "city": "ka-Hole Narsipur",
+    "name": "Hole Narsipur",
+    "lat": "12.78635000",
+    "longi": "76.24331000"
+  },
+  {
+    "city": "ka-Homnabad",
+    "name": "Homnabad",
+    "lat": "17.77074000",
+    "longi": "77.12519000"
+  },
+  {
+    "city": "ka-Honavar",
+    "name": "Honavar",
+    "lat": "14.28088000",
+    "longi": "74.44497000"
+  },
+  {
+    "city": "ka-Honnali",
+    "name": "Honnali",
+    "lat": "14.23976000",
+    "longi": "75.64507000"
+  },
+  {
+    "city": "ka-Hosanagara",
+    "name": "Hosanagara",
+    "lat": "13.91387000",
+    "longi": "75.06503000"
+  },
+  {
+    "city": "ka-Hosangadi",
+    "name": "Hosangadi",
+    "lat": "13.69756000",
+    "longi": "74.95427000"
+  },
+  {
+    "city": "ka-Hosdurga",
+    "name": "Hosdurga",
+    "lat": "13.79631000",
+    "longi": "76.28408000"
+  },
+  {
+    "city": "ka-Hoskote",
+    "name": "Hoskote",
+    "lat": "13.07070000",
+    "longi": "77.79814000"
+  },
+  {
+    "city": "ka-Hospet",
+    "name": "Hospet",
+    "lat": "15.26954000",
+    "longi": "76.38710000"
+  },
+  {
+    "city": "ka-Hubballi",
+    "name": "Hubballi",
+    "lat": "15.34776000",
+    "longi": "75.13378000"
+  },
+  {
+    "city": "ka-Hukeri",
+    "name": "Hukeri",
+    "lat": "16.23082000",
+    "longi": "74.60244000"
+  },
+  {
+    "city": "ka-Hungund",
+    "name": "Hungund",
+    "lat": "16.06213000",
+    "longi": "76.05860000"
+  },
+  {
+    "city": "ka-Hunsur",
+    "name": "Hunsur",
+    "lat": "12.30359000",
+    "longi": "76.29275000"
+  },
+  {
+    "city": "ka-Ilkal",
+    "name": "Ilkal",
+    "lat": "15.95923000",
+    "longi": "76.11351000"
+  },
+  {
+    "city": "ka-Indi",
+    "name": "Indi",
+    "lat": "17.17735000",
+    "longi": "75.95260000"
+  },
+  {
+    "city": "ka-Jagalur",
+    "name": "Jagalur",
+    "lat": "14.51957000",
+    "longi": "76.33915000"
+  },
+  {
+    "city": "ka-Jamkhandi",
+    "name": "Jamkhandi",
+    "lat": "16.50461000",
+    "longi": "75.29146000"
+  },
+  {
+    "city": "ka-Jevargi",
+    "name": "Jevargi",
+    "lat": "17.01394000",
+    "longi": "76.77317000"
+  },
+  {
+    "city": "ka-Kadur",
+    "name": "Kadur",
+    "lat": "13.55285000",
+    "longi": "76.01164000"
+  },
+  {
+    "city": "ka-Kalaburgi",
+    "name": "Kalaburgi",
+    "lat": "17.16667000",
+    "longi": "77.08333000"
+  },
+  {
+    "city": "ka-Kalghatgi",
+    "name": "Kalghatgi",
+    "lat": "15.18315000",
+    "longi": "74.97099000"
+  },
+  {
+    "city": "ka-Kampli",
+    "name": "Kampli",
+    "lat": "15.40626000",
+    "longi": "76.60013000"
+  },
+  {
+    "city": "ka-Kankanhalli",
+    "name": "Kankanhalli",
+    "lat": "12.54654000",
+    "longi": "77.42005000"
+  },
+  {
+    "city": "ka-Karkala",
+    "name": "Karkala",
+    "lat": "13.21428000",
+    "longi": "74.99234000"
+  },
+  {
+    "city": "ka-Karwar",
+    "name": "Karwar",
+    "lat": "14.81361000",
+    "longi": "74.12972000"
+  },
+  {
+    "city": "ka-Kavalur",
+    "name": "Kavalur",
+    "lat": "15.28829000",
+    "longi": "75.94330000"
+  },
+  {
+    "city": "ka-Kerur",
+    "name": "Kerur",
+    "lat": "16.01384000",
+    "longi": "75.54631000"
+  },
+  {
+    "city": "ka-Khanapur",
+    "name": "Khanapur",
+    "lat": "15.63969000",
+    "longi": "74.50847000"
+  },
+  {
+    "city": "ka-Kodagu",
+    "name": "Kodagu",
+    "lat": "12.41667000",
+    "longi": "75.75000000"
+  },
+  {
+    "city": "ka-Kodigenahalli",
+    "name": "Kodigenahalli",
+    "lat": "13.72136000",
+    "longi": "77.38629000"
+  },
+  {
+    "city": "ka-Kodlipet",
+    "name": "Kodlipet",
+    "lat": "12.80087000",
+    "longi": "75.88662000"
+  },
+  {
+    "city": "ka-Kolar",
+    "name": "Kolar",
+    "lat": "13.13000000",
+    "longi": "78.23000000"
+  },
+  {
+    "city": "ka-Kollegal",
+    "name": "Kollegal",
+    "lat": "12.15449000",
+    "longi": "77.11051000"
+  },
+  {
+    "city": "ka-Konanur",
+    "name": "Konanur",
+    "lat": "12.63016000",
+    "longi": "76.05037000"
+  },
+  {
+    "city": "ka-Konnur",
+    "name": "Konnur",
+    "lat": "16.20138000",
+    "longi": "74.74886000"
+  },
+  {
+    "city": "ka-Koppa",
+    "name": "Koppa",
+    "lat": "13.53044000",
+    "longi": "75.36329000"
+  },
+  {
+    "city": "ka-Koppal",
+    "name": "Koppal",
+    "lat": "15.50000000",
+    "longi": "76.20000000"
+  },
+  {
+    "city": "ka-Koratagere",
+    "name": "Koratagere",
+    "lat": "13.52200000",
+    "longi": "77.23730000"
+  },
+  {
+    "city": "ka-Kotturu",
+    "name": "Kotturu",
+    "lat": "14.82442000",
+    "longi": "76.22005000"
+  },
+  {
+    "city": "ka-Krishnarajpet",
+    "name": "Krishnarajpet",
+    "lat": "12.66621000",
+    "longi": "76.48770000"
+  },
+  {
+    "city": "ka-Kudachi",
+    "name": "Kudachi",
+    "lat": "16.62784000",
+    "longi": "74.85408000"
+  },
+  {
+    "city": "ka-Kudligi",
+    "name": "Kudligi",
+    "lat": "14.90500000",
+    "longi": "76.38527000"
+  },
+  {
+    "city": "ka-Kumsi",
+    "name": "Kumsi",
+    "lat": "14.05455000",
+    "longi": "75.39992000"
+  },
+  {
+    "city": "ka-Kumta",
+    "name": "Kumta",
+    "lat": "14.42853000",
+    "longi": "74.41890000"
+  },
+  {
+    "city": "ka-Kundgol",
+    "name": "Kundgol",
+    "lat": "15.25612000",
+    "longi": "75.24735000"
+  },
+  {
+    "city": "ka-Kunigal",
+    "name": "Kunigal",
+    "lat": "13.02319000",
+    "longi": "77.02518000"
+  },
+  {
+    "city": "ka-Kurgunta",
+    "name": "Kurgunta",
+    "lat": "17.19321000",
+    "longi": "77.35772000"
+  },
+  {
+    "city": "ka-Kushalnagar",
+    "name": "Kushalnagar",
+    "lat": "12.45795000",
+    "longi": "75.95904000"
+  },
+  {
+    "city": "ka-Kushtagi",
+    "name": "Kushtagi",
+    "lat": "15.75623000",
+    "longi": "76.19112000"
+  },
+  {
+    "city": "ka-Lakshmeshwar",
+    "name": "Lakshmeshwar",
+    "lat": "15.12689000",
+    "longi": "75.46935000"
+  },
+  {
+    "city": "ka-Lingsugur",
+    "name": "Lingsugur",
+    "lat": "16.15876000",
+    "longi": "76.52174000"
+  },
+  {
+    "city": "ka-Londa",
+    "name": "Londa",
+    "lat": "15.46907000",
+    "longi": "74.51906000"
+  },
+  {
+    "city": "ka-Maddagiri",
+    "name": "Maddagiri",
+    "lat": "13.66035000",
+    "longi": "77.21239000"
+  },
+  {
+    "city": "ka-Maddur",
+    "name": "Maddur",
+    "lat": "12.58283000",
+    "longi": "77.04294000"
+  },
+  {
+    "city": "ka-Madikeri",
+    "name": "Madikeri",
+    "lat": "12.42602000",
+    "longi": "75.73820000"
+  },
+  {
+    "city": "ka-Magadi",
+    "name": "Magadi",
+    "lat": "12.95706000",
+    "longi": "77.22374000"
+  },
+  {
+    "city": "ka-Mahalingpur",
+    "name": "Mahalingpur",
+    "lat": "16.38880000",
+    "longi": "75.10873000"
+  },
+  {
+    "city": "ka-Malavalli",
+    "name": "Malavalli",
+    "lat": "12.38556000",
+    "longi": "77.06045000"
+  },
+  {
+    "city": "ka-Malpe",
+    "name": "Malpe",
+    "lat": "13.34962000",
+    "longi": "74.70394000"
+  },
+  {
+    "city": "ka-Malur",
+    "name": "Malur",
+    "lat": "13.00322000",
+    "longi": "77.93798000"
+  },
+  {
+    "city": "ka-Mandya",
+    "name": "Mandya",
+    "lat": "12.52230000",
+    "longi": "76.89746000"
+  },
+  {
+    "city": "ka-Mangaluru",
+    "name": "Mangaluru",
+    "lat": "12.91723000",
+    "longi": "74.85603000"
+  },
+  {
+    "city": "ka-Manipal",
+    "name": "Manipal",
+    "lat": "13.35000000",
+    "longi": "74.78333000"
+  },
+  {
+    "city": "ka-Manvi",
+    "name": "Manvi",
+    "lat": "15.99126000",
+    "longi": "77.05034000"
+  },
+  {
+    "city": "ka-Mayakonda",
+    "name": "Mayakonda",
+    "lat": "14.28894000",
+    "longi": "76.08305000"
+  },
+  {
+    "city": "ka-Melukote",
+    "name": "Melukote",
+    "lat": "12.66258000",
+    "longi": "76.64861000"
+  },
+  {
+    "city": "ka-Mudbidri",
+    "name": "Mudbidri",
+    "lat": "13.06653000",
+    "longi": "74.99525000"
+  },
+  {
+    "city": "ka-Muddebihal",
+    "name": "Muddebihal",
+    "lat": "16.33782000",
+    "longi": "76.13173000"
+  },
+  {
+    "city": "ka-Mudgal",
+    "name": "Mudgal",
+    "lat": "16.01191000",
+    "longi": "76.44203000"
+  },
+  {
+    "city": "ka-Mudgere",
+    "name": "Mudgere",
+    "lat": "13.13353000",
+    "longi": "75.64160000"
+  },
+  {
+    "city": "ka-Mudhol",
+    "name": "Mudhol",
+    "lat": "16.33354000",
+    "longi": "75.28305000"
+  },
+  {
+    "city": "ka-Mulbagal",
+    "name": "Mulbagal",
+    "lat": "13.16352000",
+    "longi": "78.39346000"
+  },
+  {
+    "city": "ka-Mulgund",
+    "name": "Mulgund",
+    "lat": "15.28070000",
+    "longi": "75.52132000"
+  },
+  {
+    "city": "ka-Mulki",
+    "name": "Mulki",
+    "lat": "13.09101000",
+    "longi": "74.79353000"
+  },
+  {
+    "city": "ka-Mundargi",
+    "name": "Mundargi",
+    "lat": "15.20677000",
+    "longi": "75.88390000"
+  },
+  {
+    "city": "ka-Mundgod",
+    "name": "Mundgod",
+    "lat": "14.97144000",
+    "longi": "75.03658000"
+  },
+  {
+    "city": "ka-Munirabad",
+    "name": "Munirabad",
+    "lat": "15.30928000",
+    "longi": "76.33830000"
+  },
+  {
+    "city": "ka-Murudeshwara",
+    "name": "Murudeshwara",
+    "lat": "14.09430000",
+    "longi": "74.48450000"
+  },
+  {
+    "city": "ka-Mysuru",
+    "name": "Mysuru",
+    "lat": "12.23000000",
+    "longi": "76.42000000"
+  },
+  {
+    "city": "ka-Nagamangala",
+    "name": "Nagamangala",
+    "lat": "12.81939000",
+    "longi": "76.75456000"
+  },
+  {
+    "city": "ka-Nanjangud",
+    "name": "Nanjangud",
+    "lat": "12.11764000",
+    "longi": "76.68397000"
+  },
+  {
+    "city": "ka-Narasimharajapura",
+    "name": "Narasimharajapura",
+    "lat": "13.61075000",
+    "longi": "75.51200000"
+  },
+  {
+    "city": "ka-Naregal",
+    "name": "Naregal",
+    "lat": "15.57316000",
+    "longi": "75.80805000"
+  },
+  {
+    "city": "ka-Nargund",
+    "name": "Nargund",
+    "lat": "15.72299000",
+    "longi": "75.38666000"
+  },
+  {
+    "city": "ka-Navalgund",
+    "name": "Navalgund",
+    "lat": "15.55877000",
+    "longi": "75.35305000"
+  },
+  {
+    "city": "ka-Nelamangala",
+    "name": "Nelamangala",
+    "lat": "13.09978000",
+    "longi": "77.39364000"
+  },
+  {
+    "city": "ka-Nyamti",
+    "name": "Nyamti",
+    "lat": "14.14869000",
+    "longi": "75.57641000"
+  },
+  {
+    "city": "ka-Pangala",
+    "name": "Pangala",
+    "lat": "13.25000000",
+    "longi": "74.75000000"
+  },
+  {
+    "city": "ka-Pavugada",
+    "name": "Pavugada",
+    "lat": "14.09953000",
+    "longi": "77.28018000"
+  },
+  {
+    "city": "ka-Piriyapatna",
+    "name": "Piriyapatna",
+    "lat": "12.33497000",
+    "longi": "76.10073000"
+  },
+  {
+    "city": "ka-Ponnampet",
+    "name": "Ponnampet",
+    "lat": "12.14473000",
+    "longi": "75.94514000"
+  },
+  {
+    "city": "ka-Puttur",
+    "name": "Puttur",
+    "lat": "12.75975000",
+    "longi": "75.20169000"
+  },
+  {
+    "city": "ka-Rabkavi",
+    "name": "Rabkavi",
+    "lat": "16.47567000",
+    "longi": "75.11060000"
+  },
+  {
+    "city": "ka-Raichur",
+    "name": "Raichur",
+    "lat": "16.16000000",
+    "longi": "76.91000000"
+  },
+  {
+    "city": "ka-Ramanagara",
+    "name": "Ramanagara",
+    "lat": "12.65000000",
+    "longi": "77.35000000"
+  },
+  {
+    "city": "ka-Ranibennur",
+    "name": "Ranibennur",
+    "lat": "14.62239000",
+    "longi": "75.62951000"
+  },
+  {
+    "city": "ka-Raybag",
+    "name": "Raybag",
+    "lat": "16.49178000",
+    "longi": "74.77391000"
+  },
+  {
+    "city": "ka-Robertsonpet",
+    "name": "Robertsonpet",
+    "lat": "12.95629000",
+    "longi": "78.27539000"
+  },
+  {
+    "city": "ka-Ron",
+    "name": "Ron",
+    "lat": "15.69935000",
+    "longi": "75.73408000"
+  },
+  {
+    "city": "ka-Sadalgi",
+    "name": "Sadalgi",
+    "lat": "16.55870000",
+    "longi": "74.53211000"
+  },
+  {
+    "city": "ka-Sagar",
+    "name": "Sagar",
+    "lat": "14.16498000",
+    "longi": "75.02901000"
+  },
+  {
+    "city": "ka-Sakleshpur",
+    "name": "Sakleshpur",
+    "lat": "12.94119000",
+    "longi": "75.78467000"
+  },
+  {
+    "city": "ka-Sandur",
+    "name": "Sandur",
+    "lat": "15.08613000",
+    "longi": "76.54692000"
+  },
+  {
+    "city": "ka-Sanivarsante",
+    "name": "Sanivarsante",
+    "lat": "12.72824000",
+    "longi": "75.88669000"
+  },
+  {
+    "city": "ka-Sankeshwar",
+    "name": "Sankeshwar",
+    "lat": "16.25649000",
+    "longi": "74.48195000"
+  },
+  {
+    "city": "ka-Sargur",
+    "name": "Sargur",
+    "lat": "11.99971000",
+    "longi": "76.39611000"
+  },
+  {
+    "city": "ka-Saundatti",
+    "name": "Saundatti",
+    "lat": "15.76615000",
+    "longi": "75.11778000"
+  },
+  {
+    "city": "ka-Savanur",
+    "name": "Savanur",
+    "lat": "14.97335000",
+    "longi": "75.33724000"
+  },
+  {
+    "city": "ka-Seram",
+    "name": "Seram",
+    "lat": "17.17859000",
+    "longi": "77.28998000"
+  },
+  {
+    "city": "ka-Shahabad",
+    "name": "Shahabad",
+    "lat": "17.13070000",
+    "longi": "76.94361000"
+  },
+  {
+    "city": "ka-Shahpur",
+    "name": "Shahpur",
+    "lat": "16.69605000",
+    "longi": "76.84220000"
+  },
+  {
+    "city": "ka-Shiggaon",
+    "name": "Shiggaon",
+    "lat": "14.99053000",
+    "longi": "75.22499000"
+  },
+  {
+    "city": "ka-Shikarpur",
+    "name": "Shikarpur",
+    "lat": "14.26980000",
+    "longi": "75.35643000"
+  },
+  {
+    "city": "ka-Shimoga",
+    "name": "Shimoga",
+    "lat": "14.05000000",
+    "longi": "75.16000000"
+  },
+  {
+    "city": "ka-Shirhatti",
+    "name": "Shirhatti",
+    "lat": "15.23352000",
+    "longi": "75.57996000"
+  },
+  {
+    "city": "ka-Shorapur",
+    "name": "Shorapur",
+    "lat": "16.52100000",
+    "longi": "76.75738000"
+  },
+  {
+    "city": "ka-Shrirangapattana",
+    "name": "Shrirangapattana",
+    "lat": "12.42264000",
+    "longi": "76.68439000"
+  },
+  {
+    "city": "ka-Siddapur",
+    "name": "Siddapur",
+    "lat": "14.34322000",
+    "longi": "74.89400000"
+  },
+  {
+    "city": "ka-Sidlaghatta",
+    "name": "Sidlaghatta",
+    "lat": "13.38896000",
+    "longi": "77.86444000"
+  },
+  {
+    "city": "ka-Sindgi",
+    "name": "Sindgi",
+    "lat": "16.91883000",
+    "longi": "76.23368000"
+  },
+  {
+    "city": "ka-Sindhnur",
+    "name": "Sindhnur",
+    "lat": "15.76983000",
+    "longi": "76.75581000"
+  },
+  {
+    "city": "ka-Sira",
+    "name": "Sira",
+    "lat": "13.74155000",
+    "longi": "76.90430000"
+  },
+  {
+    "city": "ka-Sirsi",
+    "name": "Sirsi",
+    "lat": "14.62072000",
+    "longi": "74.83554000"
+  },
+  {
+    "city": "ka-Siruguppa",
+    "name": "Siruguppa",
+    "lat": "15.63000000",
+    "longi": "76.89217000"
+  },
+  {
+    "city": "ka-Someshwar",
+    "name": "Someshwar",
+    "lat": "13.49112000",
+    "longi": "75.06646000"
+  },
+  {
+    "city": "ka-Somvarpet",
+    "name": "Somvarpet",
+    "lat": "12.59698000",
+    "longi": "75.84957000"
+  },
+  {
+    "city": "ka-Sorab",
+    "name": "Sorab",
+    "lat": "14.38144000",
+    "longi": "75.09183000"
+  },
+  {
+    "city": "ka-Sravana Belgola",
+    "name": "Sravana Belgola",
+    "lat": "12.85737000",
+    "longi": "76.48886000"
+  },
+  {
+    "city": "ka-Sringeri",
+    "name": "Sringeri",
+    "lat": "13.41698000",
+    "longi": "75.25271000"
+  },
+  {
+    "city": "ka-Srinivaspur",
+    "name": "Srinivaspur",
+    "lat": "13.33914000",
+    "longi": "78.21175000"
+  },
+  {
+    "city": "ka-Sulya",
+    "name": "Sulya",
+    "lat": "12.56100000",
+    "longi": "75.38741000"
+  },
+  {
+    "city": "ka-Suntikoppa",
+    "name": "Suntikoppa",
+    "lat": "12.45594000",
+    "longi": "75.82970000"
+  },
+  {
+    "city": "ka-Talikota",
+    "name": "Talikota",
+    "lat": "16.47311000",
+    "longi": "76.31085000"
+  },
+  {
+    "city": "ka-Tarikere",
+    "name": "Tarikere",
+    "lat": "13.70954000",
+    "longi": "75.81382000"
+  },
+  {
+    "city": "ka-Tekkalakote",
+    "name": "Tekkalakote",
+    "lat": "15.53444000",
+    "longi": "76.87703000"
+  },
+  {
+    "city": "ka-Terdal",
+    "name": "Terdal",
+    "lat": "16.49379000",
+    "longi": "75.04667000"
+  },
+  {
+    "city": "ka-Tiptur",
+    "name": "Tiptur",
+    "lat": "13.25630000",
+    "longi": "76.47768000"
+  },
+  {
+    "city": "ka-Tirthahalli",
+    "name": "Tirthahalli",
+    "lat": "13.68835000",
+    "longi": "75.24548000"
+  },
+  {
+    "city": "ka-Tirumakudal Narsipur",
+    "name": "Tirumakudal Narsipur",
+    "lat": "12.21207000",
+    "longi": "76.90180000"
+  },
+  {
+    "city": "ka-Tumakuru",
+    "name": "Tumakuru",
+    "lat": "13.50000000",
+    "longi": "77.00000000"
+  },
+  {
+    "city": "ka-Turuvekere",
+    "name": "Turuvekere",
+    "lat": "13.16374000",
+    "longi": "76.66641000"
+  },
+  {
+    "city": "ka-Udupi",
+    "name": "Udupi",
+    "lat": "13.50000000",
+    "longi": "74.87000000"
+  },
+  {
+    "city": "ka-Ullal",
+    "name": "Ullal",
+    "lat": "12.80569000",
+    "longi": "74.86058000"
+  },
+  {
+    "city": "ka-Uttar Kannada",
+    "name": "Uttar Kannada",
+    "lat": "14.88333000",
+    "longi": "74.58333000"
+  },
+  {
+    "city": "ka-Vadigenhalli",
+    "name": "Vadigenhalli",
+    "lat": "13.29724000",
+    "longi": "77.80184000"
+  },
+  {
+    "city": "ka-Vijayapura",
+    "name": "Vijayapura",
+    "lat": "16.82442000",
+    "longi": "75.71537000"
+  },
+  {
+    "city": "ka-Virarajendrapet",
+    "name": "Virarajendrapet",
+    "lat": "12.19644000",
+    "longi": "75.80512000"
+  },
+  {
+    "city": "ka-Wadi",
+    "name": "Wadi",
+    "lat": "17.05183000",
+    "longi": "76.99048000"
+  },
+  {
+    "city": "ka-Yadgir",
+    "name": "Yadgir",
+    "lat": "16.73000000",
+    "longi": "76.94000000"
+  },
+  {
+    "city": "ka-Yelahanka",
+    "name": "Yelahanka",
+    "lat": "13.10073000",
+    "longi": "77.59632000"
+  },
+  {
+    "city": "ka-Yelandur",
+    "name": "Yelandur",
+    "lat": "12.04629000",
+    "longi": "77.03034000"
+  },
+  {
+    "city": "ka-Yelbarga",
+    "name": "Yelbarga",
+    "lat": "15.61545000",
+    "longi": "76.01184000"
+  },
+  {
+    "city": "ka-Yellapur",
+    "name": "Yellapur",
+    "lat": "14.96370000",
+    "longi": "74.70929000"
+  }
+]
