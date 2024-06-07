@@ -2,10 +2,6 @@
 import { usePropertyStore } from '@/stores/property'
 const store = usePropertyStore()
 const featuredCollection = computed(() => store.featuredProperties)
-const visible = ref(false)
-
-
-
 </script>
 <template>
     <div class="py-10 p-5">
@@ -35,23 +31,13 @@ const visible = ref(false)
                                 <h3 class="text-xl font-bold">₹ {{ data.price }}</h3>
                                 <p class="text-sm font-medium text-gray-500">Per Month</p>
                             </div>
-                            <!-- <NuxtLink :to="`/property/${data.id}`"> <Button class="">View
-                                    Details</Button></NuxtLink> -->
-                            <Button class="" @click="visible = true">View
-                                Details</Button>
+                            <NuxtLink :to="`/property/${data.id}`"> <Button class="">View
+                                    Details</Button></NuxtLink>
+                        
                         </div>
                     </template>
                 </Card>
-                <Dialog v-model:visible="visible">
-                    <div class="p-5 flex justify-center items-center flex-col gap-3">
-                        <Icon name="ph:info" class="text-5xl text-red-400" />
-                        <p>
-
-                            Please login into view more
-                        </p>
-                        <Button class="" @click="visible = !visible">Login</Button>
-                    </div>
-                </Dialog>
+             
             </div>
         </div>
     </div>

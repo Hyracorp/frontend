@@ -21,7 +21,7 @@
                   <a href="#" class="text-blue-500">Privacy Policy</a>
                   and 
                   <a href="#" class="text-blue-500">Terms of Use</a>. 
-                  <span class="block mt-2">Don’t have an account? <nuxt-link to="/signup" class="text-blue-500"> Signup Here</nuxt-link></span>
+                  <span class="block mt-2 text-lg">Don’t have an account? <nuxt-link to="/signup" class="text-blue-500"> Signup Here</nuxt-link></span>
               </div>
           </span>
           </template>

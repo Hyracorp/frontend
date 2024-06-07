@@ -8,5 +8,9 @@
   </div>
 </template>
 <script setup lang="ts">
-
+  import { useAuthStore } from '@/stores/auth';
+  const store=useAuthStore()
+  onMounted(async ()=>{
+    store.initStorage()
+  })
 </script>

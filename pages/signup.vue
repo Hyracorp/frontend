@@ -1,5 +1,5 @@
 <template>
-    <div class="flex justify-center items-center w-screen h-screen py-32">
+    <div class="flex justify-center items-center ">
         <Signup />
     </div>
 </template>

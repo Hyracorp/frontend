@@ -1,19 +1,49 @@
 <script setup lang="ts">
 let menuItems=[
     {
-        name:'Login',
-        link:'/login'
+        name:'Home',
+        link:'/',
+        target:""
     },
     {
-        name:'Register',
-        link:'/register'
-    }
+        name:'Add a property',
+        link:'/login',
+        target:""
+    },
+
+    {
+        name:'Contact Us',
+        link:'https://hyracorp.com/#contact',
+        target:'_blank'
+    },
 
 ]
 let menu=ref(null)
 const toggle = (event) => {
     menu.value.toggle(event);
 };
+
+const props = defineProps({
+    user: {
+        type: Object,
+        default: () => null
+    },
+    loginStatus: {
+        type: Boolean,
+        default: () => false
+    }
+})
+onMounted(async () => { 
+
+    if(props.user!==null){
+        menuItems.push({
+            name:'Logout',
+            link:'/logout',
+            target:""
+        })
+    }
+})
+
 </script>
 <template>
     <div class="">
@@ -24,15 +54,17 @@ const toggle = (event) => {
             </div>
             </NuxtLink>
             <div class="flex">
-                <NuxtLink to="/login" class="">
+                <NuxtLink :to="loginStatus&&user!==null&&loginStatus===true?`/dashboard/${user.userType}`:'/login'" class="">
                     <Button type="button" class="p-1 py-3"    text>
-
+                    <div v-if="loginStatus===true && user!==null">
+                        <h3 class="font-bold text-blue-400 px-2"> {{ user.firstName }}</h3>
+                    </div>
                     <Icon name="ph:user-circle" color="black" class="text-3xl" />
 
                     </Button>
 </NuxtLink>
 
-                <Button type="button" aria-haspopup="true" aria-controls="overlay_menu" class="md:hidden p-1 py-3" text  @click="toggle" >
+                <Button type="button" aria-haspopup="true" aria-controls="overlay_menu" class=" p-1 py-3" text  @click="toggle" >
 <Icon name="ph:list" color="black" class="text-3xl" />
 
 </Button>
@@ -47,7 +79,7 @@ const toggle = (event) => {
             </template>
             <template #item="{item}">
                 <div class="p-3">
-                    <NuxtLink :to="item.link">
+                    <NuxtLink :to="item.link" :target="item.target==''?'':'_blank'">
                     <div class="">{{item.name }}</div>
                 </NuxtLink>
                 </div>

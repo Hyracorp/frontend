@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useAuthStore } from '@/stores/auth';
+
 // nav
 const showMenu = ref(true)
 let lastScrollY = 0
@@ -12,6 +14,9 @@ const handleScroll = () => {
     }
     lastScrollY = window.scrollY
 }
+const authStore=useAuthStore()
+const loginStatus=computed(()=>authStore.getAuthStatus)
+const user=computed(()=>authStore.getUser)
 onMounted(() => {
     window.addEventListener('scroll', handleScroll)
 })
@@ -22,7 +27,7 @@ onUnmounted(() => {
 </script>
 <template>
     <div class="max-w-screen overflow-hidden">
-        <NavBar v-if="showMenu" class="fixed top-0 w-full z-50 bg-white" />
+        <NavBar v-if="showMenu" class="fixed top-0 w-full z-50 bg-white" :user="user" :loginStatus="loginStatus" />
         <div class="py-32 min-h-[90vh]">
             <slot />
         </div>
