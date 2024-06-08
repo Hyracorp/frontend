@@ -1,6 +1,8 @@
 <template>
-    <div class="">
-        <h1>property</h1>
+    <div class="p-3">
+        <div class="">
+            <Property :property="property" />
+        </div>
     </div>
 </template>
 
@@ -9,14 +11,15 @@ import { usePropertyStore } from '@/stores/property'
 
 const propertyStore = usePropertyStore()
 const route = useRoute()
+const property=computed(()=>propertyStore.property)
 onMounted(async () => {
     await propertyStore.fetchProperty(route.params.id)
 })
 
 
 definePageMeta({
-    layout: "",
-    title: '',
+    layout: "default",
+    title: 'Property Details',
     middleware: "auth",
 });
 </script>
