@@ -51,7 +51,7 @@ const visible = ref(false)
                         <Card class="max-w-sm">
                             <template #header>
                                 <div class="overflow-hidden rounded-t-xl">
-                                    <img alt="user header" :src="item.image" class="w-full">
+                                    <img alt="user header" :src="item.images[0].itemImageSrc" class="w-full">
                                 </div>
                             </template>
                             <template #title> {{ item.title }} ({{ item.bhkNo }} BHK) </template>
