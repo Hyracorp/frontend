@@ -34,9 +34,9 @@ export default defineNuxtConfig({
       googleClientId: '',
     },
   },
-  // alias: {
-  //   pinia: "/node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia.mjs"
-  // },
+  alias: {
+    pinia: "/node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia.mjs"
+  },
   devtools: { enabled: true },
  
 });
