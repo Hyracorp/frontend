@@ -17,7 +17,7 @@ defineProps({
         <div class="">ABC, XYZ</div>
     </div>
     <div class="">
-        <Map :locationCode="property.locationCode" />
+        <Map :locationCode="property.locationCode" class="z-40" />
     </div>
 </div>
     <Skeleton v-else class="w-full md:h-400 h-200" height="300px" width="100%"/>

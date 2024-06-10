@@ -138,6 +138,8 @@ export const usePropertyStore = defineStore("property", {
     ],
     searchResults: [],
     property: null,
+    bookings: [],
+    booking: {}
   }),
 
   getters: {
@@ -145,9 +147,18 @@ export const usePropertyStore = defineStore("property", {
     getFeaturedProperties: (state) => state.featuredProperties,
     getSearchResults: (state) => state.searchResults,
     getProperty: (state) => state.property,
+    getBookings: (state) => state.bookings,
+    getBooking: (state) => state.booking
   },
 
   actions: {
+    async initStorage(){
+       if(localStorage.getItem("bookings")===null){
+         localStorage.setItem("bookings", JSON.stringify([]))
+       }else{
+         this.bookings = JSON.parse(localStorage.getItem("bookings")!)
+       }
+      },
     async searchCityByName(query: string) {
       const result = this.cities.filter((city) =>
         city.name.toLowerCase().includes(query.toLowerCase())
@@ -176,6 +187,78 @@ export const usePropertyStore = defineStore("property", {
     async fetchProperty(id: string) {
       this.property = this.properties.find((prop) =>String( prop.id) == String(id))??null;
     },
+
+  async getAvailableDates(propertyId: string) {
+    const availableDates = [];
+  const today = new Date();
+  for (let i = 0; i < 15; i++) {
+    const date = new Date(today);
+    date.setDate(today.getDate() + i);
+    const formattedDate = date.toISOString().split('T')[0];
+    const day=date.getDate()
+    const bookingsOnDate = this.bookings.filter(
+      (booking) => booking.date === formattedDate && booking.propertyId === propertyId
+    );
+
+    if (bookingsOnDate.length < 6) {
+      availableDates.push(day);
+    }
+  }
+
+  return availableDates;
+  },
+  async getAvailableTimeSlots(date, propertyId){
+    const allTimeSlots = [
+    {time:'9 AM',value:'09:00'},
+    {time:'11 AM',value:'11:00'},
+    {time:'1 PM',value:'13:00'},
+    {time:'3 PM',value:'15:00'},
+    {time:'5 PM',value:'17:00'},
+    {time:'7 PM',value:'19:00'}
+    ]
+    
+    const bookingsOnDate = this.bookings.filter(
+      (booking) =>{
+        const bookingDate = new Date(booking.date).toDateString();
+        const inputDate= new Date(date).toDateString(); 
+     
+        return bookingDate === inputDate && booking.propertyId === propertyId
+      }
+    );
+
+  
+    const bookedTimeSlots = bookingsOnDate.map((booking) => booking.time.value);
+  
+    const availableTimeSlots = allTimeSlots.filter(
+      (timeSlot) => !bookedTimeSlots.includes(timeSlot.value)
+    );
+  
+    return availableTimeSlots;
+  },
+
+async bookVisit(date, time, propertyId,userId) {
+  const booking = {
+    date,
+    time,
+    propertyId,
+    status:"pending",
+    userId
+  };
+  this.bookings.push(booking);
+  localStorage.setItem("bookings", JSON.stringify(this.bookings));
+  return true;
+},
+async checkBookingStatus(propertyId, userId) {
+  const booking = this.bookings.find(
+    (booking) =>
+      booking.propertyId === propertyId &&
+      booking.userId === userId 
+  );
+
+  this.booking = booking ?? {};
+}
+
+
   },
 });
 if (import.meta.hot) {

@@ -34,7 +34,7 @@ const responsiveOptions = ref([
        
     </template>
     </Galleria>
-    <Booking class="fixed left-0 bottom-0 md:static w-full"/>
+    <Booking class="fixed z-50 left-0 bottom-0 md:static w-full" :property="property"/>
 </div>
 <Skeleton v-else class="w-full md:h-400 h-200" height="300px" width="100%"/>
 </div>

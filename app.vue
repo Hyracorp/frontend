@@ -9,8 +9,11 @@
 </template>
 <script setup lang="ts">
   import { useAuthStore } from '@/stores/auth';
-  const store=useAuthStore()
+  import { usePropertyStore } from '@/stores/property';
+  const authStore=useAuthStore()
+  const propertyStore=usePropertyStore()
   onMounted(async ()=>{
-    store.initStorage()
+    authStore.initStorage()
+    propertyStore.initStorage()
   })
 </script>

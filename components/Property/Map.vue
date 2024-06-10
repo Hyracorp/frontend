@@ -34,5 +34,5 @@ onMounted(async () => {
 </script>
 
 <template>
-    <div id="map" ref="map" style="height: 400px; width: 100%;" class="w-screen" />
+    <div id="map" ref="map" style="height: 400px; width: 100%;" />
 </template>
