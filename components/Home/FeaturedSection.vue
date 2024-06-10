@@ -13,10 +13,10 @@ const featuredCollection = computed(() => store.featuredProperties)
                 <Card v-for="data in featuredCollection" :key="data.id" class="max-w-md min-w-72 w-full rounded-xl">
                     <template #header>
                         <div class="overflow-hidden rounded-t-xl">
-                            <img alt="user header" :src="data.image" class="w-72 md:w-full">
+                            <img alt="user header" :src="data.images[0].itemImageSrc" class="w-72 md:w-full">
                         </div>
                     </template>
-                    <template #title> {{ data.title }} </template>
+                    <template #title> {{ data.title }}  </template>
                     <template #subtitle> {{ data.location }} </template>
                     <template #content>
 
