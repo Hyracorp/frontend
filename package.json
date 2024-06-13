@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.3.7",
+    "@nuxtjs/device": "^3.1.1",
     "@nuxtjs/eslint-module": "^4.1.0",
     "@nuxtjs/tailwindcss": "^6.11.4",
     "eslint": "^9.0.0",

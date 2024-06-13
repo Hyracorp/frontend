@@ -17,12 +17,6 @@ async function handleAuth(gLoginRes) {
     
 }
 
-definePageMeta({
-    layout: "default",
-    title: 'Login',
-    // middleware: "auth",
-});
-
 
 </script>
 
@@ -41,6 +35,3 @@ definePageMeta({
 </template>
 
 
-<style scoped>
-
-</style>

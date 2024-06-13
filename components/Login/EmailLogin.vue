@@ -3,6 +3,7 @@
     import { useAuthStore } from '@/stores/auth';
     import { z } from "zod";
     import { loginSchema } from '@/schemas/authSchema';
+    const router = useRouter();
     const authStore = useAuthStore()
     const formData = ref({
         email: "",
@@ -17,7 +18,7 @@ try{
     const logincheck = await authStore.login(formData.value);
             if(logincheck==true){
                 toast.add({ severity: 'success', summary: 'Info', detail: 'Login Successful', life: 3000 });
-                navigateTo('/')
+                router.push('/')
                 
             }else{
                 toast.add({ severity: 'error', summary: 'Error', detail: 'Error Logging in', life: 3000 });
