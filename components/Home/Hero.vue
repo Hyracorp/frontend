@@ -8,10 +8,12 @@ const searchForm = ref({
 
     location: {},
     bhkNo: [{ name: '2BHK', value: 2 }],
-    priceRange: [2, 80]
+    priceRange: [2, 80],
+    propertyType: 'residential'
 })
 const toast = useToast();
 
+const propertyType= ref(['residential', 'commercial'])
 // BHK OPTIONS
 
 const bhkOptions = ref([{
@@ -51,7 +53,7 @@ const searchSubmit = () => {
     try {
         searchSchema.parse(searchForm.value)
         const bhkNoQuery = searchForm.value.bhkNo.map((bhk) => bhk.value).join('+')
-        router.push({ path: '/search', query: { location: searchForm.value.location.city, bhkNo: `${bhkNoQuery}`, priceRange: searchForm.value.priceRange } })
+        router.push({ path: '/search', query: { location: searchForm.value.location?.city, bhkNo: `${bhkNoQuery}`, priceRange: searchForm.value.priceRange, propertyType: searchForm.value.propertyType } })
     } catch (err) {
         if (err instanceof z.ZodError) {
 
@@ -102,8 +104,8 @@ function getLocation() {
         <div class="max-w-xl flex flex-col gap-8 p-5 py-10 ">
             <!-- Main Text -->
             <div class="">
-                <h3 class="text-3xl font-bold text-white">Feel Home Stay With Us</h3>
-                <p class=" text-gray-100">Search your next stay and get a room that fits all of your needs.
+                <h3 class="text-3xl font-bold text-white">Find your next home </h3>
+                <p class="text-lg text-gray-100">search across 10000+ verified properties
                 </p>
 
             </div>
@@ -158,6 +160,10 @@ function getLocation() {
                                 <div class="px-2">
                                     <Slider v-model="searchForm.priceRange" range class="w-14rem" />
                                 </div>
+                            </div>
+                            <div class="w-full">
+                                <label for="propertyType" class="text-lg text-gray-500 my-3 block">Property Type</label>
+                                <Dropdown v-model="searchForm.propertyType" :options="propertyType"  placeholder="Select Property Type" class="w-full" />
                             </div>
                             <Button type="submit" class="flex gap-3 w-full">
                                 <Icon name="ph:magnifying-glass" />

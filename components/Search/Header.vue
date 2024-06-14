@@ -21,7 +21,7 @@ const props = defineProps({
                         <Icon name="ph:pencil" class="text-xl w-12" />
                     </Button>
                 </div>
-                <small class="px-2 text-gray-500">Price Range {{ query.priceRange[0] }} - {{ query.priceRange[1]
+                <small class="px-2 text-gray-500">Price Range {{ query?.priceRange[0] }} - {{ query?.priceRange[1]
 
                     }}</small>
             </div>

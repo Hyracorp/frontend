@@ -11,6 +11,7 @@ export const usePropertyStore = defineStore("property", {
       {
         id: 1,
         title: "Property1 In Kochi",
+        propertyType: "residential",
         images:[{
           itemImageSrc: 'https://imgs.search.brave.com/YoejsHIKGBJU68B-i69anJ2421uF-kuHf1fxXbF36JM/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTM4/ODAyNDIwNi9waG90/by9hcGFydG1lbnRz/LXdpdGgtYmFsY29u/aWVzLWluLWJhdHRl/cnNlYS1sb25kb24u/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PTFrNVFEbnJualVh/cmlBVDhKMjVnYVlt/MFZiTEpxRURsQWtJ/WlhFTHpkbk09',
           thumbnailImageSrc: 'https://imgs.search.brave.com/YoejsHIKGBJU68B-i69anJ2421uF-kuHf1fxXbF36JM/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTM4/ODAyNDIwNi9waG90/by9hcGFydG1lbnRz/LXdpdGgtYmFsY29u/aWVzLWluLWJhdHRl/cnNlYS1sb25kb24u/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PTFrNVFEbnJualVh/cmlBVDhKMjVnYVlt/MFZiTEpxRURsQWtJ/WlhFTHpkbk09',
@@ -39,6 +40,7 @@ export const usePropertyStore = defineStore("property", {
       {
         id: 2,
         title: "Property2 In Kochi",
+        propertyType: "residential",
         images:[{
           itemImageSrc: 'https://imgs.search.brave.com/x6vJRBCFtWzkBStd0CXUaCV_X6513vKQ6lmqJ3mJEmM/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTQz/MTIyMDMxMi9waG90/by9tb2Rlcm4tbHV4/dXJ5LW11bHRpLWZh/bWlseS1hcGFydG1l/bnQtYnVpbGRpbmcu/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PXdNeFJxOWh2MDFJ/VHBiaXlsR3pDb0df/al9TdkZnSlpsNzNZ/OFFxWWt2S3c9',
           thumbnailImageSrc: 'https://imgs.search.brave.com/x6vJRBCFtWzkBStd0CXUaCV_X6513vKQ6lmqJ3mJEmM/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTQz/MTIyMDMxMi9waG90/by9tb2Rlcm4tbHV4/dXJ5LW11bHRpLWZh/bWlseS1hcGFydG1l/bnQtYnVpbGRpbmcu/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PXdNeFJxOWh2MDFJ/VHBiaXlsR3pDb0df/al9TdkZnSlpsNzNZ/OFFxWWt2S3c9',
@@ -68,6 +70,7 @@ export const usePropertyStore = defineStore("property", {
       {
         id: 3,
         title: "Property3 in Kozhikode",
+        propertyType: "commercial",
         images:[{
           itemImageSrc: 'https://imgs.search.brave.com/AAmxPVte3SrGCogZkzaMskN0dVzWAylduJEUW_7Hung/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNDg2/NjQ0MDg3L3Bob3Rv/L2FwYXJ0bWVudC1i/dWlsZGluZy5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9akZQ/X2lKRVFZcGhtYjRC/V1A2S2ZGVU5CZFph/R1VPZTFONXhPbzNp/Y0ZRdz0',
           thumbnailImageSrc: 'https://imgs.search.brave.com/AAmxPVte3SrGCogZkzaMskN0dVzWAylduJEUW_7Hung/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNDg2/NjQ0MDg3L3Bob3Rv/L2FwYXJ0bWVudC1i/dWlsZGluZy5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9akZQ/X2lKRVFZcGhtYjRC/V1A2S2ZGVU5CZFph/R1VPZTFONXhPbzNp/Y0ZRdz0',
@@ -209,28 +212,32 @@ export const usePropertyStore = defineStore("property", {
       },
     async searchCityByName(query: string) {
       const result = this.cities.filter((city) =>
-        city.name.toLowerCase().includes(query.toLowerCase())
+        city.name.toLowerCase().includes(query?.toLowerCase())
       );
       return result;
     },
     async searchCityByCode(query: string) {
       const result = this.cities.filter((city) =>
-        city.city.toLowerCase().includes(query.toLowerCase())
+        city.city.toLowerCase().includes(query?.toLowerCase())
       );
       return result;
     },
     async searchProperty(query) {
       const substrings = query.bhkNo.split("+");
+     
       this.property = this.properties.filter(
-        (property) =>
-          property.locationCode === query.locationCode &&
+        (property) =>{
+        
+          return property.locationCode === query.locationCode &&
+          property.propertyType === query.propertyType &&
           property.price >= query.priceRange[0] &&
           property.price <= query.priceRange[1] &&
           substrings.some((substring) =>
             property.bhkNo.toString().includes(substring)
-          )
+          )}
       );
       this.searchResults = this.property;
+   
     },
     async fetchProperty(id: string) {
       this.property = this.properties.find((prop) =>String( prop.id) == String(id))??null;

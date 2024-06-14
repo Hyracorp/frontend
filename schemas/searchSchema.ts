@@ -1,5 +1,5 @@
-import { number, z } from "zod";
-
+import {  z } from "zod";
+const propertyType = ["residential", "commercial"];
 export const searchSchema = z.object({
   location: z
     .object({
@@ -13,5 +13,6 @@ export const searchSchema = z.object({
       })
     )
     .min(1, "minimum 1 bhk should be selected"),
+    propertyType: z.enum(propertyType)
 });
 export type SearchData = z.infer<typeof searchSchema>;
