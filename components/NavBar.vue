@@ -54,7 +54,7 @@ onMounted(async () => {
             </div>
             </NuxtLink>
             <div class="flex">
-                <NuxtLink :to="loginStatus&&user!==null&&loginStatus===true?`/dashboard/${user.userType}`:'/login'" class="">
+                <NuxtLink :to="loginStatus&&user!==null&&loginStatus===true?`/${user.userType}`:'/login'" class="">
                     <Button type="button" class="p-1 py-3"    text>
                     <div v-if="loginStatus===true && user!==null">
                         <h3 class="font-bold text-blue-400 px-2"> {{ user.firstName }}</h3>
