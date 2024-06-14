@@ -20,7 +20,7 @@ if(device.isDesktop){
                 <TenantSidebar v-model:visible="visible" :items="items" @sidebar-toggle="visible = !visible" />
             </div>
             <div class="h-full w-full">
-                <LandlordNav class="fixed z-50 bg-white " :visible="visible" @sidebar-toggle="visible = !visible"  />
+                <LandlordNav class="fixed z-50 bg-white w-full" :visible="visible" @sidebar-toggle="visible = !visible"  />
                <div class="h-full w-full overflow-y-auto my-12 ">
                 <slot />
                </div>
