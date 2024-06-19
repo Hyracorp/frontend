@@ -1,9 +1,59 @@
 <script setup lang="ts">
+import Map from './Map.vue';
+import MapPicker from './MapPicker.vue';
 const toast=useToast()
 const addPropertyForm = ref({
     title: '',
     description: '',
     price: 500,
+    area: 0,
+    floor_no: 0,
+    serviceType: 'rent',
+    propertyInsured: false,
+    buildingType: 'house',
+    commercialDefaults:{
+        'Fire Safety':false,
+        'Washroom':false,
+        'Generator':false
+    },
+    residentialDefaults:{
+        'Power Backup':false,
+        'Furnished':false,
+        'Pets':false,
+        'Non Veg':false
+    },
+//     commercialDefaultRules:  [{
+//         name:'Fire Safety',
+//         checked:false
+//     },{
+//         name:'Washroom',
+//         checked:false
+//     },
+//     {
+//         name:'Generator',
+//         checked:false
+//     }
+// ],
+  
+//     residentialDefaultRules:[
+//         {
+//             name:'Power Backup',
+//             checked:false
+//         },
+//         {
+//             name:'Furnished',
+//             checked:false
+//         },
+//         {
+//             name:'Pets',
+//             checked:false
+//         },
+//         {
+//             name:'Non Veg',
+//             checked:false
+//         }
+//     ],
+
     rentDays: 1,
     images:[],
     propertyType: 'residential',
@@ -11,11 +61,13 @@ const addPropertyForm = ref({
     address: '',
     city: '',
     state: '',
-    zip: '',
+    zip: 0,
     location:'',
     locationCode: '',
     bhkNo:2,
-    rules:[],
+    rules:'',
+    no_car_parking:0,
+    no_bike_parking:0,
     mapLocation: {
         lat:0,
         longi:0
@@ -23,36 +75,6 @@ const addPropertyForm = ref({
 
     
 })
-const states=ref([
-    'Andhra Pradesh',
-    'Arunachal Pradesh',
-    'Assam',
-    'Bihar',
-    'Chhattisgarh',
-    'Goa',
-    'Gujarat',
-    'Haryana',
-    'Himachal Pradesh',
-    'Jharkhand',
-    'Karnataka',
-    'Kerala',
-    'Madhya Pradesh',
-    'Maharashtra',
-    'Manipur',
-    'Meghalaya',
-    'Mizoram',
-    'Nagaland',
-    'Odisha',
-    'Punjab',
-    'Rajasthan',
-    'Sikkim',
-    'Tamil Nadu',
-    'Telangana',
-    'Tripura',
-    'Uttar Pradesh',
-    'Uttarakhand',
-    'West Bengal',
-])
 const bhkOptions=ref([
     {name:'1BHK',value:1},
     {name:'2BHK',value:2},
@@ -115,9 +137,50 @@ const formatSize = (bytes) => {
 
     return `${formattedSize} ${sizes[i]}`;
 }
+async function fetchZipData(input){
+  
+    if(String(input.value).length === 6){
+        $fetch(`https://api.postalpincode.in/pincode/${input.value}`).then(async (res) => {
+            if(res[0].Status === 'Success'){
+                addPropertyForm.value.city = res[0].PostOffice[0].Block
+                addPropertyForm.value.state = res[0].PostOffice[0].State
+              
+            }else{
+                toast.add({ severity: 'error', summary: 'Error', detail: 'Invalid Pincode', life: 3000 });
+            }
+        })
+    }
+}
 // image upload end
+async function getLocation(){
+    if ("geolocation" in navigator) {
+        // Geolocation is supported
+        navigator.geolocation.getCurrentPosition((position)=>{
+            addPropertyForm.value.mapLocation.lat = position.coords.latitude
+            addPropertyForm.value.mapLocation.longi = position.coords.longitude
+            
+        })
+        location.value=true
+        
+    }else{
+        toast.add({ severity: 'error', summary: 'Error', detail: 'Geolocation not supported', life: 3000 });
+    }
+}
+
 async function submitForm(){
     
+}
+let location = ref(false)
+const op = ref();
+async function openMap(event){
+    op.value.toggle(event);
+}
+async function setLocation(loc){
+    location.value=false
+    addPropertyForm.value.mapLocation.lat = loc.lat
+    addPropertyForm.value.mapLocation.longi = loc.longi
+    op.value.hide()
+    location.value=true
 }
 </script>
 <template>
@@ -144,7 +207,10 @@ async function submitForm(){
                     </template>
                 </Card>
             </div>
-            <div class="flex pt-4 justify-end">
+            <div class="flex pt-4 justify-between items-center">
+               <div class="px-2 font-bold">
+                {{ propertyTypeCommercial ? 'Commercial property' : 'Residential property' }}
+               </div>
                 <Button label="Next" icon="pi pi-arrow-right" iconPos="right" @click="nextCallback" />
             </div>
         </template>
@@ -165,20 +231,73 @@ async function submitForm(){
                     <InputNumber v-model="addPropertyForm.rentDays" inputId="integeronly" class="w-full" :min="1" :max="30"  />
                 </div>
                 <div class="">
-                    <label for="property state" class="block">State</label>
-                   <Dropdown v-model="addPropertyForm.state" :options="states" placeholder="Select State" class="w-full" />
-                </div>
-                <div class="">
-                    <label for="property state" class="block">city</label>
-                   <Dropdown v-model="addPropertyForm.city" :options="['kochi','kozhikode','trivandrum']" placeholder="Select City" class="w-full" />
-                </div>
-                <div class="">
                     <label for="property zipcode" class="block">zipcode</label>
-                   <InputText v-model="addPropertyForm.zipcode" placeholder="Enter zipcode" class="w-full" />
+                   <InputNumber v-model="addPropertyForm.zip" @input="fetchZipData" inputId="integeronly"  :max="999999" :min="100000" :useGrouping="false"   placeholder="Enter zipcode" class="w-full" />
                 </div>
+                <div class="">
+                    <label for="property state" class="block">State</label>
+                   <InputText v-model="addPropertyForm.state" placeholder="Enter State" class="w-full" disabled />
+                </div>
+                <div class="">
+                    <label for="property city" class="block">city</label>
+                   <InputText v-model="addPropertyForm.city" placeholder="Enter city" class="w-full" disabled />
+                </div>
+                <div class=" ">
+                    <label for="property city" class="block">location : 
+                        <div >
+                            <Map v-if="location" :location="addPropertyForm.mapLocation"/>
+                        </div>
+                    </label>
+                  <div class="flex gap-3">
+                    <Button type="button" @click="getLocation"  >
+                        Get Location 
+                        <Icon name="ph:map-pin" />
+                    </Button>
+                    <Button type="button" @click="openMap"  >
+                        Pick from map 
+                        <Icon name="ph:map-trifold-bold" />
+                    </Button>
+                  </div>
+                  <OverlayPanel ref="op">
+                    <MapPicker @location-picked="setLocation" />
+                  </OverlayPanel>
+                </div>
+              
                 <div v-if="!propertyTypeCommercial" class="" >
-                    <label for="property state" class="block">BHK No</label>
+                    <label for="property bhk" class="block">BHK No</label>
                    <Dropdown v-model="addPropertyForm.bhkNo" :options="bhkOptions" optionLabel="name" placeholder="Select State" class="w-full" />
+                </div>
+                <div  class="">
+                    <label for="property area" class="block">Area sqft</label>
+                   <InputNumber v-model="addPropertyForm.area" inputId="integeronly" class="w-full" :min="1" :max="100000"  />
+                </div>
+                <div  class="">
+                    <label for="floor_num" class="block">  Floor No  </label>
+                    <InputNumber v-model="addPropertyForm.floor_no" inputId="integeronly" class="w-full"   />
+                </div>
+                <div class="">
+                    <label for="service_type" class="block">Service Type</label>
+                    <Dropdown v-model="addPropertyForm.serviceType" :options="['rent','lease','management']" placeholder="Select service type" class="w-full" />
+                </div>
+                <div  class="">
+                    <label for="house type" class="block">Building type</label>
+                    <Dropdown v-model="addPropertyForm.buildingType" :options="['flat','house','apartment','auditorium','presentation', 'office','Diner', 'land only']" placeholder="Select house type" class="w-full" />
+                </div>
+                <div v-if="propertyTypeCommercial" class="" >
+                    <div class="" v-for="item,index in Object.keys(addPropertyForm.commercialDefaults)" :key="index">
+                        <label :for="addPropertyForm.commercialDefaults[item]" class="block" >{{ item }}</label>
+                        <InputSwitch v-model="addPropertyForm.commercialDefaults[item]"  />
+                    </div>  
+                </div>
+                <div v-else>
+                    <div class="" v-for="item,index in Object.keys(addPropertyForm.residentialDefaults)" :key="index">
+                        <label :for="addPropertyForm.residentialDefaults[item]" class="block" >{{ item }}</label>
+                        <InputSwitch v-model="addPropertyForm.residentialDefaults[item]"  />
+                    </div>
+                </div>
+                <div class="">
+                    <label for="property description" class="block"></label>
+                    <Textarea v-model="addPropertyForm.description" autoResize rows="5" class="w-full" placeholder="Enter description" />
                 </div>
             </div>
             <div class="flex pt-4 justify-between">
@@ -187,17 +306,17 @@ async function submitForm(){
             </div>
         </template>
     </StepperPanel>
-    <StepperPanel header="select images">
+    <!-- <StepperPanel header="select images (max 1MB)">
         <template #content="{ prevCallback, nextCallback }">
         <div class="w-full ">
-            <FileUpload name="demo[]" url="/api/upload" @upload="onTemplatedUpload($event)" :multiple="true" accept="image/*" :maxFileSize="1000000" @select="onSelectedFiles">
+            <FileUpload name="images"  @upload="onTemplatedUpload($event)" :multiple="true" accept="image/*" :maxFileSize="1000000" @select="onSelectedFiles">
             <template #header="{ chooseCallback, uploadCallback, clearCallback, files }">
                 <div class="flex flex-wrap justify-between items-center flex-1 gap-2">
                     <div class="flex gap-2">
                         <Button @click="chooseCallback()" >
                         <Icon name="ph:image" class="text-xl" />
                         </Button>
-                        <Button @click="uploadEvent(uploadCallback)"  severity="success" :disabled="!files || files.length === 0">
+                        <Button   severity="success" :disabled="!files || files.length === 0" @click="uploadEvent(uploadCallback)">
                             <Icon name="ph:upload" class="text-xl" />
                         </Button>
                         <Button @click="clearCallback()"   severity="danger" :disabled="!files || files.length === 0">
@@ -258,16 +377,27 @@ async function submitForm(){
                 
             </div>
         </template>
-    </StepperPanel>
+    </StepperPanel> -->
     <StepperPanel header="select amenities">
         <template #content="{ prevCallback }">
         <div class="w-full ">
+            <div class="">
+                <label for="Amneties" class="block font-bold">
+                    Select Amneties
+                </label>
+            </div>
             <div v-for="amenity,index in defaultAmenities" :key="index" class="w-72 flex items-center gap-3">
                 <Checkbox v-model="amenity.checked" :name="amenity.name" :binary="true" />
                 <Icon :name="amenity.icon" class="text-3xl" />
                 <div class="capitalize">
                     {{ amenity.name }}
                 </div>
+            </div>
+            <div class="">
+                <label for="Rules" class="block font-bold">Rules</label>
+            </div>
+            <div class="">
+               <Textarea v-model="addPropertyForm.rules" rows="3" class="w-full"  />
             </div>
         </div>
             <div class="flex pt-4 justify-between">

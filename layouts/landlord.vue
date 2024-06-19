@@ -4,7 +4,8 @@ const items = ref([
     { label: 'Home', icon: 'ph:user-circle' ,link:'/landlord'},
     { label: 'Bookings', icon: 'ph:calendar',link:'/landlord/bookings'},
     { label: 'Properties', icon: 'ph:building',link:'/landlord/properties'}, 
-    { label: 'Settings', icon: 'ph:gear', link:'/landlord/settings'},     
+    { label: 'Settings', icon: 'ph:gear', link:'/landlord/settings'},
+    { label: 'Logout', icon: 'ph:sign-out', link:'/logout'} 
 ]);
 const device = useDevice()
 if(device.isDesktop){

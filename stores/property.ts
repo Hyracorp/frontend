@@ -4,6 +4,8 @@ import tn from "../assets/cities/tn.json";
 import kerala from "../assets/cities/kerala.json";
 import karnataka from "../assets/cities/karnataka.json";
 
+
+
 export const usePropertyStore = defineStore("property", {
   state: () => ({
     cities: [...karnataka, ...kerala, ...ap, ...tn],
@@ -34,6 +36,7 @@ export const usePropertyStore = defineStore("property", {
         location: "Kakkanad, Kochi",
         locationCode: "kl-Kochi",
         bhkNo: 3,
+        userId: 3,
         amenities:[{name:"wifi",icon:"wifi"},{name:"ac",icon:"ph:snowflake-bold"},{name:"paper",icon:"ph:newspaper-bold"},{name:"laundry",icon:"ph:washing-machine-bold"},{name:"pool",icon:"ph:person-simple-swim-bold"}],
         rules:["no smoking", "no pets", "no parties", "no alcohol", "no kids", "no food", "no smoking", "no pets", "no parties", "no alcohol", "no kids", "no food"],
       },
@@ -63,6 +66,7 @@ export const usePropertyStore = defineStore("property", {
         location: "Kakkanad, Kochi",
         locationCode: "kl-Kochi",
         bhkNo: 3,
+        userId: 2,
         amenities:[{name:"wifi",icon:"wifi"},{name:"ac",icon:"ph:snowflake-bold"},{name:"paper",icon:"ph:newspaper-bold"},{name:"laundry",icon:"ph:washing-machine-bold"},{name:"pool",icon:"ph:person-simple-swim-bold"}],
         rules:["no smoking", "no pets", "no parties", "no alcohol", "no kids", "no food", "no smoking", "no pets", "no parties", "no alcohol", "no kids", "no food"],
         
@@ -94,6 +98,7 @@ export const usePropertyStore = defineStore("property", {
         location: "Kozhikode",
         locationCode: "kl-Kozhikode",
         bhkNo: 3,
+        userId: 2,
         amenities:[{name:"wifi",icon:"wifi"},{name:"ac",icon:"ph:snowflake-bold"},{name:"paper",icon:"ph:newspaper-bold"},{name:"laundry",icon:"ph:washing-machine-bold"},{name:"pool",icon:"ph:person-simple-swim-bold"}],
         rules:["no smoking", "no pets", "no parties", "no alcohol", "no kids", "no food", "no smoking", "no pets", "no parties", "no alcohol", "no kids", "no food"],
       },
@@ -190,7 +195,9 @@ export const usePropertyStore = defineStore("property", {
     searchResults: [],
     property: null,
     bookings: [],
-    booking: {}
+    booking: {},
+    tenantBookings:[],
+    landlordBookings:[]
   }),
 
   getters: {
@@ -199,7 +206,9 @@ export const usePropertyStore = defineStore("property", {
     getSearchResults: (state) => state.searchResults,
     getProperty: (state) => state.property,
     getBookings: (state) => state.bookings,
-    getBooking: (state) => state.booking
+    getBooking: (state) => state.booking,
+    getTenantBookings: (state) => state.tenantBookings,
+    getLandlordBookings: (state) => state.landlordBookings,
   },
 
   actions: {
@@ -311,9 +320,30 @@ async checkBookingStatus(propertyId, userId) {
   );
 
   this.booking = booking ?? {};
+},
+async fetchTenantBookings(userId) {
+
+this.tenantBookings = this.bookings.filter((booking) => booking.userId === userId);
+this.tenantBookings.forEach(async (booking) => {
+  const property = this.properties.find((prop) => prop.id === booking.propertyId);
+  booking.property = property;
+});
+
+},
+async fetchLandlordBookings(userId) {
+
+  const properties = this.properties.filter((property) =>property.userId === userId);
+ 
+  const landLordBookings = [];
+  properties.forEach(async (property,index) => {
+    landLordBookings.push({property,bookings:[]})
+    const bookings = this.bookings.filter((booking) => booking.propertyId === property.id);
+    // group bookings based on property
+    landLordBookings[index]["bookings"].push(...bookings);
+  });
+
+  this.landlordBookings = landLordBookings;
 }
-
-
   },
 });
 if (import.meta.hot) {

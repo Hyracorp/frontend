@@ -72,13 +72,15 @@ export const useAuthStore = defineStore("auth", {
           if (userExist.length > 0) {
             return false
           }else{
-            this.users.push(data)
+         
+
+            this.users.push( {...data,id:this.users.length + 1})
             localStorage.setItem("users", JSON.stringify(this.users))
             return true
           }
         }
 
-        this.users.push(data)
+        this.users.push( {...data,id:this.users.length + 1})
         localStorage.setItem("users", JSON.stringify(this.users))
          
         return true
