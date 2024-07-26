@@ -9,6 +9,7 @@ const addPropertyForm = ref({
     area: 0,
     floor_no: 0,
     serviceType: 'rent',
+    address:'',
     propertyInsured: false,
     buildingType: 'house',
     commercialDefaults:{
@@ -219,31 +220,31 @@ async function setLocation(loc){
         <template #content="{ prevCallback, nextCallback }">
             <div class="w-full flex gap-3 flex-col">
                 <div class="">
-                    <label for="property title" class="block">Property Title</label>
+                    <label for="property title" class="block">Property Title*</label>
                     <InputText v-model="addPropertyForm.title" placeholder="Enter a title" class="w-full" />
                 </div>
                 <div class="">
-                    <label for="property rent" class="block">Expected Rent (Minimum)</label>
+                    <label for="property rent" class="block">Expected Rent (Minimum)*</label>
                     <InputNumber v-model="addPropertyForm.price" inputId="integeronly" class="w-full" :min="1" :max="100000"  />
                 </div>
                 <div class="">
-                    <label for="property rent duration" class="block">Rent Duration (days 24hr)</label>
+                    <label for="property rent duration" class="block">Rent Duration (days)*</label>
                     <InputNumber v-model="addPropertyForm.rentDays" inputId="integeronly" class="w-full" :min="1" :max="30"  />
                 </div>
                 <div class="">
-                    <label for="property zipcode" class="block">zipcode</label>
+                    <label for="property zipcode" class="block">zipcode*</label>
                    <InputNumber v-model="addPropertyForm.zip" @input="fetchZipData" inputId="integeronly"  :max="999999" :min="100000" :useGrouping="false"   placeholder="Enter zipcode" class="w-full" />
                 </div>
                 <div class="">
-                    <label for="property state" class="block">State</label>
+                    <label for="property state" class="block">State*</label>
                    <InputText v-model="addPropertyForm.state" placeholder="Enter State" class="w-full" disabled />
                 </div>
                 <div class="">
-                    <label for="property city" class="block">city</label>
+                    <label for="property city" class="block">city*</label>
                    <InputText v-model="addPropertyForm.city" placeholder="Enter city" class="w-full" disabled />
                 </div>
                 <div class=" ">
-                    <label for="property city" class="block">location : 
+                    <label for="property city" class="block">location* : 
                         <div >
                             <Map v-if="location" :location="addPropertyForm.mapLocation"/>
                         </div>
@@ -264,11 +265,11 @@ async function setLocation(loc){
                 </div>
               
                 <div v-if="!propertyTypeCommercial" class="" >
-                    <label for="property bhk" class="block">BHK No</label>
+                    <label for="property bhk" class="block">BHK No *</label>
                    <Dropdown v-model="addPropertyForm.bhkNo" :options="bhkOptions" optionLabel="name" placeholder="Select State" class="w-full" />
                 </div>
                 <div  class="">
-                    <label for="property area" class="block">Area sqft</label>
+                    <label for="property area" class="block">Area sqft*</label>
                    <InputNumber v-model="addPropertyForm.area" inputId="integeronly" class="w-full" :min="1" :max="100000"  />
                 </div>
                 <div  class="">
@@ -276,12 +277,16 @@ async function setLocation(loc){
                     <InputNumber v-model="addPropertyForm.floor_no" inputId="integeronly" class="w-full"   />
                 </div>
                 <div class="">
-                    <label for="service_type" class="block">Service Type</label>
-                    <Dropdown v-model="addPropertyForm.serviceType" :options="['rent','lease','management']" placeholder="Select service type" class="w-full" />
+                    <label for="service_type" class="block">Service Type*</label>
+                    <Dropdown v-model="addPropertyForm.serviceType" :options="['Rent','Lease','Management']" placeholder="Select service type" class="w-full" />
                 </div>
                 <div  class="">
-                    <label for="house type" class="block">Building type</label>
-                    <Dropdown v-model="addPropertyForm.buildingType" :options="['flat','house','apartment','auditorium','presentation', 'office','Diner', 'land only']" placeholder="Select house type" class="w-full" />
+                    <label for="house type" class="block">Building type*</label>
+                    <Dropdown v-model="addPropertyForm.buildingType" :options="['Flat','Apartment', 'House','Plot','Villa','Office','Auditorium','Diner','Presentation Room']" placeholder="Select house type" class="w-full" />
+                </div>
+                <div class="">
+                    <label for="property insured" class="block">Property Insured*</label>
+                    <InputSwitch v-model="addPropertyForm.insured"  />
                 </div>
                 <div v-if="propertyTypeCommercial" class="" >
                     <div class="" v-for="item,index in Object.keys(addPropertyForm.commercialDefaults)" :key="index">
@@ -296,7 +301,11 @@ async function setLocation(loc){
                     </div>
                 </div>
                 <div class="">
-                    <label for="property description" class="block"></label>
+                    <label for="address">Address</label>
+                    <Textarea v-model="addPropertyForm.address" autoResize rows="3" class="w-full" placeholder="Enter address" />
+                </div>
+                <div class="">
+                    <label for="property description" class="block">Description *</label>
                     <Textarea v-model="addPropertyForm.description" autoResize rows="5" class="w-full" placeholder="Enter description" />
                 </div>
             </div>

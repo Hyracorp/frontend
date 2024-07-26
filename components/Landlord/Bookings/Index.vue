@@ -12,6 +12,9 @@ onMounted(async () => {
 
 <template>
     <div class="p-5 h-full w-full ">
+        <div class="">
+            <h1 class="text-2xl font-bold">Bookings</h1>
+        </div>
         <div class="flex flex-col gap-3" v-if="bookings.length>0">
          
             <div v-for="booking,index in bookings" :key="index">
