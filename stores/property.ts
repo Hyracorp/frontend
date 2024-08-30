@@ -4,6 +4,8 @@ import tn from "../assets/cities/tn.json";
 import kerala from "../assets/cities/kerala.json";
 import karnataka from "../assets/cities/karnataka.json";
 
+
+
 export const usePropertyStore = defineStore("property", {
   state: () => ({
     cities: [...karnataka, ...kerala, ...ap, ...tn],
@@ -14,6 +16,8 @@ export const usePropertyStore = defineStore("property", {
     property: null,
     bookings: [],
     booking: {},
+    tenantBookings:[],
+    landlordBookings:[]
   }),
 
   getters: {
@@ -23,6 +27,8 @@ export const usePropertyStore = defineStore("property", {
     getProperty: (state) => state.property,
     getBookings: (state) => state.bookings,
     getBooking: (state) => state.booking,
+    getTenantBookings: (state) => state.tenantBookings,
+    getLandlordBookings: (state) => state.landlordBookings,
   },
 
   actions: {

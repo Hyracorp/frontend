@@ -6,7 +6,8 @@ const items = ref([
     { label: 'Bookings', icon: 'ph:calendar',link:'/tenant/bookings'},
     { label: 'Properties', icon: 'ph:building',link:'/tenant/properties'}, 
     { label: 'Saved', icon: 'ph:bookmark',link:'/tenant/bookmarks'},
-    { label: 'Settings', icon: 'ph:gear', link:'/tenant/settings'},     
+    { label: 'Settings', icon: 'ph:gear', link:'/tenant/settings'},
+    { label: 'Logout', icon: 'ph:sign-out', link:'/logout'} 
 ]);
 const device = useDevice()
 if(device.isDesktop){
@@ -22,7 +23,7 @@ if(device.isDesktop){
                 <TenantSidebar v-model:visible="visible" :items="items" @sidebar-toggle="visible = !visible"  />
             </div>
             <div class="h-full w-full">
-                <TenantNav class="fixed z-50 bg-white " :visible="visible" @sidebar-toggle="visible = !visible"  />
+                <TenantNav class="fixed z-50 bg-white w-full " :visible="visible" @sidebar-toggle="visible = !visible"  />
                <div class="h-full w-full overflow-y-auto my-12 ">
                 <slot />
                </div>

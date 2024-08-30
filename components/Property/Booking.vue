@@ -58,33 +58,13 @@ async function handleViewSlots() {
   }
 }
 async function handleBookingSubmit() {
-  try {
-    let addData = {
-      ...bookingInfo.value,
-      propertyId: String(props.property.id),
-      userId: String(user.value.id),
-      date: selectedDate.value,
-      time: selectedSlot.value.value,
-    };
-    bookingSchema.parse(addData);
-
-    const bookingcheck = await propertyStore.bookVisit(addData);
-    if (bookingcheck == true) {
-      toast.add({
-        severity: "success",
-        summary: "Info",
-        detail: "Booking Successful",
-        life: 3000,
-      });
-      visible.value = false;
-      propertyStore.checkBookingStatus(props.property.id, user.value.id);
-    } else {
-      toast.add({
-        severity: "error",
-        summary: "Error",
-        detail: "Error Booking",
-        life: 3000,
-      });
+    if(selectedDate.value && selectedSlot.value){
+        await propertyStore.bookVisit(selectedDate.value, selectedSlot.value, props.property.id,user.value.id)
+        toast.add({ severity: 'success', summary: 'Success', detail: 'Property booked successfully', life: 3000 });
+        visible.value=false
+        propertyStore.checkBookingStatus(props.property.id, user.value.id)
+    }else{
+        toast.add({ severity: 'error', summary: 'Error', detail: 'Please select a date and slot', life: 3000 });
     }
   } catch (err: any) {
     if (err instanceof z.ZodError) {
