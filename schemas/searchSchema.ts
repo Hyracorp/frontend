@@ -1,5 +1,5 @@
 import {  z } from "zod";
-const pType = ["residential", "commercial"];
+const pType = ["Residential", "Commercial"];
 export const searchSchema = z.object({
   location: z
     .object({

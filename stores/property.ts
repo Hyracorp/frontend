@@ -1,27 +1,19 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
-import ap from "../assets/cities/ap.json";
-import tn from "../assets/cities/tn.json";
-import kerala from "../assets/cities/kerala.json";
-import karnataka from "../assets/cities/karnataka.json";
-
-
 
 export const usePropertyStore = defineStore("property", {
   state: () => ({
-    cities: [...karnataka, ...kerala, ...ap, ...tn],
+    cities: [],
     properties: [],
-    featuredProperties: [
-    ],
+    featuredProperties: [],
     searchResults: [],
     property: null,
     bookings: [],
     booking: {},
-    tenantBookings:[],
-    landlordBookings:[]
+    tenantBookings: [],
+    landlordBookings: [],
   }),
 
   getters: {
-    getCities: (state) => state.cities,
     getFeaturedProperties: (state) => state.featuredProperties,
     getSearchResults: (state) => state.searchResults,
     getProperty: (state) => state.property,
@@ -45,36 +37,18 @@ export const usePropertyStore = defineStore("property", {
         this.properties = JSON.parse(localStorage.getItem("properties")!);
         this.featuredProperties = this.properties.slice(0, 3);
       }
-     
     },
-    async searchCityByName(query: string) {
-      const result = this.cities.filter((city) =>
-        city.name.toLowerCase().includes(query?.toLowerCase()),
-      );
-      console.log(result);
-      return result;
-    },
-    async searchCityByCode(query: string) {
-      const result = this.cities.filter((city) =>
-        city.city.toLowerCase().includes(query?.toLowerCase()),
-      );
-      return result;
-    },
-    async searchProperty(query) {
-      const substrings = query.bhkNo.split("+");
 
-      this.property = this.properties.filter((property) => {
-        return (
-          property.locationCode === query.locationCode &&
-          property.propertyType === query.propertyType &&
-          property.price >= query.priceRange[0] &&
-          property.price <= query.priceRange[1] &&
-          substrings.some((substring) =>
-            property.bhkNo.toString().includes(substring),
-          )
-        );
-      });
-      this.searchResults = this.property;
+    async searchProperty(query) {
+      //const substrings = query.bhkNo.split("+");
+      // const res = await customFetch(`property/search`,{
+      //   method:"GET",
+      //   params: {
+      //    property_type: query.propertyType,
+      //    longitude: query.logitude,
+      //    latitude: query.latitude,
+      //   }
+      // });
     },
     async fetchProperty(id: string) {
       this.property =

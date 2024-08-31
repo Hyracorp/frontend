@@ -8,11 +8,11 @@ const searchForm = ref({
   location: {},
   bhkNo: [{ name: "2BHK", value: 2 }],
   priceRange: [2, 80],
-  propertyType: "residential",
+  propertyType: "Residential",
 });
 const toast = useToast();
 
-const propertyType = ref(["residential", "commercial"]);
+const propertyType = ref(["Residential", "Commercial"]);
 // BHK OPTIONS
 
 const bhkOptions = ref([
@@ -100,13 +100,14 @@ function getLocation() {
         `https://nominatim.openstreetmap.org/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&format=json`,
       )
         .then(async (res) => {
-          console.log(res);
-          const searchCity = await propertyStore.searchCityByName(
-            res.address.state_district,
-          );
+let city = 'noname'
+if(res?.address){
+  city = res.address.county
+} 
+     
           searchForm.value.location = {
-            name: searchCity[0].name,
-            city: searchCity[0].city,
+            name: city,
+            city: city,
             value: {
               latitude: position.coords.latitude,
               longitude: position.coords.longitude,
