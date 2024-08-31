@@ -34,24 +34,33 @@ const bhkOptions = ref([
   },
 ]);
 // LOCATION SEARCH
-const locations = computed(() => propertyStore.cities);
+
 const filteredSuggestions = ref([]);
 const search = (event) => {
-  setTimeout(() => {
+  setTimeout(async () => {
     if (!event.query.trim().length) {
-      filteredSuggestions.value = [...locations.value];
+      filteredSuggestions.value = [];
     } else {
-      filteredSuggestions.value = locations.value.filter((location) => {
-        return location.name
-          .toLowerCase()
-          .startsWith(event.query.toLowerCase());
-      });
+    let locations = await $fetch(`https://photon.komoot.io/api/?q=${event.query.toLowerCase()}&limit=5`);
+      if(locations.features?.length>0){
+      filteredSuggestions.value = locations.features
+  .filter(feature => feature.properties.type === "city")
+  .map(feature => ({
+    name:`${feature.properties.name}, ${feature.properties.state}, ${feature.properties.country}`,
+    city:feature.properties.name,
+    value: {
+     latitude: feature.geometry.coordinates[1],
+      longitude: feature.geometry.coordinates[0],
+    }
+  }));    
+      }
     }
   }, 250);
 };
 
 const router = useRouter();
 const searchSubmit = () => {
+
   try {
     searchSchema.parse(searchForm.value);
     const bhkNoQuery = searchForm.value.bhkNo.map((bhk) => bhk.value).join("+");
@@ -62,6 +71,8 @@ const searchSubmit = () => {
         bhkNo: `${bhkNoQuery}`,
         priceRange: searchForm.value.priceRange,
         propertyType: searchForm.value.propertyType,
+        latitude: searchForm.value.location?.value?.latitude,
+        longitude: searchForm.value.location?.value?.longitude,
       },
     });
   } catch (err) {
@@ -96,6 +107,10 @@ function getLocation() {
           searchForm.value.location = {
             name: searchCity[0].name,
             city: searchCity[0].city,
+            value: {
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude,
+            }
           };
         })
         .catch((err) => {

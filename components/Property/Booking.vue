@@ -58,6 +58,7 @@ async function handleViewSlots() {
   }
 }
 async function handleBookingSubmit() {
+try{
     if(selectedDate.value && selectedSlot.value){
         await propertyStore.bookVisit(selectedDate.value, selectedSlot.value, props.property.id,user.value.id)
         toast.add({ severity: 'success', summary: 'Success', detail: 'Property booked successfully', life: 3000 });
