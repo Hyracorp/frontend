@@ -51,7 +51,7 @@ const imageBaseUrl = computed(() => propertyStore.getCloudinaryBaseURL);
         :key="index">
         <div class="flex flex-start items-start gap-3 flex-wrap">
           <img v-if="booking.photos.length > 0" :src="`${imageBaseUrl}${booking.photos[0].photo_url}`"
-            class="md:block w-32 rounded-md w-full" />
+            class="md:block w-32 rounded-md" />
           <div class="w-full md:w-2/3">
             <div class="text-xl font-bold">
               {{ booking.title }}

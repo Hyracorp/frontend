@@ -1,4 +1,16 @@
 <script setup lang="ts">
+const {$api} = useNuxtApp()
+const propertyAPI = usePropertyAPI($api) 
+const propertyStore = usePropertyStore()
+const bookings =ref([]) 
+watchEffect(async () => {
+try{
+  const res = await propertyAPI.getBookings()
+  if(res.results) bookings.value = res
+    }catch(err){
+  console.log(err)
+}
+})
 definePageMeta({
     layout: "tenant",
     title: 'Tenant Profile',
@@ -7,6 +19,7 @@ definePageMeta({
 </script>
 <template>
   <div class="h-full">
-    <TenantHome />
+ 
+    <TenantHome :bookings="bookings?.count"/>
   </div>
 </template>

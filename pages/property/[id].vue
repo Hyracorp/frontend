@@ -1,7 +1,7 @@
 <template>
     <div class="p-3">
         <div class="">
-            <Property v-if="property.data" :property="property.data" />
+            <Property v-if="property" :property="property" />
         </div>
     </div>
 </template>
@@ -14,11 +14,14 @@ const propertyAPI = usePropertyAPI($api)
 
 const propertyStore = usePropertyStore()
 const route = useRoute()
-const property=await useAsyncData(() => propertyAPI.getProperty(route.params.id)) 
-
+const property=computed(() => propertyStore.getProperty)
 onMounted(async () => {
-   
-await propertyStore.setProperty(property.data.value)
+try{
+  const res = await propertyAPI.getProperty(route.params.id)
+  await propertyStore.setProperty(res)
+}catch(err){
+  console.log(err)
+}
 })
 
 

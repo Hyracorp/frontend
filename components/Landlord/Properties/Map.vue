@@ -1,49 +1,55 @@
 <script setup lang="ts">
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
-import {usePropertyStore} from '@/stores/property'
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+import { usePropertyStore } from "@/stores/property";
 
-const propertyStore = usePropertyStore()
+const propertyStore = usePropertyStore();
 
 const props = defineProps({
-   location:{
-    type:Object,
-    default:()=>{}
-   }
-})
+  latitude: {
+    type: Number, // Keep latitude as a Number
+    default: 0,
+  },
+  longitude: {
+    type: Number, // Keep longitude as a Number
+    default: 0,
+  },
+});
 
-const map=ref(null)
-const marker = ref(null)
+// Destructure props using toRefs for reactivity
+const { latitude, longitude } = toRefs(props);
+
+const map = ref(null);
+const marker = ref(null);
+
 async function initMap() {
-      map.value = L.map('map').setView([51.505, -0.09], 13);
+  map.value = L.map("map").setView([latitude.value, longitude.value], 13);
 
-      // Use OpenStreetMap tiles
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(map.value);
+  // Use OpenStreetMap tiles
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  }).addTo(map.value);
+}
 
-     
-       
-    
-    }
 onMounted(async () => {
-    await initMap()
-})
-watchEffect(()=>{ 
-  if(map.value){
-    if(marker.value){
-      marker.value.remove()
+  await initMap();
+});
+
+watchEffect(() => {
+  if (map.value) {
+    if (marker.value) {
+      marker.value.remove();
     }
- 
 
-    marker.value =L.marker([props.location.lat, props.location.longi]).addTo(map.value);
+    // Use latitude and longitude directly as numbers
+    marker.value = L.marker([latitude.value, longitude.value]).addTo(map.value);
     marker.value.bindPopup(`<b>Your Location</b>`).openPopup();
-    map.value.setView([props.location.lat, props.location.longi], 13);
+    map.value.setView([latitude.value, longitude.value], 13);
   }
-})
-
+});
 </script>
 
 <template>
-    <div id="map" ref="map" style="height: 200px; width: 200px" />
+  <div id="map" style="height: 200px; width: 200px" />
 </template>

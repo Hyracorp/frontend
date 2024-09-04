@@ -23,6 +23,12 @@ export const usePropertyAPI = (fetch) => ({
     });
     return properties;
   },
+  fetchAmenities: async (): Promise => {
+    const amenities = await fetch("/property/amenities", {
+      method: "GET",
+    });
+    return amenities;
+  },
   getFeaturedProperties: async (): Promise => {
     const properties = await fetch("/property/featured", {
       method: "GET",
@@ -30,9 +36,9 @@ export const usePropertyAPI = (fetch) => ({
     return properties;
   },
   getAvailableSlots: async (propertyId, date): Promise => {
-    const slots = await fetch("/property/booking/slots",{
-      method:"POST",
-      body:{property:propertyId,date}
+    const slots = await fetch("/property/booking/slots", {
+      method: "POST",
+      body: { property: propertyId, date },
     });
     return slots;
   },

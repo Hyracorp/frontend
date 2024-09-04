@@ -35,7 +35,7 @@ onMounted(async () => {
   })
 }
 })
-
+defineEmits(['location-picked'])
 </script>
 
 <template>

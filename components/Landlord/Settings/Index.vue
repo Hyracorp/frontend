@@ -205,18 +205,12 @@ async function logoutUser() {
           <div class="text-xl font-bold">Update Profile</div>
           <div class="flex flex-col gap-3">
            <div class="flex flex-col gap-3"> <label for="phone" class="text-gray-500 font-bold">Phone</label> <InputText v-model="profileData.phone_number" type="text" placeholder="Phone" /></div> 
-             <div class="flex flex-col gap-3"> <label for="phone" class="text-gray-500 font-bold">Phone</label> <InputText v-model="profileData.address" type="text" placeholder="Address" /></div> 
- <div class="flex flex-col gap-3"> <label for="phone" class="text-gray-500 font-bold">Phone</label> <InputNumber v-model="profileData.zip_code" @input="fetchZipData" inputId="integeronly" :max="999999"
+             <div class="flex flex-col gap-3"> <label for="Address" class="text-gray-500 font-bold">Address</label> <InputText v-model="profileData.address" type="text" placeholder="Address" /></div> 
+<div class="flex flex-col gap-3"> <label for="pincode" class="text-gray-500 font-bold">Pincode</label> <InputNumber v-model="profileData.zip_code" @input="fetchZipData" inputId="integeronly" :max="999999"
               :min="100000" :useGrouping="false" placeholder="Enter zipcode" class="w-full" /></div> 
- <div class="flex flex-col gap-3"> <label for="phone" class="text-gray-500 font-bold">Phone</label> <InputText v-model="profileData.city" type="text" placeholder="City" disabled /></div> 
- <div class="flex flex-col gap-3"> <label for="phone" class="text-gray-500 font-bold">Phone</label> <InputText v-model="profileData.state" type="text" placeholder="State" disabled /></div> 
- <div class="flex flex-col gap-3"> <label for="phone" class="text-gray-500 font-bold">Phone</label> <InputText v-model="profileData.country" type="text" placeholder="Country" disabled /></div> 
-            
-            
-            
-            
-
-            
+ <div class="flex flex-col gap-3"> <label for="city" class="text-gray-500 font-bold">City</label> <InputText v-model="profileData.city" type="text" placeholder="City" disabled /></div> 
+ <div class="flex flex-col gap-3"> <label for="state" class="text-gray-500 font-bold">State</label> <InputText v-model="profileData.state" type="text" placeholder="State" disabled /></div> 
+ <div class="flex flex-col gap-3"> <label for="country" class="text-gray-500 font-bold">Country</label> <InputText v-model="profileData.country" type="text" placeholder="Country" disabled /></div> 
             <Button label="Update" severity="info" class="p-3 w-full" raised @click="profileSubmit" />
           </div>
         </div>

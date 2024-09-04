@@ -43,7 +43,7 @@ export const usePropertyStore = defineStore("property", {
       // });
     },
     setProperties(properties) {
-      console.log(properties)
+    
       this.properties = properties;
 
     },
