@@ -1,61 +1,73 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
-
+function decodeJwt(token) {
+    // Split the token into its three parts
+    const base64Url = token.split('.')[1];
+    
+    // Decode the Base64URL string (convert to a regular Base64 string first)
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    
+    // Decode the Base64 string to JSON
+    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+    
+    return JSON.parse(jsonPayload);
+}
 // const customFetch=useCustomFetch()
 export const useAuthStore = defineStore("auth", {
   state: () => ({
-    token:"",
+    token:null,
     isAuthenticated: false,
     userType: "",
     users:[],
-    user:null
+    user:null,
+    profile:null,
+    user_id:null
   }),
   getters: {
     getAuthStatus: (state) => state.isAuthenticated,
-    getUser: (state) => state.user
+    getUser: (state) => state.user,
+    getProfile: (state) => state.profile,
+    getUserType: (state) => state.userType,
   },
   actions: {
-    initStorage(){
-      if(localStorage.getItem("users")===null){
-        localStorage.setItem("users", JSON.stringify([]))
-      }else{
-        this.users = JSON.parse(localStorage.getItem("users")!)
-      }
-
-      if(localStorage.getItem("loginstatus")===null){
-        localStorage.setItem("loginstatus", "false")
-      }else{
-        this.isAuthenticated = JSON.parse(localStorage.getItem("loginstatus")!)
-        if(this.isAuthenticated===true){
-          this.user = JSON.parse(localStorage.getItem("user")!)
+ async init() {
+      if(localStorage.getItem("loginstatus")){
+      this.isAuthenticated = JSON.parse(localStorage.getItem("loginstatus"))
+      this.userType = JSON.parse(localStorage.getItem("userType"))
+      this.token = JSON.parse(localStorage.getItem("token"))
+      this.user = JSON.parse(localStorage.getItem("user"))
+     
+    }
+ }, 
+    async login(res) {
+        if(res.access_token){
+          localStorage.setItem("loginstatus", JSON.stringify(true))
+          localStorage.setItem("userType", JSON.stringify(res.user_type))
+          localStorage.setItem("token", JSON.stringify(res.access_token))
+          this.token = res.access_token
+          this.userType = res.user_type
+          let payload = decodeJwt(res.access_token)
+          this.user_id = payload.user_id
+          this.isAuthenticated = true
+        return true
+        }else{
+          return false
         }
+     
+    },
+    async setUser(user) {
+     
+      if(user){
+        this.user = user
+        localStorage.setItem("user", JSON.stringify(user))
       }
     },
-    async login(data:{email:string,password:string}) {
+    async setProfile(profile) {
 
-      // const res = await $fetch(`${config.public.apiBase}/auth/login`, {
-      //   method: "POST",
-      //   body: data,
-      // })
-// const res= await customFetch(`properties/residential`, {
-//   method: "POST",
-//   body: data,
-// // })
-//       if(res.tokens){
-//         this.token=res.tokens
-//         return true
-//       }else{
-//         return false;
-//       }
-      const res = this.users.filter((user) => user.email === data.email && user.password === data.password)
-      if(res.length>0){
-        this.isAuthenticated = true
-        localStorage.setItem("loginstatus", JSON.stringify(true))
-        this.user=res[0]
-        localStorage.setItem("user", JSON.stringify(res[0]))
-        return true
-      }else{
-        return false
-      }
+      if(profile){
+        this.profile = profile        
+      } 
     },
     async logout() {
       localStorage.setItem("loginstatus", JSON.stringify(false))

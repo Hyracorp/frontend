@@ -16,7 +16,7 @@ const props = defineProps({
             </div>
             <div class="py-2 flex flex-col md:flex-row flex-wrap gap-2 md:items-center max-w-7xl mx-auto">
                 <div class="flex gap-2 ">
-                    <InputText v-model="query.locationName" type="text" disabled />
+                    <InputText v-model="query.city" type="text" disabled />
                     <Button class="" :pt="{ 'root': 'p-0' }" @click="$router.push('/')">
                         <Icon name="ph:pencil" class="text-xl w-12" />
                     </Button>
@@ -24,6 +24,8 @@ const props = defineProps({
                 <small class="px-2 text-gray-500">Price Range {{ query?.priceRange[0] }} - {{ query?.priceRange[1]
 
                     }}</small>
+<small class="px-2 text-gray-500"> {{ query?.bhkNo }} BHK </small>
+<small class="px-2 text-gray-500"> {{ query?.propertyType }} </small>
             </div>
         </div>
 

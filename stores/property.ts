@@ -8,36 +8,28 @@ export const usePropertyStore = defineStore("property", {
     searchResults: [],
     property: null,
     bookings: [],
+    latestBooking: {},
     booking: {},
     tenantBookings: [],
     landlordBookings: [],
+    cloudinary_base_url: "https://res.cloudinary.com/dljxad52f/",
   }),
 
   getters: {
     getFeaturedProperties: (state) => state.featuredProperties,
+    getProperties: (state) => state.properties,
     getSearchResults: (state) => state.searchResults,
     getProperty: (state) => state.property,
     getBookings: (state) => state.bookings,
     getBooking: (state) => state.booking,
     getTenantBookings: (state) => state.tenantBookings,
     getLandlordBookings: (state) => state.landlordBookings,
+    getLatestBookings: (state) => state.latestBooking,
+    getCloudinaryBaseURL: (state) => state.cloudinary_base_url,
   },
 
   actions: {
-    async initStorage() {
-      if (localStorage.getItem("bookings") === null) {
-        localStorage.setItem("bookings", JSON.stringify([]));
-      } else {
-        this.bookings = JSON.parse(localStorage.getItem("bookings")!);
-      }
 
-      if (localStorage.getItem("properties") === null) {
-        localStorage.setItem("properties", JSON.stringify(this.properties));
-      } else {
-        this.properties = JSON.parse(localStorage.getItem("properties")!);
-        this.featuredProperties = this.properties.slice(0, 3);
-      }
-    },
 
     async searchProperty(query) {
       //const substrings = query.bhkNo.split("+");
@@ -50,12 +42,27 @@ export const usePropertyStore = defineStore("property", {
       //   }
       // });
     },
-    async fetchProperty(id: string) {
-      this.property =
-        this.properties.find((prop) => String(prop.id) == String(id)) ?? null;
-    },
+    setProperties(properties) {
+      console.log(properties)
+      this.properties = properties;
 
-    async getAvailableDates(propertyId: string) {
+    },
+    async setProperty(property) {
+      
+      this.property = property;
+    },
+    async setFeaturedProperties(properties) {
+      if(properties.results){
+        this.featuredProperties = properties.results;
+
+      }
+  },
+    async setBookings(bookings) {
+      this.bookings = bookings;
+      this.latestBooking = bookings[0];
+    },
+   
+      async getAvailableDates(propertyId: string) {
       const availableDates = [];
       const today = new Date();
       for (let i = 0; i < 15; i++) {
@@ -75,7 +82,8 @@ export const usePropertyStore = defineStore("property", {
 
       return availableDates;
     },
-    async getAvailableTimeSlots(date, propertyId) {
+    async getAvailableTimeSlots(data) {
+      
       const allTimeSlots = [
         { time: "9 AM", value: "09:00" },
         { time: "11 AM", value: "11:00" },
@@ -85,21 +93,10 @@ export const usePropertyStore = defineStore("property", {
         { time: "7 PM", value: "19:00" },
       ];
 
-      const bookingsOnDate = this.bookings.filter((booking) => {
-        const bookingDate = new Date(booking.date).toDateString();
-        const inputDate = new Date(date).toDateString();
-
-        return bookingDate === inputDate && booking.propertyId === propertyId;
-      });
-
-      const bookedTimeSlots = bookingsOnDate.map(
-        (booking) => booking.time.value,
-      );
-
+      const bookedTimeSlots = data?.available_slots;
       const availableTimeSlots = allTimeSlots.filter(
-        (timeSlot) => !bookedTimeSlots.includes(timeSlot.value),
+        (timeSlot) => bookedTimeSlots.includes(timeSlot.value),
       );
-
       return availableTimeSlots;
     },
 

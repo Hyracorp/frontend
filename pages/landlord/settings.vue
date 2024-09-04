@@ -6,7 +6,7 @@ definePageMeta({
 })
 </script>
 <template>
-    <div class="w-full p-5">
+    <div class="w-full p-5 bg-gray-100">
         <LandlordSettings />
     </div>
 </template>

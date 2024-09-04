@@ -12,8 +12,7 @@
   import { usePropertyStore } from '@/stores/property';
   const authStore=useAuthStore()
   const propertyStore=usePropertyStore()
-  onMounted(async ()=>{
-    authStore.initStorage()
-    propertyStore.initStorage()
+  onMounted(async () => {
+    await authStore.init()
   })
 </script>

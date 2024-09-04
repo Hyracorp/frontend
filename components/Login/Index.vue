@@ -1,3 +1,8 @@
+<script setup lang="ts">
+  const route = useRoute()
+  const redirect_url = route.query.redirect_url
+</script>
+
 <template>
     <div>
       <div class="card max-w-sm w-full">
@@ -5,7 +10,7 @@
           <template #title> Login </template>
           <template #content>
             <div class="flex justify-center">
-              <LoginEmailLogin />
+              <LoginEmailLogin :redirect_url="redirect_url" />
             </div>
             <div class="flex items-center">
               <div class="flex-grow border-b border-gray-400"></div>

@@ -1,16 +1,10 @@
 <script setup lang="ts">
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import {usePropertyStore} from '@/stores/property'
+import { usePropertyStore } from '@/stores/property';
 
-const propertyStore = usePropertyStore()
-
-const props = defineProps({
-    locationCode: {
-        type: String,
-        default: () => null
-    }
-})
+const propertyStore = usePropertyStore();
+const location = computed(() => propertyStore.property);
 
 const map=ref(null)
 async function initMap() {
@@ -21,11 +15,10 @@ async function initMap() {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(map.value);
 
-      const [location] = await propertyStore.searchCityByCode(props.locationCode)
-        const marker = L.marker([location.lat, location.longi]).addTo(map.value);
+        const marker = L.marker([location.value.latitude, location.value.longitude]).addTo(map.value);
 
-        marker.bindPopup(`<b>${location.name}</b><br>${location.name}`).openPopup();
-        map.value.setView([location.lat, location.longi], 13);
+        marker.bindPopup(`<b>${location.value.title}</b><br>${location.value.city}`).openPopup();
+        map.value.setView([location.value.latitude, location.value.longitude], 13);
     
     }
 onMounted(async () => {

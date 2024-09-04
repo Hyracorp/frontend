@@ -19,7 +19,7 @@ export default defineNuxtRouteMiddleware(async(to, _from) => {
    
     if(!JSON.parse(localStorage.getItem("loginstatus")!) || !isAllowedPath ){
         
-        return navigateTo('/login')
+        return navigateTo(`/login?redirect_url=${to.path}`)
     }
 }
 })

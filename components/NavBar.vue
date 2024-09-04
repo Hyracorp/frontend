@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import { useAuthStore } from "@/stores/auth";
+
+const authStore = useAuthStore();
+const user = computed(() => authStore.getUser);
+const userType = computed(() => authStore.getUserType);
 let menuItems=[
     {
         name:'Home',
@@ -54,10 +59,10 @@ onMounted(async () => {
             </div>
             </NuxtLink>
             <div class="flex">
-                <NuxtLink :to="loginStatus&&user!==null&&loginStatus===true?`/${user.userType}`:'/login'" class="">
+                <NuxtLink :to="loginStatus&&user!==null&&loginStatus===true?`/${userType}`:'/login'" class="">
                     <Button type="button" class="p-1 py-3"    text>
                     <div v-if="loginStatus===true && user!==null">
-                        <h3 class="font-bold text-blue-400 px-2"> {{ user.firstName }}</h3>
+                        <h3 class="font-bold text-blue-400 px-2"> {{ user.first_name }}</h3>
                     </div>
                     <Icon name="ph:user-circle" color="black" class="text-3xl" />
 

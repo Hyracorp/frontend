@@ -1,11 +1,10 @@
 <script setup lang="ts">
+import { usePropertyStore } from '@/stores/property';
+
+const propertyStore = usePropertyStore();
+const property = computed(() => propertyStore.property);
 import Map from './Map.vue';
-defineProps({
-    property: {
-        type: Object,
-        default: () => null
-    }
-})
+
 </script>
 
 <template>
@@ -14,10 +13,11 @@ defineProps({
     <div class="text-2xl font-bold">Location</div>
     <div class="">
         <div class="text-xl font-bold">Address</div>
-        <div class="">ABC, XYZ</div>
+<div class="max-w-xs py-3">{{property.address_line1}}</div><div class="">{{property.address_line2}}</div>
+
     </div>
     <div class="">
-        <Map :locationCode="property.locationCode" class="z-40" />
+<Map  :location="property" class="z-40" />
     </div>
 </div>
     <Skeleton v-else class="w-full md:h-400 h-200" height="300px" width="100%"/>
