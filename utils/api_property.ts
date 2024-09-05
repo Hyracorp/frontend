@@ -49,6 +49,20 @@ export const usePropertyAPI = (fetch) => ({
     });
     return property;
   },
+  uploadImage: async (data): Promise => {
+    const image = await fetch("/property/photos", {
+      method: "POST",
+      body: data,
+    });
+    return image;
+  },
+  updateImage: async (data, id): Promise => {
+    const image = await fetch(`/property/photos/${id}`, {
+      method: "PATCH",
+      body: data,
+    });
+    return image;
+  },
   getAvailableSlots: async (propertyId, date): Promise => {
     const slots = await fetch("/property/booking/slots", {
       method: "POST",

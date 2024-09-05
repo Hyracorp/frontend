@@ -8,13 +8,13 @@ const authStore = useAuthStore();
 import { bookingSchema } from "@/schemas/bookingSchema";
 import { z } from "zod";
 const property = computed(() => propertyStore.property);
-const userType= computed(() => authStore.getUserType);
+const userType = computed(() => authStore.getUserType);
 let booking = ref(null);
 const visible = ref(false);
 const cancelWarning = ref(false);
 const resheduleWarning = ref(false);
 const route = useRoute();
-const router= useRouter()
+const router = useRouter();
 const bookingInfo = ref({
   phone: "",
   gender: "",
@@ -102,13 +102,11 @@ const bookingActions = computed(() => {
   return actions[status] || null;
 });
 
-
 const goDashboard = () => {
- if(userType.value === "tenant") {
-   router.push("/tenant");   
-
- } 
-  if(userType.value === "landlord") {
+  if (userType.value === "tenant") {
+    router.push("/tenant");
+  }
+  if (userType.value === "landlord") {
     router.push("/landlord");
   }
 };
@@ -122,7 +120,7 @@ const bookNow = () => {
 
 async function updateProperty() {
   let property = await propertyAPI.getProperty(route.params.id);
-  
+
   await propertyStore.setProperty(property);
 }
 function getFormattedDate(date) {
@@ -190,7 +188,7 @@ async function handleBookingSubmit() {
         life: 3000,
       });
     } else {
-console.log(err)
+      console.log(err);
       toast.add({
         severity: "error",
         summary: "Error",
@@ -211,7 +209,7 @@ async function handleCancelBooking() {
       detail: "Booking cancelled successfully",
       life: 3000,
     });
-await updateProperty();
+    await updateProperty();
     cancelWarning.value = false;
   } catch (err) {
     toast.add({
@@ -234,7 +232,7 @@ watchEffect(() => {
     <!-- Booking Card -->
     <div>
       <div v-if="property && booking">
-        <Card>
+        <Card :pt="{ body: 'pt-2 md:pt-5','footer': 'pt-2 md:pt-5','content': 'pt-2 md:pt-5'}" >
           <template #content>
             <div v-if="bookingActions">
               <div class="font-bold text-xl text-black">
@@ -260,20 +258,15 @@ watchEffect(() => {
       <div v-else>
         <Card>
           <template #content>
-<div class="font-bold text-xl text-black">
-               Book A visit
-
-              </div>
-              <div class="font-bold text-sm text-gray">
-              Book and appoitment to view your property <br>
-For any further assistance contact us : +91 9876543210
-              </div>
-
-</template>
+            <div class="font-bold text-xl text-black">Book A visit</div>
+            <div class="font-bold text-sm text-gray">
+              Book and appoitment to view your property <br />
+              For any further assistance contact us : +91 9876543210
+            </div>
+          </template>
           <template #footer>
-<Button @click="visible = true">Book Now</Button>
-
-</template>
+            <Button @click="visible = true">Book Now</Button>
+          </template>
         </Card>
       </div>
     </div>

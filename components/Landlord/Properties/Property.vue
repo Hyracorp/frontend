@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import addProperty from "./addProperty.vue";
+import ImageUpload from "./ImageUpload.vue";
 const { $api } = useNuxtApp();
 const propertyAPI = usePropertyAPI($api);
 const propertyStore = usePropertyStore();
@@ -35,6 +36,17 @@ async function addSuccess() {
     console.log(err);
   }
 }
+async function addImageSuccess() {
+  showAddPropertyModal.value = false;
+  try {
+    const res = await propertyAPI.fetchProperties();
+    if (res) await propertyStore.setProperties(res);
+  } catch (err) {
+    console.log(err);
+  }
+}
+const imageUploadModal = ref(false);
+const currentItem = ref({});
 </script>
 <template>
   <div class="">
@@ -42,6 +54,9 @@ async function addSuccess() {
       <Dialog v-model:visible="showAddPropertyModal" modal>
         <addProperty @close="showAddPropertyModal = false" @success="addSuccess" />
       </Dialog>
+<Dialog @hide="addImageSuccess" v-model:visible="imageUploadModal" modal>
+                        <ImageUpload  :propertyId="currentItem" @success="addImageSuccess" />
+                      </Dialog>
     </div>
     <div class="">
       <DataView :value="properties" :data-key="'property'">
@@ -88,15 +103,18 @@ async function addSuccess() {
                       item.expected_rate_rent }}/Month</span>
                     <div class="flex flex-row-reverse sm:flex-row gap-2">
                       <NuxtLink :to="`/property/${item.id}`" target="_blank">
-                        <Button    class="" size="small">
-<Icon name="ph:eye" class="text-xl" />
-</Button>
+                        <Button class="" size="small">
+                          <Icon name="ph:eye" class="text-xl" />
+                        </Button>
                       </NuxtLink>
-<Button    class="" size="small">
-<Icon name="ph:pencil-line" class="text-xl" /> </Button>
-                      <Button label="Add Images" v-if="!item.first_photo_url"
-                       ed="item.inventoryStatus === 'SOLD'" class=""
+                      <Button class="" size="small">
+                        <Icon name="ph:pencil-line" class="text-xl" />
+                      </Button>                      <Button label="Manage Images"  class="" @click="()=> {
+                        currentItem = item.id
+                        imageUploadModal = true
+                      }"
                         size="small"></Button>
+                      
                     </div>
                   </div>
                 </div>
