@@ -23,10 +23,11 @@ onMounted(async () => {
         <Card v-for="data in featuredCollection" :key="data.id" class="max-w-md min-w-72 w-full rounded-xl">
           <template #header>
             <div class="overflow-hidden rounded-t-xl">
-              <img alt="user header" :src="data.first_photo_url" class="w-full" />
+              <img alt="user header" :src="data.first_photo_url??
+                    'https://dummyimage.com/600x400/e3e3e3/000000&text=image+not+added'" class="w-full" />
             </div>
           </template>
-          <template #title> {{ data.title }} ({{ data.bhk }} BHK) </template>
+          <template #title> {{ data.title }}  </template>
           <template #subtitle> {{ data.city }} , {{ data.state }} </template>
           <template #content> </template>
           <template #footer>

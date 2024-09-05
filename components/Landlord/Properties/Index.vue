@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Property from './Property.vue';
+import { usePropertyStore } from '@/stores/property';
 const { $api } = useNuxtApp()
 const propertyAPI = usePropertyAPI($api)
 const propertyStore = usePropertyStore()

@@ -144,13 +144,26 @@ onMounted(async () => {
     console.log(err);
   }
 });
+const emits = defineEmits(["close", "success"]);
+
 async function submitForm() {
-console.log(addPropertyForm.value)
-try{
-if(propertyTypeCommercial){
- commercialPropertySchema.parse(addPropertyForm.value); 
+if(location.value==false){
+  toast.add({
+    severity: "error",
+    summary: "Error",
+    detail: "Please provide your location",
+    life: 3000,
+  });
+  return;
 }else{
-  residentialPropertySchema.parse(addPropertyForm.value);
+let formattedData = ref(null)
+try{
+if(propertyTypeCommercial==true){
+ const commercialCheck = commercialPropertySchema.parse(addPropertyForm.value); 
+formattedData.value = convertKeysToSnake(commercialCheck);
+}else{
+  const residentialCheck = residentialPropertySchema.parse(addPropertyForm.value);
+formattedData.value = convertKeysToSnake(residentialCheck);
 }
 }
 catch(err){
@@ -163,6 +176,39 @@ if(err instanceof z.ZodError){
   });
 }else{
   console.log(err)
+}
+}
+if(formattedData.value){
+try{
+if(props.addMode==true){
+  const res = await propertyAPI.addProperty(formattedData.value);
+  emits("success");
+  toast.add({
+    severity: "success",
+    summary: "Success",
+    detail: "Property added successfully",
+    life: 3000,
+  });
+  return;
+}else{
+  await propertyAPI.updateProperty(formattedData.value);
+  toast.add({
+    severity: "success",
+    summary: "Success",
+    detail: "Property updated successfully",
+    life: 3000,
+  });
+  return;
+}
+}catch(err){
+  console.log(err)
+  toast.add({
+    severity: "error",
+    summary: "Error",
+    detail: "Something went wrong",
+    life: 3000,
+  });
+}
 }
 }
 }
@@ -224,26 +270,30 @@ if(err instanceof z.ZodError){
               </div>
               <div class="">
                 <label for="property_area" class="block">Property Area (sqft)*</label>
-                <InputNumber v-model="addPropertyForm.area" placeholder="Enter Property Area" class="w-full"
-                  :min="10" />
+                <InputNumber v-model="addPropertyForm.areaSqFt" placeholder="Enter Property Area" class="w-full" :min="1"
+                  />
               </div>
               <div class="">
                 <label for="property_floor" class="block">Floor Number (0 for ground)*</label>
-                <InputNumber v-model="addPropertyForm.floor" placeholder="Enter Floor Number" class="w-full" :min="0" />
+                <InputText v-model="addPropertyForm.floorNo" placeholder="Enter Floor Number" class="w-full" :min="0" />
+              </div>
+ <div class="">
+                <label for="property_owner" class="block">Property Owner (self or others)*</label>
+                <InputText v-model="addPropertyForm.propertyOwner" placeholder="Enter Property Owner" class="w-full" />
               </div>
               <div class="">
                 <label for="property_rent" class="block">Expected Rent*</label>
-                <InputNumber v-model="addPropertyForm.rent" placeholder="Enter Expected Rent" class="w-full" :min="1" />
+                <InputNumber v-model="addPropertyForm.expectedRateRent" placeholder="Enter Expected Rent" class="w-full" :min="1" />
               </div>
               <div class="">
                 <label for="property_deposit" class="block">Expected Deposit (months of rent)*</label>
-                <InputNumber v-model="addPropertyForm.deposit" placeholder="Enter Expected Deposit" class="w-full"
+                <InputNumber v-model="addPropertyForm.expectedDeposit" placeholder="Enter Expected Deposit" class="w-full"
                   :min="1" />
               </div>
               <div class="flex flex-col gap-2">
                 <label for="property_address" class="block">Address*</label>
-                <InputText v-model="addPropertyForm.address" placeholder="Enter Address Line 1" class="w-full" />
-                <InputText v-model="addPropertyForm.address2" placeholder="Enter Address Line 2(optional)"
+                <InputText v-model="addPropertyForm.addressLine1" placeholder="Enter Address Line 1" class="w-full" />
+                <InputText v-model="addPropertyForm.addressLine2" placeholder="Enter Address Line 2(optional)"
                   class="w-full" />
               </div>
               <div class="flex flex-col gap-2">
@@ -261,11 +311,10 @@ if(err instanceof z.ZodError){
               </div>
 
               <div class=" ">
-                <label for="property city" class="block">location* :
+<label for="property city" class="block">location* : {{location? `${addPropertyForm.latitude} , ${addPropertyForm.longitude}`: '--' }}</label>
                   <div>
                     <Map v-if="location" :latitude="addPropertyForm.latitude" :longitude="addPropertyForm.longitude" />
                   </div>
-                </label>
                 <div class="flex gap-3">
                   <Button type="button" @click="getLocation">
                     Get Location
@@ -323,18 +372,19 @@ if(err instanceof z.ZodError){
               <div v-if="addPropertyForm.propertyType === 'Commercial'">
                 <div class="flex flex-col gap-2">
                   <label for="property_tenant_preference" class="block">Tenant Preference*</label>
-                </div>
+<InputText v-model="addPropertyForm.tenantPreference" placeholder="Enter Tenant Preference" />               
+</div>
                 <div class="flex flex-col gap-2">
                   <label for="property_fire" class="block">Fire and Safety*</label>
                   <InputSwitch v-model="addPropertyForm.fireSafetyStatus" />
                 </div>
                 <div class="flex flex-col gap-2">
                   <label for="property_washroom" class="block">Washroom Facilities*</label>
-                  <InputSwitch v-model="addPropertyForm.fireSafetyStatus" />
+                  <InputSwitch v-model="addPropertyForm.washroomFacilities" />
                 </div>
                 <div class="flex flex-col gap-2">
                   <label for="property_genator" class="block">Generator*</label>
-                  <InputSwitch v-model="addPropertyForm.fireSafetyStatus" />
+                  <InputSwitch v-model="addPropertyForm.generator" />
                 </div>
 
                 <div class="flex flex-col gap-2">

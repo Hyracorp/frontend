@@ -35,6 +35,20 @@ export const usePropertyAPI = (fetch) => ({
     });
     return properties;
   },
+  addProperty: async (data): Promise => {
+    const property = await fetch("/property/", {
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+    return property;
+  },
+  updateProperty: async (data, id): Promise => {
+    const property = await fetch(`/property/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(data),
+    });
+    return property;
+  },
   getAvailableSlots: async (propertyId, date): Promise => {
     const slots = await fetch("/property/booking/slots", {
       method: "POST",

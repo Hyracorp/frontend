@@ -22,7 +22,7 @@ const cloudinary_base_url = computed(() => store.getCloudinaryBaseURL)
       <Galleria :value="property.photos" :responsiveOptions="responsiveOptions" :numVisible="5" :circular="true"
         :showItemNavigators="true" class="overflow-hidden rounded-xl">
         <template #item="slotProps">
-    <img :src="`${cloudinary_base_url}${slotProps.item.photo_url}`" :alt="slotProps.item.alt" style="width: 100%; display: block"
+    <img :src="slotProps.item.photo_url!==null? `${cloudinary_base_url}${slotProps.item.photo_url}`:'https://dummyimage.com/600x400/e3e3e3/000000&text=image+not+added'" :alt="slotProps.item.alt" style="width: 100%; display: block"
             class="rounded-xl" />
         </template>
         <template #thumbnail="slotProps">
