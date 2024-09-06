@@ -24,7 +24,7 @@ onMounted(async () => {
           <template #header>
             <div class="overflow-hidden rounded-t-xl">
               <img alt="user header" :src="data.first_photo_url??
-                    'https://dummyimage.com/600x400/e3e3e3/000000&text=image+not+added'" class="w-full" />
+                    'https://dummyimage.com/600x400/e3e3e3/000000&text=image+not+added'" class="w-full h-56 object-cover" />
             </div>
           </template>
           <template #title> {{ data.title }}  </template>

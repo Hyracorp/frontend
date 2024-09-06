@@ -72,6 +72,8 @@ export const useAuthStore = defineStore("auth", {
     async logout() {
       localStorage.setItem("loginstatus", JSON.stringify(false))
       localStorage.setItem("user", JSON.stringify(null))
+      localStorage.setItem("token", JSON.stringify(null))
+      localStorage.setItem("userType", JSON.stringify(null))
       this.isAuthenticated = false
     },
     async signup(data:{

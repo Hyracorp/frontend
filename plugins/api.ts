@@ -36,9 +36,7 @@ export default defineNuxtPlugin({
             }
           } catch (error) {
             // If refresh fails, log out the user
-            authStore.token = null;
-            authStore.isAuthenticated = false;
-            localStorage.removeItem("token");
+            await authStore.logout();
             return navigateTo("/login");
           }
         }
