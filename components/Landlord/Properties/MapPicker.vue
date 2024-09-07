@@ -30,7 +30,7 @@ onMounted(async () => {
     location.longi = e.latlng.lng
    if(marker.value){marker.value.remove()}
     marker.value = L.marker([e.latlng.lat, e.latlng.lng]).addTo(mapPicker.value);
-    mapPicker.value.setView([e.latlng.lat, e.latlng.lng], 13);
+ /*    mapPicker.value.setView([e.latlng.lat, e.latlng.lng], 13); */
 
   })
 }

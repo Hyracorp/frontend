@@ -37,6 +37,7 @@ export default defineNuxtPlugin({
           } catch (error) {
             // If refresh fails, log out the user
             await authStore.logout();
+            
             return navigateTo("/login");
           }
         }

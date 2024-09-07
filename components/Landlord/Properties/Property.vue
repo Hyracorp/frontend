@@ -47,21 +47,27 @@ async function addImageSuccess() {
 }
 const imageUploadModal = ref(false);
 const currentItem = ref({});
+const editMode = ref(false);
 </script>
 <template>
   <div class="">
     <div class="">
       <Dialog v-model:visible="showAddPropertyModal" modal>
-        <addProperty @close="showAddPropertyModal = false" @success="addSuccess" />
+        <addProperty @close="showAddPropertyModal = false" @success="addSuccess" :propertyId="currentItem" :editMode="editMode" />
       </Dialog>
-<Dialog @hide="addImageSuccess" v-model:visible="imageUploadModal" modal>
-                        <ImageUpload  :propertyId="currentItem" @success="addImageSuccess" />
-                      </Dialog>
+      <Dialog @hide="addImageSuccess" v-model:visible="imageUploadModal" modal>
+        <ImageUpload :propertyId="currentItem" @success="addImageSuccess" />
+      </Dialog>
     </div>
     <div class="">
       <DataView :value="properties" :data-key="'property'">
         <template #header>
-          <Button @click="showAddPropertyModal = true">
+          <Button @click="() => {
+              editMode = false;
+              showAddPropertyModal = true;
+              currentItem = {};
+            }
+            ">
             <Icon name="ph:plus" class="text-xl" /> Add Property
           </Button>
         </template>
@@ -96,6 +102,9 @@ const currentItem = ref({});
                       </div>
 
                       <span class="font-medium text-secondary text-sm">{{ item.city }},{{ item.state }}</span>
+                      <div class="font-bold text-secondary text-sm">
+                        {{ item.property_type }}
+                      </div>
                     </div>
                   </div>
                   <div class="flex flex-col sm:items-end gap-5">
@@ -108,13 +117,18 @@ const currentItem = ref({});
                         </Button>
                       </NuxtLink>
                       <Button class="" size="small">
-                        <Icon name="ph:pencil-line" class="text-xl" />
-                      </Button>                      <Button label="Manage Images"  class="" @click="()=> {
-                        currentItem = item.id
-                        imageUploadModal = true
-                      }"
-                        size="small"></Button>
-                      
+                        <Icon name="ph:pencil-line" class="text-xl" @click="() => {
+                            currentItem = item.id;
+                            editMode = true;
+                            showAddPropertyModal = true;
+                          }
+                          " />
+                      </Button>
+                      <Button label="Manage Images" class="" @click="() => {
+                          currentItem = item.id;
+                          imageUploadModal = true;
+                        }
+                        " size="small"></Button>
                     </div>
                   </div>
                 </div>
