@@ -41,18 +41,20 @@ const search = (event) => {
     if (!event.query.trim().length) {
       filteredSuggestions.value = [];
     } else {
-    let locations = await $fetch(`https://photon.komoot.io/api/?q=${event.query.toLowerCase()}&limit=5`);
-      if(locations.features?.length>0){
-      filteredSuggestions.value = locations.features
-  .filter(feature => feature.properties.type === "city")
-  .map(feature => ({
-    name:`${feature.properties.name}, ${feature.properties.state}, ${feature.properties.country}`,
-    city:feature.properties.name,
-    value: {
-     latitude: feature.geometry.coordinates[1],
-      longitude: feature.geometry.coordinates[0],
-    }
-  }));    
+      let locations = await $fetch(
+        `https://photon.komoot.io/api/?q=${event.query.toLowerCase()}&limit=5`,
+      );
+      if (locations.features?.length > 0) {
+        filteredSuggestions.value = locations.features
+          .filter((feature) => feature.properties.type === "city")
+          .map((feature) => ({
+            name: `${feature.properties.name}, ${feature.properties.state}, ${feature.properties.country}`,
+            city: feature.properties.name,
+            value: {
+              latitude: feature.geometry.coordinates[1],
+              longitude: feature.geometry.coordinates[0],
+            },
+          }));
       }
     }
   }, 250);
@@ -60,7 +62,6 @@ const search = (event) => {
 
 const router = useRouter();
 const searchSubmit = () => {
-
   try {
     searchSchema.parse(searchForm.value);
     const bhkNoQuery = searchForm.value.bhkNo.map((bhk) => bhk.value).join("+");
@@ -89,7 +90,7 @@ const searchSubmit = () => {
 };
 // onMounted
 
-onMounted(async () => {});
+onMounted(async () => { });
 
 function getLocation() {
   if ("geolocation" in navigator) {
@@ -100,18 +101,18 @@ function getLocation() {
         `https://nominatim.openstreetmap.org/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&format=json`,
       )
         .then(async (res) => {
-let city = 'noname'
-if(res?.address){
-  city = res.address.county
-} 
-     
+          let city = "noname";
+          if (res?.address) {
+            city = res.address.county;
+          }
+
           searchForm.value.location = {
             name: city,
             city: city,
             value: {
               latitude: position.coords.latitude,
               longitude: position.coords.longitude,
-            }
+            },
           };
         })
         .catch((err) => {
@@ -135,11 +136,8 @@ if(res?.address){
 <template>
   <div class="flex flex-col justify-center items-center">
     <div class="absolute top-0 left-0 w-screen h-1/2 -z-10 bg-blue-800">
-      <img
-        src="https://assets.lummi.ai/assets/QmXiqJnBwdNhTuuWUpTdbzVGcJsgHez2Te61WcEaHxfxeo?auto=format&w=1500"
-        alt=""
-        class="h-full w-screen object-cover opacity-70"
-      />
+      <img src="https://assets.lummi.ai/assets/QmXiqJnBwdNhTuuWUpTdbzVGcJsgHez2Te61WcEaHxfxeo?auto=format&w=1500" alt=""
+        class="h-full w-screen object-cover opacity-70" />
     </div>
 
     <div class="max-w-xl flex flex-col gap-8 p-5 py-10">
@@ -163,41 +161,33 @@ if(res?.address){
           </template>
 
           <template #content>
-            <form
-              class="flex flex-col gap-3 justify-center items-center"
-              @submit.prevent="searchSubmit"
-            >
-              <div class="">
-                <SelectButton
-                  v-model="searchForm.bhkNo"
-                  :pt="{ button: 'px-3 py-2', label: 'text-sm md:text-lg' }"
-                  :options="bhkOptions"
-                  optionLabel="name"
-                  multiple
-                  aria-labelledby="multiple"
-                />
+            <form class="flex flex-col gap-3 justify-center items-center" @submit.prevent="searchSubmit">
+              <div class="flex jsutify-center items-center flex-col">
+<label for="slider" class="text-sm font-bold text-gray-500 my-3 block">Property Type : <span class="text-blue-500">{{
+                  searchForm.propertyType }}</span></label>
+                <SelectButton v-model="searchForm.propertyType" :options="propertyType" aria-labelledby="custom">
+                  <template #option="slotProps">
+                    <Icon :name="slotProps.option == 'Residential'
+                        ? 'ph:house'
+                        : 'ph:buildings'
+                      " class="mr-2" />
+                  </template>
+                </SelectButton>
+              </div>
+              <div class="" v-if="searchForm.propertyType === 'Residential'">
+                <SelectButton v-model="searchForm.bhkNo" :pt="{ button: 'px-3 py-2', label: 'text-sm md:text-lg' }"
+                  :options="bhkOptions" optionLabel="name" multiple aria-labelledby="multiple" />
               </div>
               <div class="w-full">
-                <label for="slider" class="text-lg text-gray-500 my-3 block"
-                  >Location</label
-                >
+                <label for="slider" class="text-lg text-gray-500 my-3 block">Location</label>
 
                 <InputGroup class="bg-none">
                   <InputGroupAddon class="relative">
-                    <Icon
-                      name="ph:magnifying-glass"
-                      class="text-gray-500 absolute top-2/4 -mt-2"
-                    />
+                    <Icon name="ph:magnifying-glass" class="text-gray-500 absolute top-2/4 -mt-2" />
                   </InputGroupAddon>
 
-                  <AutoComplete
-                    v-model="searchForm.location"
-                    optionLabel="name"
-                    :suggestions="filteredSuggestions"
-                    @complete="search"
-                    placeholder="Auto Detect or Search Location"
-                    required
-                  />
+                  <AutoComplete v-model="searchForm.location" optionLabel="name" :suggestions="filteredSuggestions"
+                    @complete="search" placeholder="Auto Detect or Search Location" required />
 
                   <InputGroupAddon>
                     <Button type="button" @click="getLocation" iconOnly text>
@@ -206,37 +196,17 @@ if(res?.address){
                   </InputGroupAddon>
                 </InputGroup>
 
-                <small id="location-help"
-                  >Where are you looking for the property?</small
-                >
+                <small id="location-help">Where are you looking for the property?</small>
               </div>
 
               <div class="w-full">
-                <label for="slider" class="text-lg text-gray-500 my-3 block"
-                  >Price Range(₹{{ searchForm.priceRange[0] * 1000 }} - ₹{{
+                <label for="slider" class="text-lg text-gray-500 my-3 block">Price Range(₹{{ searchForm.priceRange[0] *
+                  1000 }} - ₹{{
                     searchForm.priceRange[1] * 1000
-                  }})</label
-                >
+                  }})</label>
                 <div class="px-2">
-                  <Slider
-                    v-model="searchForm.priceRange"
-                    range
-                    class="w-14rem"
-                  />
+                  <Slider v-model="searchForm.priceRange" range class="w-14rem" />
                 </div>
-              </div>
-              <div class="w-full">
-                <label
-                  for="propertyType"
-                  class="text-lg text-gray-500 my-3 block"
-                  >Property Type</label
-                >
-                <Dropdown
-                  v-model="searchForm.propertyType"
-                  :options="propertyType"
-                  placeholder="Select Property Type"
-                  class="w-full"
-                />
               </div>
               <Button type="submit" class="flex gap-3 w-full">
                 <Icon name="ph:magnifying-glass" />

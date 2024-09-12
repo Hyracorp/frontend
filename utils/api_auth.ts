@@ -6,4 +6,19 @@ export const useAuthAPI = (fetch) => ({
     });
     return res;
   },
+  registerUser: async (data): Promise => {
+    const res = await fetch("/auth/register", {
+      method: "POST",
+      body: data,
+    });
+    return res;
+  },
+  verifyUser: async (data): Promise => {
+    const res = await fetch("/auth/verify", {
+      method: "POST",
+      body: data,
+    });
+    return res;
+  },
+
 });
