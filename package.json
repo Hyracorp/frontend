@@ -14,13 +14,17 @@
   "dependencies": {
     "@nuxt/eslint": "latest",
     "@pinia/nuxt": "^0.5.1",
+    "@vee-validate/nuxt": "^4.12.8",
+    "leaflet": "^1.9.4",
     "nuxt": "^3.11.2",
     "primevue": "^3.51.0",
     "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
+    "vue-router": "^4.3.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.3.7",
+    "@nuxtjs/device": "^3.1.1",
     "@nuxtjs/eslint-module": "^4.1.0",
     "@nuxtjs/tailwindcss": "^6.11.4",
     "eslint": "^9.0.0",
