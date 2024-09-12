@@ -131,6 +131,7 @@ function getLocation() {
     });
   }
 }
+let searchModal = ref(false);
 </script>
 
 <template>
@@ -139,32 +140,77 @@ function getLocation() {
       <img src="https://assets.lummi.ai/assets/QmXiqJnBwdNhTuuWUpTdbzVGcJsgHez2Te61WcEaHxfxeo?auto=format&w=1500" alt=""
         class="h-full w-screen object-cover opacity-70" />
     </div>
-
-    <div class="max-w-xl flex flex-col gap-8 p-5 py-10">
+    <div class="w-full flex flex-col gap-8 p-5 py-10">
       <!-- Main Text -->
-      <div class="">
+      <div class="text-center md:text-left">
         <h3 class="text-3xl font-bold text-white">Find your next home</h3>
         <p class="text-lg text-gray-100">
           search across 10000+ verified properties
         </p>
       </div>
-      <!-- Hero Search Card -->
-      <div class="">
-        <Card class="md:p-5" :pt="{ root: 'shadow-2xl' }">
-          <template #title>
-            <div class="text-center">
-              <h3>Search by location</h3>
+    </div>
+    <div class="w-full">
+      <Card class="md:p-5" :pt="{ root: 'shadow-xl' }">
+        <template #content>
+          <div class="flex gap-5 md:flex-row flex-col flex-wrap w-full justify-center items-center">
+            <div class="text-center md:text-left">
+              <h3 class="text-2xl font-bold text-gray-500">
+                Search by location
+              </h3>
               <p class="text-sm font-medium text-gray-500">
                 Find your perfect property all over india
               </p>
             </div>
+            <div class="lg:w-2/3 flex flex-wrap gap-3">
+              <div class="md:max-w-xs lg:max-w-md w-full">
+                <InputGroup class="bg-none">
+                  <InputGroupAddon class="relative">
+                    <Icon name="ph:magnifying-glass" class="text-gray-500 absolute top-2/4 -mt-2" />
+                  </InputGroupAddon>
+
+                  <AutoComplete v-model="searchForm.location" optionLabel="name" :suggestions="filteredSuggestions"
+                    @complete="search" placeholder="Auto Detect or Search Location" required  />
+
+                  <InputGroupAddon>
+                    <Button type="button" @click="getLocation" iconOnly text>
+                      <Icon name="ph:map-pin" />
+                    </Button>
+                  </InputGroupAddon>
+                </InputGroup>
+
+                <small id="location-help">Where are you looking for the property?</small>
+              </div>
+              <div class="md:w-48 lg:max-w-md w-full">
+                <Button @click="searchModal = true" label="Search" class="md:max-w-md w-full text-center md:text-right" size="large"></Button>
+              </div>
+            </div>
+          </div>
+        </template>
+      </Card>
+    </div>
+    <Dialog v-model:visible="searchModal" modal>
+      <!-- Hero Search Card -->
+     
+      
+          <template #header>
+            <div class="text-left">
+             <h3 class="text-2xl font-bold text-gray-500">
+                Search by location
+              </h3>
+              <p class="text-sm font-medium text-gray-500">
+                Find your perfect property all over india
+              </p>
+
+            </div>
           </template>
 
-          <template #content>
+       
             <form class="flex flex-col gap-3 justify-center items-center" @submit.prevent="searchSubmit">
               <div class="flex jsutify-center items-center flex-col">
-<label for="slider" class="text-sm font-bold text-gray-500 my-3 block">Property Type : <span class="text-blue-500">{{
-                  searchForm.propertyType }}</span></label>
+                <label for="slider" class="text-sm font-bold text-gray-500 my-3 block">Property Type :
+                  <span class="text-blue-500">{{
+                    searchForm.propertyType
+                    }}</span></label>
                 <SelectButton v-model="searchForm.propertyType" :options="propertyType" aria-labelledby="custom">
                   <template #option="slotProps">
                     <Icon :name="slotProps.option == 'Residential'
@@ -201,7 +247,8 @@ function getLocation() {
 
               <div class="w-full">
                 <label for="slider" class="text-lg text-gray-500 my-3 block">Price Range(₹{{ searchForm.priceRange[0] *
-                  1000 }} - ₹{{
+                  1000 }} -
+                  ₹{{
                     searchForm.priceRange[1] * 1000
                   }})</label>
                 <div class="px-2">
@@ -213,9 +260,9 @@ function getLocation() {
                 <div class="">Find Property..</div>
               </Button>
             </form>
-          </template>
-        </Card>
-      </div>
-    </div>
+       
+    
+
+    </Dialog>
   </div>
 </template>

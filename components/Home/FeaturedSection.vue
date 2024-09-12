@@ -13,7 +13,7 @@ onMounted(async () => {
 });
 </script>
 <template>
-  <div class="py-10 p-5">
+  <div class="p-5">
     <div class="py-10">
       <h1 class="text-3xl font-bold text-gray-600">Featured Properties</h1>
     </div>
