@@ -33,7 +33,9 @@ async function initMap() {
 }
 
 onMounted(async () => {
-  await initMap();
+if(process.client){
+  await initMap()  
+} 
 });
 
 watchEffect(() => {

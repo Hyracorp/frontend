@@ -22,7 +22,10 @@ async function initMap() {
         
     }
 onMounted(async () => {
+  if(process.client){
     await initMap()
+  }
+    
     if(mapPicker.value){
  
  mapPicker.value.on('click', (e) => { 
