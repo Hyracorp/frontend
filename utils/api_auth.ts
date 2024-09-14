@@ -14,7 +14,14 @@ export const useAuthAPI = (fetch) => ({
     return res;
   },
   verifyUser: async (data): Promise => {
-    const res = await fetch("/auth/verify", {
+    const res = await fetch("/auth/verify-email", {
+      method: "POST",
+      body: data,
+    });
+    return res;
+  },
+  resendOTP: async (data): Promise => {
+    const res = await fetch("/auth/resend-otp", {
       method: "POST",
       body: data,
     });
