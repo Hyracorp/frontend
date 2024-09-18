@@ -22,7 +22,10 @@ async function initMap() {
     
     }
 onMounted(async () => {
+  if(process.client){
     await initMap()
+  }
+    
 })
 </script>
 
