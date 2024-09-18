@@ -112,7 +112,7 @@ const editMode = ref(false);
                       item.expected_rate_rent }}/Month</span>
                     <div class="flex flex-row-reverse sm:flex-row gap-2">
                       <NuxtLink :to="`/property/${item.id}`" target="_blank">
-                        <Button class="" size="small">
+                        <Button class="py-6" size="small">
                           <Icon name="ph:eye" class="text-xl" />
                         </Button>
                       </NuxtLink>

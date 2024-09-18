@@ -1,4 +1,4 @@
-< <script setup lang="ts">
+<script setup lang="ts">
 // import necessary imports
 import Map from "./Map.vue";
 import MapPicker from "./MapPicker.vue";
@@ -212,7 +212,8 @@ async function submitForm() {
   } else {
     let formattedData = ref(null);
     try {
-      if (propertyTypeCommercial == true) {
+      console.log("Commercial check", propertyTypeCommercial.value)
+      if (propertyTypeCommercial.value == true) {
         const commercialCheck = commercialPropertySchema.parse(
           addPropertyForm.value,
         );
@@ -276,7 +277,7 @@ async function submitForm() {
 }
 </script>
 
-  < <template>
+  <template>
     <div>
       <Stepper linear :orientation="device?.isDesktop ? 'horizontal' : 'vertical'" class="min-w-sm w-full">
         <StepperPanel header="Property Type">

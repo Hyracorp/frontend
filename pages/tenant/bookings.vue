@@ -24,4 +24,5 @@ definePageMeta({
   <div class="h-full w-full flex items-center justify-center ">
     <TenantBookings :bookings="bookings"  />
   </div>
+  <FooterSection class="" />
 </template>

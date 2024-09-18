@@ -9,4 +9,5 @@ definePageMeta({
   <div class="">
     <TenantSettings/>
   </div>
+  <FooterSection class="" />
 </template>

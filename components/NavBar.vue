@@ -61,20 +61,17 @@ onMounted(async () => {
             <div class="flex">
                 <NuxtLink :to="loginStatus&&user!==null&&loginStatus===true?`/${userType}`:'/login'" class="">
                     <Button type="button" class="p-1 py-3"    text>
-                    <div v-if="loginStatus===true && user!==null">
-                        <h3 class="font-bold text-blue-400 px-2"> {{ user.first_name }}</h3>
-                    </div>
-                    <Icon name="ph:user-circle" color="black" class="text-3xl" />
-
+                        <div v-if="loginStatus===true && user!==null">
+                            <h3 class="font-bold text-blue-400 px-2"> {{ user.first_name }}</h3>
+                        </div>
+                        <Icon name="ph:user-circle" color="black" class="text-3xl" />
                     </Button>
-</NuxtLink>
+                </NuxtLink>
 
                 <Button type="button" aria-haspopup="true" aria-controls="overlay_menu" class=" p-1 py-3" text  @click="toggle" >
-<Icon name="ph:list" color="black" class="text-3xl" />
-
-</Button>
+                    <Icon name="ph:list" color="black" class="text-3xl" />
+                </Button>
             </div>
-
         </div>
         <Menu id="overlay_menu" ref="menu" :model="menuItems" :popup="true"  >
             <template #start>
@@ -91,6 +88,4 @@ onMounted(async () => {
             </template>
         </Menu>
     </div>
-
-
 </template>

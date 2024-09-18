@@ -147,111 +147,143 @@ async function logoutUser() {
   navigateTo("/login");
 }
 </script>
+
 <template>
-  <div class="p-5 flex flex-col gap-5">
-    <div class="text-2xl font-bold">Settings</div>
-
-    <div class="">
-      <div v-if="user" class="flex flex-col gap-5">
-        <Card class="w-full">
-          <template #title>
-            <div class="w-full flex justify-end">
-              <Button text @click="logoutUser">
-                Sign out
-                <Icon name="ph:sign-out" class="text-xl" />
-              </Button>
-            </div>
-          </template>
-          <template #content>
-            <div class="flex flex-col gap-3">
-              <div class="flex justify-between items-center w-full">
-                <div class="flex gap-3 items-center">
-                  <Avatar :label="user?.first_name.charAt(0)" size="xlarge" shape="circle" />
-                  <div>{{ user?.first_name }} {{ user?.last_name }}</div>
-                </div>
-              </div>
-              <Divider />
-              <div class="text-gray-500">
-                {{ user?.email }}
-              </div>
-              <Divider />
-            </div>
-          </template>
-        </Card>
-        <Card>
-          <template #title>
-            <div class="w-full flex justify-between">
-              <div class="text-xl font-bold">Profile</div>
-              <div class="">
-                <Button rounded>
-                  <Icon name="ph:pencil" class="text-xl" @click="profileUpdateVisible = true" />
-                </Button>
-              </div>
-            </div>
-          </template>
-          <template #content>
-            <div class="flex flex-col gap-3">
-              <div v-for="item in Object.entries(profileData)" :key="item">
-                <Divider />
-                <div class="text-lg text-gray-900">
-                  <span class="text-gray-500 font-bold mr-2 capitalize">{{ item[0] }} :
-                  </span>
-                  : {{ item[1] }}
-                </div>
-              </div>
-            </div>
-          </template>
-        </Card>
-      </div>
-      <div v-else>
-        <Skeleton width="300px" height="100px" />
-      </div>
-    </div>
-    <Dialog v-model:visible="profileUpdateVisible" modal class="max-w-md w-full">
-      <form>
-        <div class="flex flex-col gap-3">
-          <div class="text-xl font-bold">Update Profile</div>
-          <div class="flex flex-col gap-3">
-   <div class="flex flex-col gap-3">
-              <label for="country" class="text-gray-500 font-bold">Gender</label>
-              <Dropdown v-model="profileData.gender" :options="genderOptions"  placeholder="Select Gender" class="w-full" />
-            </div><div class="flex flex-col gap-3">
-              <label for="country" class="text-gray-500 font-bold">Marital Status</label>
-              <Dropdown v-model="profileData.marital_status" :options="maritalStatusOptions"  placeholder="Select Marital Status" class="w-full" />
-            </div><div class="flex flex-col gap-3">
-              <label for="country" class="text-gray-500 font-bold">Occupation</label>
-              <Dropdown v-model="profileData.occupation" :options="occupationOptions"  placeholder="Select Occupation" class="w-full" />
-            </div>
-            <div class="flex flex-col gap-3">
-              <label for="phone" class="text-gray-500 font-bold">Phone</label>
-              <InputText v-model="profileData.phone_number" type="text" placeholder="Phone" />
-            </div>
-            <div class="flex flex-col gap-3">
-              <label for="Address" class="text-gray-500 font-bold">Address</label>
-              <InputText v-model="profileData.address" type="text" placeholder="Address" />
-            </div>
-            <div class="flex flex-col gap-3">
-              <label for="pincode" class="text-gray-500 font-bold">Pincode</label>
-              <InputNumber v-model="profileData.zip_code" @input="fetchZipData" inputId="integeronly" :max="999999"
-                :min="100000" :useGrouping="false" placeholder="Enter zipcode" class="w-full" />
-            </div>
-            <div class="flex flex-col gap-3">
-              <label for="city" class="text-gray-500 font-bold">City</label>
-              <InputText v-model="profileData.city" type="text" placeholder="City" disabled />
-            </div>
-            <div class="flex flex-col gap-3">
-              <label for="state" class="text-gray-500 font-bold">State</label>
-              <InputText v-model="profileData.state" type="text" placeholder="State" disabled />
-            </div>
-            <div class="flex flex-col gap-3">
-              <label for="country" class="text-gray-500 font-bold">Country</label>
-              <InputText v-model="profileData.country" type="text" placeholder="Country" disabled />
-            </div>
-
-            <Button label="Update" severity="info" class="p-3 w-full" raised @click="profileSubmit" />
+  <div class="dashboard p-5 flex flex-col gap-6 bg-gray-100 min-h-screen">
+    <div class="text-3xl font-bold text-gray-800">Dashboard Settings</div>
+    
+    <div v-if="user" class="dashboard-content flex flex-col lg:flex-row gap-6">
+      <!-- Profile Card -->
+      <Card class="profile-card w-full lg:w-1/3 p-5 bg-white shadow-md rounded-lg">
+        <template #title>
+          <div class="flex justify-between">
+            <div class="text-lg font-bold text-gray-700">Profile Info</div>
+            <Button text @click="logoutUser" class="text-red-500">
+              Sign out
+              <Icon name="ph:sign-out" class="text-xl" />
+            </Button>
           </div>
+        </template>
+        <template #content>
+          <div class="flex flex-col gap-5">
+            <div class="flex gap-3 items-center">
+              <Avatar :label="user?.first_name.charAt(0)" size="xlarge" shape="circle" class="border-gray-300" />
+              <div class="text-gray-800 text-xl">{{ user?.first_name }} {{ user?.last_name }}</div>
+            </div>
+            <Divider />
+            <div class="text-gray-500">{{ user?.email }}</div>
+          </div>
+        </template>
+      </Card>
+      
+      <!-- Profile Data Card -->
+      <Card class="profile-data-card w-full lg:w-2/3 p-5 bg-white shadow-md rounded-lg">
+        <template #title>
+          <div class="flex justify-between items-center">
+            <div class="text-lg font-bold text-gray-700">Profile Details</div>
+            <Button rounded @click="profileUpdateVisible = true" class="text-blue-500">
+              <Icon name="ph:pencil" class="text-xl text-white" />
+            </Button>
+          </div>
+        </template>
+        <template #content>
+          <!-- Responsive grid layout: 1 column on small devices, 2 columns on large -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div v-for="(value, key) in profileData" :key="key" class="flex flex-col">
+              <span class="text-gray-500 text-sm font-bold capitalize">{{ key }}:</span>
+              <span class="text-gray-800">{{ value }}</span>
+              <Divider />
+            </div>
+          </div>
+        </template>
+      </Card>
+    </div>
+
+    <!-- Update Profile Dialog -->
+    <Dialog v-model:visible="profileUpdateVisible" modal class="max-w-md w-full">
+      <form class="space-y-4">
+        <div class="text-xl font-bold text-gray-700">Update Profile</div>
+        
+        <!-- Profile Form Fields -->
+        <div class="space-y-4">
+          <div class="form-field">
+            <label for="gender" class="text-gray-500 font-bold">Gender</label>
+            <Dropdown v-model="profileData.gender" :options="genderOptions" placeholder="Select Gender" class="w-full" />
+          </div>
+          <div class="form-field">
+            <label for="marital_status" class="text-gray-500 font-bold">Marital Status</label>
+            <Dropdown v-model="profileData.marital_status" :options="maritalStatusOptions" placeholder="Select Marital Status" class="w-full" />
+          </div>
+          <div class="form-field">
+            <label for="occupation" class="text-gray-500 font-bold">Occupation</label>
+            <Dropdown v-model="profileData.occupation" :options="occupationOptions" placeholder="Select Occupation" class="w-full" />
+          </div>
+          <div class="form-field">
+            <label for="phone_number" class="text-gray-500 font-bold">Phone</label>
+            <InputText v-model="profileData.phone_number" type="text" placeholder="Phone" class="w-full" />
+          </div>
+          <div class="form-field">
+            <label for="address" class="text-gray-500 font-bold">Address</label>
+            <InputText v-model="profileData.address" type="text" placeholder="Address" class="w-full" />
+          </div>
+          <div class="form-field">
+            <label for="zip_code" class="text-gray-500 font-bold">Pincode</label>
+            <InputNumber v-model="profileData.zip_code" @input="fetchZipData" inputId="integeronly" :max="999999" :min="0" />
+          </div>
+        </div>
+
+        <div class="flex justify-end gap-2">
+          <Button label="Cancel" icon="pi pi-times" text @click="profileUpdateVisible = false" class="text-red-500" />
+          <Button label="Save" icon="pi pi-check" text @click="profileSubmit" class="text-green-500" />
         </div>
       </form>
     </Dialog>
   </div>
 </template>
+
+<style scoped>
+/* Dashboard-specific styling */
+.dashboard {
+  background-color: #f7f9fc;
+}
+
+.profile-card {
+  background-color: white;
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.profile-data-card {
+  background-color: white;
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.form-field label {
+  font-weight: 600;
+  color: #333;
+}
+
+.form-field input {
+  border-radius: 6px;
+  padding: 8px;
+  border: 1px solid #dfe3e8;
+  width: 100%;
+}
+
+button {
+  font-size: 14px;
+}
+
+.card button {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  color: #006eff;
+  font-size: 1.25rem;
+}
+
+</style>
+

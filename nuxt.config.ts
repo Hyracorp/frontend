@@ -8,15 +8,18 @@ export default defineNuxtConfig({
     "@nuxtjs/device",
     "@nuxt/eslint",
   ],
+
   primevue: {
     options: {
       ripple: true,
     },
     cssLayerOrder: "tailwind-base, primevue, tailwind-utilities",
   },
+
   pinia: {
     storesDirs: ["./stores/**"],
   },
+
   css: ["primevue/resources/themes/lara-light-blue/theme.css"],
 
   app: {
@@ -29,16 +32,19 @@ export default defineNuxtConfig({
       ],
     },
   },
+
   runtimeConfig: {
     public: {
       apiBase:'/api',
       googleClientId: '',
     },
   },
-  alias: {
-    pinia: "/node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia.mjs"
-  },
+
+  // alias: {
+  //   pinia: "/node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia.mjs"
+  // },
 
   devtools: { enabled: true },
- 
+
+  compatibilityDate: "2024-09-12",
 });

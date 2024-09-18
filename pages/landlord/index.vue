@@ -1,8 +1,8 @@
 <script setup lang="ts">
 const valueTop = ref([
-    { label: 'Occupied', color1: '#34d399', color2: '#34d399', value: 50, icon: 'material-symbols-light:kid-star' },
-    { label: 'Vacant', color1: '#60a5fa', color2: '#60a5fa', value: 25, icon: 'pi pi-inbox' },
-    { label: 'Sold', color1: '#F87171', color2: '#F87171', value: 25, icon: 'pi pi-image' }
+    { label: 'Occupied', color1: '#34d399', color2: '#34d399', value: 0, icon: 'material-symbols-light:kid-star' },
+    { label: 'Vacant', color1: '#60a5fa', color2: '#60a5fa', value: 100, icon: 'pi pi-inbox' },
+    { label: 'Sold', color1: '#F87171', color2: '#F87171', value: 0, icon: 'pi pi-image' }
 ]);
 definePageMeta({
     layout: "landlord",
@@ -41,4 +41,5 @@ definePageMeta({
                 </template>
             </Card>
     </div>
+    <FooterSection class="" />
 </template>
