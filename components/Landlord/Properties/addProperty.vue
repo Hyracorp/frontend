@@ -341,7 +341,7 @@ async function submitForm() {
                 <InputText v-model="addPropertyForm.floorNo" placeholder="Enter Floor Number" class="w-full" :min="0" />
               </div>
               <div class="">
-                <label for="property_owner" class="block">Property Owner (self or others)*</label>
+                <label for="property_owner" class="block">Property Ownership (self or others)*</label>
                 <InputText v-model="addPropertyForm.propertyOwner" placeholder="Enter Property Owner" class="w-full" />
               </div>
               <div class="">
@@ -350,7 +350,7 @@ async function submitForm() {
                   :min="1" />
               </div>
               <div class="">
-                <label for="property_deposit" class="block">Expected Deposit (months of rent)*</label>
+                <label for="property_deposit" class="block">Expected Deposit*</label>
                 <InputNumber v-model="addPropertyForm.expectedDeposit" placeholder="Enter Expected Deposit"
                   class="w-full" :min="1" />
               </div>
@@ -442,7 +442,7 @@ async function submitForm() {
               <div v-if="addPropertyForm.propertyType === 'Commercial'">
                 <div class="flex flex-col gap-2">
                   <label for="property_tenant_preference" class="block">Tenant Preference*</label>
-                  <InputText v-model="addPropertyForm.tenantPreference" placeholder="Enter Tenant Preference" />
+                  <InputText v-model="addPropertyForm.tenantPreference" placeholder="For Offices / For any Commercial work etc... " />
                 </div>
                 <div class="flex flex-col gap-2">
                   <label for="property_fire" class="block">Fire and Safety*</label>

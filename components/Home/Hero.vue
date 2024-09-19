@@ -137,15 +137,19 @@ let searchModal = ref(false);
 <template>
   <div class="flex flex-col justify-center items-center">
     <div class="absolute top-0 left-0 w-screen h-1/2 -z-10 bg-blue-800">
-      <img src="https://assets.lummi.ai/assets/QmXiqJnBwdNhTuuWUpTdbzVGcJsgHez2Te61WcEaHxfxeo?auto=format&w=1500" alt=""
+      <!-- <img src="https://assets.lummi.ai/assets/QmXiqJnBwdNhTuuWUpTdbzVGcJsgHez2Te61WcEaHxfxeo?auto=format&w=1500" alt=""
+        class="h-full w-screen object-cover opacity-70" /> -->
+      <img src="https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt=""
         class="h-full w-screen object-cover opacity-70" />
     </div>
     <div class="w-full flex flex-col gap-8 p-5 py-10">
       <!-- Main Text -->
       <div class="text-center md:text-left">
-        <h3 class="text-3xl font-bold text-white">Find your next home</h3>
+        <h3 class="text-3xl font-bold text-white">
+          Rent Your <span class="slanted-text">House</span> #Home
+        </h3>
         <p class="text-lg text-gray-100">
-          search across 10000+ verified properties
+          Search Across 10000+ Verified Properties
         </p>
       </div>
     </div>
@@ -155,7 +159,7 @@ let searchModal = ref(false);
           <div class="flex gap-5 md:flex-row flex-col flex-wrap w-full justify-center items-center">
             <div class="text-center md:text-left">
               <h3 class="text-2xl font-bold text-gray-500">
-                Search by location
+                Search by Location
               </h3>
               <p class="text-sm font-medium text-gray-500">
                 Find your perfect property all over india
@@ -266,3 +270,23 @@ let searchModal = ref(false);
     </Dialog>
   </div>
 </template>
+
+<style scoped>
+
+.slanted-text {
+  display: inline-block;
+  position: relative;
+}
+
+.slanted-text::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px; 
+  background-color: white; 
+  transform: rotate(-5deg); 
+}
+
+</style>
