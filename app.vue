@@ -1,4 +1,5 @@
 <template>
+  <VitePwaManifest />
 <div v-if="loading" class="flex justify-center items-center h-screen bg-gray-100 w-screen">Loading..</div>
   <div>
     <NuxtLayout>

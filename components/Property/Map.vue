@@ -1,34 +1,35 @@
 <script setup lang="ts">
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
-import { usePropertyStore } from '@/stores/property';
+import { ref, onMounted, computed } from 'vue'
+import { usePropertyStore } from '@/stores/property'
 
-const propertyStore = usePropertyStore();
-const location = computed(() => propertyStore.property);
+const propertyStore = usePropertyStore()
+const location = computed(() => propertyStore.property)
+const mapElement = ref(null)
 
-const map=ref(null)
 async function initMap() {
-      map.value = L.map('map').setView([51.505, -0.09], 13);
-
-      // Use OpenStreetMap tiles
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(map.value);
-
-        const marker = L.marker([location.value.latitude, location.value.longitude]).addTo(map.value);
-
-        marker.bindPopup(`<b>${location.value.title}</b><br>${location.value.city}`).openPopup();
-        map.value.setView([location.value.latitude, location.value.longitude], 13);
+  if (process.client) {
+    const L = await import('leaflet')
+    const map = L.map(mapElement.value).setView([51.505, -0.09], 13)
     
-    }
-onMounted(async () => {
-  if(process.client){
-    await initMap()
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map)
+
+    const marker = L.marker([location.value.latitude, location.value.longitude]).addTo(map)
+    marker.bindPopup(`<b>${location.value.title}</b><br>${location.value.city}`).openPopup()
+    map.setView([location.value.latitude, location.value.longitude], 13)
   }
-    
+}
+
+onMounted(() => {
+  initMap()
 })
 </script>
 
 <template>
-    <div id="map" ref="map" style="height: 400px; width: 100%;" />
+  <div ref="mapElement" style="height: 400px; width: 100%;" />
 </template>
+
+<style>
+@import 'leaflet/dist/leaflet.css';
+</style>
