@@ -157,6 +157,7 @@ const props = defineProps({
 
 let propertyTypeCommercial = ref(false);
 const amenities = ref([]);
+const bhkOptions = { 1: "1 BHK", 2: "2 BHK", 3: "3 BHK", 4: "4 BHK" };
 onMounted(async () => {
   try {
     const res = await propertyAPI.fetchAmenities();
@@ -174,6 +175,7 @@ onMounted(async () => {
       if (res) {
         let formattedRes = convertKeysToCamel(res);
         addPropertyForm.value = formattedRes;
+        addPropertyForm.value.bhk = bhkOptions[formattedRes.bhk];
         addPropertyForm.value.pincode = Number(formattedRes.pincode);
         if (addPropertyForm.value.latitude && addPropertyForm.value.longitude) {
           setLocation({
@@ -402,6 +404,10 @@ async function submitForm() {
               <div class="flex flex-col gap-2">
                 <label for="property_description" class="block">Description*</label>
                 <Textarea v-model="addPropertyForm.description" placeholder="Enter Description" class="w-full" />
+              </div>
+              <div class="flex gap-4">
+                <label for="property_insured" class="block">Property Insured*</label>
+                <InputSwitch v-model="addPropertyForm.propertyInsured" />
               </div>
               <!-- residential specific fields -->
               <div v-if="addPropertyForm.propertyType === 'Residential'" class="flex flex-col gap-2">

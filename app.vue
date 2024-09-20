@@ -1,4 +1,5 @@
 <template>
+  <VitePwaManifest />
   <div v-if="loading" class="loading-container flex justify-center items-center h-screen w-screen bg-gray-100">
     <div class="loader">
       <div class="dot"></div>

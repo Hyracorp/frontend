@@ -4,6 +4,7 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "nuxt-primevue",
     "@pinia/nuxt",
+    "@vite-pwa/nuxt",
     "nuxt-icon",
     "@nuxtjs/device",
     "@nuxt/eslint",
@@ -35,15 +36,57 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      apiBase:'/api',
-      googleClientId: '',
+      apiBase: "/api",
+      googleClientId: "",
     },
   },
-  // alias: {
-  //   pinia: "/node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia.mjs"
-  // },
+  pwa: {
+    registerType: "autoUpdate",
+
+    manifest: {
+      name: "Hyracorp",
+      short_name: "hyracorp",
+      start_url: "/",
+      description: "Search across 10000+ verified property listings",
+      display: "standalone",
+      orientation: "portrait",
+      theme_color: "#120e4b",
+      icons: [
+        {
+          src: "img/pwa-192x192.png",
+          sizes: "192x192",
+          type: "image/png",
+        },
+        {
+          src: "img/pwa-512x512.png",
+          sizes: "512x512",
+          type: "image/png",
+        },
+        {
+          src: "img/pwa-maskable-512x512.png",
+          sizes: "512x512",
+          type: "image/png",
+          purpose: "any maskable",
+        },
+      ],
+    },
+    workbox: {
+      navigateFallback: "/",
+      globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
+    },
+    client: {
+      installPrompt: true,
+    },
+    devOptions: {
+      enabled: true,
+      suppressWarnings: true,
+      navigateFallbackAllowlist: [/^\/$/],
+      type: "module",
+    },
+  },
+  alias: {
+    pinia: "/node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia.mjs"
+  },
 
   devtools: { enabled: true },
-
-  compatibilityDate: "2024-09-12",
 });
