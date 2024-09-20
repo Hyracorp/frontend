@@ -28,7 +28,7 @@ onUnmounted(() => {
 <template>
     <div class="max-w-screen overflow-hidden">
         <NavBar v-if="showMenu" class="fixed top-0 w-full z-50 bg-white" :user="user" :loginStatus="loginStatus" />
-        <div class="py-32 min-h-[90vh]">
+        <div class="md:py-32 py-[80px] min-h-[90vh]">
             <slot />
         </div>
         <FooterSection />

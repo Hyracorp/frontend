@@ -23,7 +23,6 @@
   
 
 <script setup>
-import FirstSignup from './FirstSignup.vue';
 
 
 </script>

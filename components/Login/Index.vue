@@ -33,6 +33,8 @@ const redirect_url = route.query.redirect_url;
               <span class="block mt-2 text-lg">Don’t have an account?
                 <nuxt-link to="/signup" class="text-blue-500">
                   Signup Here</nuxt-link></span>
+              <nuxt-link to="/reset" class="text-blue-500">
+                    Forgot Password ?</nuxt-link>
             </div>
           </span>
         </template>

@@ -161,9 +161,35 @@ async function logoutUser() {
               <Avatar :label="user?.first_name.charAt(0)" size="xlarge" shape="circle" class="border-gray-300" />
               <div class="text-gray-800 text-xl">{{ user?.first_name }} {{ user?.last_name }}</div>
             </div>
+            <div class="text-gray-500">Registered Email : <b>{{ user?.email }}</b></div>
             <Divider />
-            <div class="text-gray-500">{{ user?.email }}</div>
           </div>
+          <div class="text-gray-700 font-bold mt-5">ID Details</div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-3">
+              <div class="flex flex-col">
+                <span class="text-gray-500 text-sm font-bold mt-2">ID Image:</span>
+                <img src="https://www.paisabazaar.com/wp-content/uploads/2018/06/Aadhaar-helps-the-government-and-the-citizens.jpg" alt="ID Image" class="w-full rounded-lg shadow-md mt-2" />
+              </div>
+              <div class="flex flex-col">
+                <span class="text-gray-500 text-sm font-bold mt-4">ID Type:</span>
+                <span class="text-gray-800 mt-2">Aadhaar</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-gray-500 text-sm font-bold mt-4">ID Number:</span>
+                <span class="text-gray-800 mt-2">1243 1524 2356</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-gray-500 text-sm font-bold mt-4">Name on ID:</span>
+                <span class="text-gray-800 mt-2">Darkweb Player</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-gray-500 text-sm font-bold mt-4">Approval Status:</span>
+                <span class="text-green-400 mt-2">Approved</span>
+              </div>
+            </div>
+            <Button rounded @click="" class="text-blue-500 mt-5">
+              <Icon name="ph:pencil" class="text-xl text-white" />
+            </Button>
         </template>
       </Card>
 
