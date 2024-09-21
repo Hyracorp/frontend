@@ -23,5 +23,5 @@ definePageMeta({
     <div class="w-full p-5">
        <LandlordBookings :bookings="bookings"/>
     </div>
-    <FooterSection class="" />
+
 </template>

@@ -9,5 +9,5 @@ definePageMeta({
     <div class="w-full p-5">
         <LandlordProperties />
     </div>
-    <FooterSection class="" />
+
 </template>

@@ -25,29 +25,45 @@ let profileData = ref({
   occupation: "",
 });
 const genderOptions = ["Male", "Female", "Other"];
-const maritalStatusOptions = ["Married", "Unmarried"];
+const maritalStatusOptions = ["Married", "Single"];
 const occupationOptions = ["Student", "Employed", "Unemployed"];
 const toast = useToast();
 const profileUpdateVisible = ref(false);
 //utils
-async function fetchZipData(input) {
-  if (String(input.value).length === 6) {
-    $fetch(`https://api.postalpincode.in/pincode/${input.value}`).then(
-      async (res) => {
-        if (res[0].Status === "Success") {
-          profileData.value.city = res[0].PostOffice[0].Block;
-          profileData.value.state = res[0].PostOffice[0].State;
-          profileData.value.country = res[0].PostOffice[0].Country;
-        } else {
-          toast.add({
-            severity: "error",
-            summary: "Error",
-            detail: "Invalid Pincode",
-            life: 3000,
-          });
-        }
-      },
-    );
+async function fetchZipData() {
+
+  if (profileData.value.zip_code) {
+    if (String(profileData.value.zip_code).length === 6) {
+      $fetch(`https://api.postalpincode.in/pincode/${profileData.value.zip_code}`).then(
+        async (res) => {
+          if (res[0].Status === "Success") {
+            profileData.value.city = res[0].PostOffice[0].Block;
+            profileData.value.state = res[0].PostOffice[0].State;
+            profileData.value.country = res[0].PostOffice[0].Country;
+            toast.add({
+              severity: "success",
+              summary: "Success",
+              detail: "Pincode Found",
+              life: 3000,
+            })
+          } else {
+            toast.add({
+              severity: "error",
+              summary: "Error",
+              detail: "Invalid Pincode",
+              life: 3000,
+            });
+          }
+        },
+      );
+    } else {
+      toast.add({
+        severity: "error",
+        summary: "Error",
+        detail: "Invalid Pincode",
+        life: 3000,
+      })
+    }
   }
 }
 watchEffect(async () => {
@@ -105,10 +121,11 @@ async function profileSubmit() {
         profileUpdateVisible.value = false;
       }
     } else {
+      console.log(profile.value);
       const res = await profileAPI.updateProfile(
         profileData.value,
         userType.value,
-        profile.value.lId,
+        profile.value.tId,
       );
       if (res) {
         toast.add({
@@ -151,7 +168,7 @@ async function logoutUser() {
 <template>
   <div class="dashboard p-5 flex flex-col gap-6 bg-gray-100 min-h-screen">
     <div class="text-3xl font-bold text-gray-800">Dashboard Settings</div>
-    
+
     <div v-if="user" class="dashboard-content flex flex-col lg:flex-row gap-6">
       <!-- Profile Card -->
       <Card class="profile-card w-full lg:w-1/3 p-5 bg-white shadow-md rounded-lg">
@@ -168,41 +185,46 @@ async function logoutUser() {
           <div class="flex flex-col gap-5">
             <div class="flex gap-3 items-center">
               <Avatar :label="user?.first_name.charAt(0)" size="xlarge" shape="circle" class="border-gray-300" />
-              <div class="text-gray-800 text-xl">{{ user?.first_name }} {{ user?.last_name }}</div>
+              <div class="text-gray-800 text-xl">
+                {{ user?.first_name }} {{ user?.last_name }}
+              </div>
             </div>
-            <div class="text-gray-500">Registered Email : <b>{{ user?.email }}</b></div>
+            <div class="text-gray-500">
+              Registered Email : <b>{{ user?.email }}</b>
+            </div>
             <Divider />
           </div>
           <div class="text-gray-700 font-bold mt-5">ID Details</div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-3">
-              <div class="flex flex-col">
-                <span class="text-gray-500 text-sm font-bold mt-2">ID Image:</span>
-                <img src="https://www.paisabazaar.com/wp-content/uploads/2018/06/Aadhaar-helps-the-government-and-the-citizens.jpg" alt="ID Image" class="w-full rounded-lg shadow-md mt-2" />
-              </div>
-              <div class="flex flex-col">
-                <span class="text-gray-500 text-sm font-bold mt-4">ID Type:</span>
-                <span class="text-gray-800 mt-2">Aadhaar</span>
-              </div>
-              <div class="flex flex-col">
-                <span class="text-gray-500 text-sm font-bold mt-4">ID Number:</span>
-                <span class="text-gray-800 mt-2">1243 1524 2356</span>
-              </div>
-              <div class="flex flex-col">
-                <span class="text-gray-500 text-sm font-bold mt-4">Name on ID:</span>
-                <span class="text-gray-800 mt-2">Tenant Hyracorp</span>
-              </div>
-              <div class="flex flex-col">
-                <span class="text-gray-500 text-sm font-bold mt-4">Approval Status:</span>
-                <span class="text-green-400 mt-2">Approved</span>
-              </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-3 hidden">
+            <div class="flex flex-col">
+              <span class="text-gray-500 text-sm font-bold mt-2">ID Image:</span>
+              <img
+                src="https://www.paisabazaar.com/wp-content/uploads/2018/06/Aadhaar-helps-the-government-and-the-citizens.jpg"
+                alt="ID Image" class="w-full rounded-lg shadow-md mt-2" />
             </div>
-            <Button rounded @click="" class="text-blue-500 mt-5">
-              <Icon name="ph:pencil" class="text-xl text-white" />
-            </Button>
+            <div class="flex flex-col">
+              <span class="text-gray-500 text-sm font-bold mt-4">ID Type:</span>
+              <span class="text-gray-800 mt-2">Aadhaar</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-gray-500 text-sm font-bold mt-4">ID Number:</span>
+              <span class="text-gray-800 mt-2">1243 1524 2356</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-gray-500 text-sm font-bold mt-4">Name on ID:</span>
+              <span class="text-gray-800 mt-2">Tenant Hyracorp</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-gray-500 text-sm font-bold mt-4">Approval Status:</span>
+              <span class="text-green-400 mt-2">Approved</span>
+            </div>
+          </div>
+          <Button rounded @click="" class="text-blue-500 mt-5">
+            <Icon name="ph:pencil" class="text-xl text-white" />
+          </Button>
         </template>
       </Card>
-      
-      
+
       <!-- Profile Data Card -->
       <Card class="profile-data-card w-full lg:w-2/3 p-5 bg-white shadow-md rounded-lg">
         <template #title>
@@ -230,20 +252,23 @@ async function logoutUser() {
     <Dialog v-model:visible="profileUpdateVisible" modal class="max-w-md w-full">
       <form class="space-y-4">
         <div class="text-xl font-bold text-gray-700">Update Profile</div>
-        
+
         <!-- Profile Form Fields -->
         <div class="space-y-4">
           <div class="form-field">
             <label for="gender" class="text-gray-500 font-bold">Gender</label>
-            <Dropdown v-model="profileData.gender" :options="genderOptions" placeholder="Select Gender" class="w-full" />
+            <Dropdown v-model="profileData.gender" :options="genderOptions" placeholder="Select Gender"
+              class="w-full" />
           </div>
           <div class="form-field">
             <label for="marital_status" class="text-gray-500 font-bold">Marital Status</label>
-            <Dropdown v-model="profileData.marital_status" :options="maritalStatusOptions" placeholder="Select Marital Status" class="w-full" />
+            <Dropdown v-model="profileData.marital_status" :options="maritalStatusOptions"
+              placeholder="Select Marital Status" class="w-full" />
           </div>
           <div class="form-field">
             <label for="occupation" class="text-gray-500 font-bold">Occupation</label>
-            <Dropdown v-model="profileData.occupation" :options="occupationOptions" placeholder="Select Occupation" class="w-full" />
+            <Dropdown v-model="profileData.occupation" :options="occupationOptions" placeholder="Select Occupation"
+              class="w-full" />
           </div>
           <div class="form-field">
             <label for="phone_number" class="text-gray-500 font-bold">Phone</label>
@@ -255,7 +280,25 @@ async function logoutUser() {
           </div>
           <div class="form-field">
             <label for="zip_code" class="text-gray-500 font-bold">Pincode</label>
-            <InputNumber v-model="profileData.zip_code" @input="fetchZipData" inputId="integeronly" :max="999999" :min="0" />
+            <div class="flex gap-3">
+              <InputNumber v-model="profileData.zip_code" inputId="integeronly" :useGrouping="false" :max="999999"
+                :min="0" autoComplete="new-password"  />
+              <Button @click="fetchZipData" size="small" class="text-xs">
+                <Icon name="ph:check" class="text-sm" />
+              </Button>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="city" class="text-gray-500 font-bold">City</label>
+            <InputText v-model="profileData.city" type="text" placeholder="City" class="w-full" disabled />
+          </div>
+          <div class="form-field">
+            <label for="state" class="text-gray-500 font-bold">State</label>
+            <InputText v-model="profileData.state" type="text" placeholder="State" class="w-full" disabled />
+          </div>
+          <div class="form-field">
+            <label for="country" class="text-gray-500 font-bold">Country</label>
+            <InputText v-model="profileData.country" type="text" placeholder="Country" class="w-full" disabled />
           </div>
         </div>
 
@@ -306,11 +349,8 @@ button {
 
 .card button {
   margin-left: auto;
-  display: flex;
-  align-items: center;
+  display: flex;  align-items: center;
   color: #006eff;
   font-size: 1.25rem;
 }
-
 </style>
-

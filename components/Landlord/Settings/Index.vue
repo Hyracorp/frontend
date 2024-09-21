@@ -24,24 +24,40 @@ let profileData = ref({
 const toast = useToast();
 const profileUpdateVisible = ref(false);
 //utils
-async function fetchZipData(input) {
-  if (String(input.value).length === 6) {
-    $fetch(`https://api.postalpincode.in/pincode/${input.value}`).then(
-      async (res) => {
-        if (res[0].Status === "Success") {
-          profileData.value.city = res[0].PostOffice[0].Block;
-          profileData.value.state = res[0].PostOffice[0].State;
-          profileData.value.country = res[0].PostOffice[0].Country;
-        } else {
-          toast.add({
-            severity: "error",
-            summary: "Error",
-            detail: "Invalid Pincode",
-            life: 3000,
-          });
-        }
-      },
-    );
+async function fetchZipData() {
+
+  if (profileData.value.zip_code) {
+    if (String(profileData.value.zip_code).length === 6) {
+      $fetch(`https://api.postalpincode.in/pincode/${profileData.value.zip_code}`).then(
+        async (res) => {
+          if (res[0].Status === "Success") {
+            profileData.value.city = res[0].PostOffice[0].Block;
+            profileData.value.state = res[0].PostOffice[0].State;
+            profileData.value.country = res[0].PostOffice[0].Country;
+            toast.add({
+              severity: "success",
+              summary: "Success",
+              detail: "Pincode Found",
+              life: 3000,
+            })
+          } else {
+            toast.add({
+              severity: "error",
+              summary: "Error",
+              detail: "Invalid Pincode",
+              life: 3000,
+            });
+          }
+        },
+      );
+    } else {
+      toast.add({
+        severity: "error",
+        summary: "Error",
+        detail: "Invalid Pincode",
+        life: 3000,
+      })
+    }
   }
 }
 watchEffect(async () => {
@@ -233,7 +249,13 @@ async function logoutUser() {
           </div>
           <div class="form-field">
             <label for="zip_code" class="text-gray-500 font-bold">Pincode</label>
-            <InputNumber v-model="profileData.zip_code" @input="fetchZipData" inputId="integeronly" :max="999999" :min="0" />
+           <div class="flex gap-3">
+              <InputNumber v-model="profileData.zip_code" inputId="integeronly" :useGrouping="false" :max="999999"
+                :min="0" autoComplete="new-password"  />
+              <Button @click="fetchZipData" size="small" class="text-xs">
+                <Icon name="ph:check" class="text-sm" />
+              </Button>
+            </div>
           </div>
           <div class="form-field">
             <label for="city" class="text-gray-500 font-bold">City</label>

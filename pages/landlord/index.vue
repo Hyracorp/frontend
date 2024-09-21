@@ -41,5 +41,5 @@ definePageMeta({
                 </template>
             </Card>
     </div>
-    <FooterSection class="" />
+
 </template>

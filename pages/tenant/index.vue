@@ -23,5 +23,5 @@ definePageMeta({
     <TenantHome :bookings="bookings?.count"/>
   </div>
   
-  <FooterSection class="" />
+ 
 </template>

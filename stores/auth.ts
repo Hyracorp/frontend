@@ -53,6 +53,7 @@ export const useAuthStore = defineStore("auth", {
         this.userType = res.user_type;
         let payload = decodeJwt(res.access_token);
         this.user_id = payload.user_id;
+        this.user = payload;
         this.isAuthenticated = true;
         return true;
       } else {
