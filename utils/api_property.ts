@@ -17,13 +17,13 @@ export const usePropertyAPI = (customFetch) => ({
     });
     return property;
   },
-  customFetchProperties: async (): Promise => {
+  fetchProperties: async (): Promise => {
     const properties = await customFetch("/property", {
       method: "GET",
     });
     return properties;
   },
-  customFetchAmenities: async (): Promise => {
+  fetchFetchAmenities: async (): Promise => {
     const amenities = await customFetch("/property/amenities", {
       method: "GET",
     });

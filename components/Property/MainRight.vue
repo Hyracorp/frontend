@@ -47,9 +47,7 @@ const cloudinary_base_url = computed(() => store.getCloudinaryBaseURL);
                 :alt="slotProps.item.title" 
                 class="w-full h-80 object-cover rounded-xl shadow-md transition-transform transform hover:scale-105" 
               />
-              <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-transparent to-transparent p-4 text-white">
-                <div class="text-xl font-bold">{{ slotProps.item.title }}</div>
-              </div>
+           
             </div>
           </template>
           <template #thumbnail="slotProps">
@@ -108,6 +106,13 @@ const cloudinary_base_url = computed(() => store.getCloudinaryBaseURL);
   display: flex;
   justify-content: center;
 }
+.p-galleria-thumbnail-item{
+overflow: hidden!important;
+}
+.p-galleria-thumbnail-item-start {
+overflow: hidden!important;
+}
+
 
 .galleria-thumbnail .p-thumbnail {
   transition: opacity 0.3s ease;

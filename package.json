@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-app",
+  "name": "Hyracorp",
   "private": true,
   "type": "module",
   "scripts": {
@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@nuxt/eslint": "latest",
+    "@nuxtjs/seo": "^2.0.0-rc.21",
     "@pinia/nuxt": "^0.5.1",
     "@vee-validate/nuxt": "^4.12.8",
     "leaflet": "^1.9.4",

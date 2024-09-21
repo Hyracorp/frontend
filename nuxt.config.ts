@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     "nuxt-icon",
     "@nuxtjs/device",
     "@nuxt/eslint",
+    "@nuxtjs/seo",
   ],
 
   primevue: {
@@ -25,6 +26,8 @@ export default defineNuxtConfig({
 
   app: {
     head: {
+      charset: "utf-8",
+      viewport: "width=device-width, initial-scale=1",
       script: [
         {
           src: "https://accounts.google.com/gsi/client",
@@ -84,9 +87,19 @@ export default defineNuxtConfig({
       type: "module",
     },
   },
-  alias: {
-    pinia: "/node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia.mjs"
+  // alias: {
+  //   pinia: "/node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia.mjs",
+  // },
+  
+  // SEO
+  site: {
+    url: "https://app.hyracorp.com",
+    name: "Hyracorp",
+    description: "Search across 10000+ verified property listings",
+    defaultLocale: "en", // not needed if you have @nuxtjs/i18n installed
   },
-
+  ogImage: {
+    enabled: false,
+  },
   devtools: { enabled: true },
 });

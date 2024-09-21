@@ -2,9 +2,7 @@
   <VitePwaManifest />
   <div v-if="loading" class="loading-container flex justify-center items-center h-screen w-screen bg-gray-100">
     <div class="loader">
-      <div class="dot"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
+      <img src="/img/pwa-192x192.png" class="w-36 animate-spin" >
     </div>
   </div>
   <div>
@@ -16,6 +14,15 @@
 </template>
 
 <script setup lang="ts">
+useSeoMeta({
+  title: 'Hyracorp - Search Across 1000s of Properties',
+  ogTitle: 'Hyracorp Property Search',
+  description: 'Search across 10000+ verified property listings',
+  ogDescription: 'This is my amazing site, let me tell you all about it.',
+  ogImage: 'https://app.hyracorp.com/img/og.jpeg',
+  twitterCard: 'https://app.hyracorp.com/img/og.jpeg',
+})
+
 const nuxtApp = useNuxtApp();
 const loading = ref(true);
 
@@ -24,9 +31,6 @@ nuxtApp.hook("page:start", () => {
 });
 nuxtApp.hook("page:finish", () => {
   loading.value = false;
-  setTimeout(() => {
-    console.log("Loading...");
-  }, 3000);
 });
 
 import { useAuthStore } from "@/stores/auth";
@@ -37,10 +41,11 @@ const propertyStore = usePropertyStore();
 onMounted(async () => {
   await authStore.init();
 });
+
+
 </script>
 
 <style scoped>
-
 .loading-container {
   display: flex;
   justify-content: center;
@@ -55,34 +60,4 @@ onMounted(async () => {
   width: 80px;
   height: 40px;
 }
-
-.dot {
-  width: 12px;
-  height: 12px;
-  background-color: #3498db;
-  border-radius: 50%;
-  animation: bounce 1.5s infinite ease-in-out;
-}
-
-.dot:nth-child(1) {
-  animation-delay: 0s;
-}
-
-.dot:nth-child(2) {
-  animation-delay: 0.3s;
-}
-
-.dot:nth-child(3) {
-  animation-delay: 0.6s;
-}
-
-@keyframes bounce {
-  0%, 80%, 100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-20px);
-  }
-}
-
 </style>
