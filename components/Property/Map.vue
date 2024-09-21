@@ -9,6 +9,27 @@ const mapElement = ref(null)
 async function initMap() {
   if (process.client) {
     const L = await import('leaflet')
+    // Fix Leaflet's icon paths
+    delete L.Icon.Default.prototype._getIconUrl;
+
+    const iconRetinaUrl = new URL(
+      "leaflet/dist/images/marker-icon-2x.png",
+      import.meta.url,
+    ).href;
+    const iconUrl = new URL(
+      "leaflet/dist/images/marker-icon.png",
+      import.meta.url,
+    ).href;
+    const shadowUrl = new URL(
+      "leaflet/dist/images/marker-shadow.png",
+      import.meta.url,
+    ).href;
+
+    L.Icon.Default.mergeOptions({
+      iconRetinaUrl,
+      iconUrl,
+      shadowUrl,
+    });
     const map = L.map(mapElement.value).setView([51.505, -0.09], 13)
     
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
