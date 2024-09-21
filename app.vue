@@ -18,9 +18,9 @@ useSeoMeta({
   title: 'Hyracorp - Search Across 1000s of Properties',
   ogTitle: 'Hyracorp Property Search',
   description: 'Search across 10000+ verified property listings',
-  ogDescription: 'This is my amazing site, let me tell you all about it.',
+  ogDescription: 'Search across 10000+ verified property listings',
   ogImage: 'https://app.hyracorp.com/img/og.jpeg',
-  twitterCard: 'https://app.hyracorp.com/img/og.jpeg',
+  twitterCard: 'summary_large_image',
 })
 
 const nuxtApp = useNuxtApp();
