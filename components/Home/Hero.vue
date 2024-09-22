@@ -136,13 +136,13 @@ let searchModal = ref(false);
 
 <template>
   <div class="flex flex-col justify-center items-center">
-    <div class="absolute top-0 left-0 w-screen h-1/2 -z-10 bg-blue-800">
+    <div class="absolute top-0 left-0 w-full h-1/2 -z-10 bg-blue-800 hidden md:block">
       <!-- <img src="https://assets.lummi.ai/assets/QmXiqJnBwdNhTuuWUpTdbzVGcJsgHez2Te61WcEaHxfxeo?auto=format&w=1500" alt=""
         class="h-full w-screen object-cover opacity-70" /> -->
       <img src="https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt=""
-        class="h-full w-screen object-cover opacity-70" />
+        class="h-full w-full object-cover opacity-70 md:object-fit" />
     </div>
-    <div class="w-full flex flex-col gap-8 p-5 py-10">
+    <div class="w-full md:flex flex-col gap-8 p-5 py-10 hidden ">
       <!-- Main Text -->
       <div class="text-center md:text-left">
         <h3 class="text-3xl font-bold text-white">
@@ -158,7 +158,7 @@ let searchModal = ref(false);
         <template #content>
           <div class="flex gap-5 md:flex-row flex-col flex-wrap w-full justify-center items-center">
             <div class="text-center md:text-left">
-              <h3 class="text-2xl font-bold text-gray-500">
+              <h3 class="text-2xl font-bold text-gray-500 font-display">
                 Search by Location
               </h3>
               <p class="text-sm font-medium text-gray-500">
@@ -167,13 +167,13 @@ let searchModal = ref(false);
             </div>
             <div class="lg:w-2/3 flex flex-wrap gap-3">
               <div class="md:max-w-xs lg:max-w-md w-full">
-                <InputGroup class="bg-none">
+                <InputGroup class="bg-none h-12">
                   <InputGroupAddon class="relative">
                     <Icon name="ph:magnifying-glass" class="text-gray-500 absolute top-2/4 -mt-2" />
                   </InputGroupAddon>
 
                   <AutoComplete v-model="searchForm.location" optionLabel="name" :suggestions="filteredSuggestions"
-                    @complete="search" placeholder="Auto Detect or Search Location" required  />
+                    @complete="search" placeholder="Auto Detect or Search Location" required  size="small" />
 
                   <InputGroupAddon>
                     <Button type="button" @click="getLocation" iconOnly text>
@@ -185,7 +185,9 @@ let searchModal = ref(false);
                 <small id="location-help">Where are you looking for the property?</small>
               </div>
               <div class="md:w-48 lg:max-w-md w-full">
-                <Button @click="searchModal = true" label="Search" class="md:max-w-md w-full text-center md:text-right" size="large"></Button>
+                <Button @click="searchModal = true"  class="md:max-w-md w-full text-center md:text-right flex gap-3 md:justify-center items-center" size="small">
+<Icon name="ph:magnifying-glass" /> <span class="">Search</span>
+</Button>
               </div>
             </div>
           </div>
@@ -231,7 +233,7 @@ let searchModal = ref(false);
               <div class="w-full">
                 <label for="slider" class="text-lg text-gray-500 my-3 block">Location</label>
 
-                <InputGroup class="bg-none">
+                <InputGroup class="bg-none h-12">
                   <InputGroupAddon class="relative">
                     <Icon name="ph:magnifying-glass" class="text-gray-500 absolute top-2/4 -mt-2" />
                   </InputGroupAddon>

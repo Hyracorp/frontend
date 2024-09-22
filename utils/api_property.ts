@@ -1,11 +1,16 @@
 export const usePropertyAPI = (customFetch) => ({
   searchProperty: async (query): Promise => {
+    let bhk: number[] = [];
+    if (String(query.bhkNo)?.length > 0) {
+      bhk = String(query.bhkNo).split("+").map(Number);
+    }
     const results = await customFetch("/property/search", {
       method: "GET",
       params: {
         property_type: query.propertyType,
         longitude: query.logitude,
         latitude: query.latitude,
+        bhk,
         max_distance: 150,
       },
     });

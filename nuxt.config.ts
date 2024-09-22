@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     "@nuxtjs/device",
     "@nuxt/eslint",
     "@nuxtjs/seo",
+    "@nuxt/fonts",
   ],
 
   primevue: {
@@ -23,7 +24,11 @@ export default defineNuxtConfig({
   },
 
   css: ["primevue/resources/themes/lara-light-blue/theme.css"],
-
+  fonts: {
+    experimental: {
+      processCSSVariables: true,
+    },
+  },
   app: {
     head: {
       charset: "utf-8",
@@ -90,7 +95,7 @@ export default defineNuxtConfig({
   alias: {
     pinia: "/node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia.mjs",
   },
-  
+
   // SEO
   site: {
     url: "https://app.hyracorp.com",

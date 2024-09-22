@@ -51,8 +51,8 @@ onMounted(async () => {
 
 </script>
 <template>
-    <div class="border-gray-100 border-b-2">
-        <div class="max-w-screen w-full px-5 py-3  flex justify-between items-center">
+    <div class="border-gray-100 border-b-2 max-w-scren overflow-hidden">
+        <div class="w-full px-5 py-3  flex justify-between items-center">
             <NuxtLink to="/">
                 <div class="">
                 <img src="/img/logo.png" alt="logo" class="w-40">
