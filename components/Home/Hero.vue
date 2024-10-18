@@ -103,7 +103,11 @@ function getLocation() {
         .then(async (res) => {
           let city = "noname";
           if (res?.address) {
-            city = res.address.county;
+            let display_name = res.display_name;
+            display_name = display_name.split(",");
+
+            city =
+              display_name[0] + "," + display_name[1] + "," + display_name[2];
           }
 
           searchForm.value.location = {
@@ -139,10 +143,11 @@ let searchModal = ref(false);
     <div class="absolute top-0 left-0 w-full h-1/2 -z-10 bg-blue-800 hidden md:block">
       <!-- <img src="https://assets.lummi.ai/assets/QmXiqJnBwdNhTuuWUpTdbzVGcJsgHez2Te61WcEaHxfxeo?auto=format&w=1500" alt=""
         class="h-full w-screen object-cover opacity-70" /> -->
-      <img src="https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt=""
-        class="h-full w-full object-cover opacity-70 md:object-fit" />
+      <img
+        src="https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        alt="" class="h-full w-full object-cover opacity-70 md:object-fit" />
     </div>
-    <div class="w-full md:flex flex-col gap-8 p-5 py-10 hidden ">
+    <div class="w-full md:flex flex-col gap-8 p-5 py-10 hidden">
       <!-- Main Text -->
       <div class="text-center md:text-left">
         <h3 class="text-3xl font-bold text-white">
@@ -173,7 +178,7 @@ let searchModal = ref(false);
                   </InputGroupAddon>
 
                   <AutoComplete v-model="searchForm.location" optionLabel="name" :suggestions="filteredSuggestions"
-                    @complete="search" placeholder="Auto Detect or Search Location" required  size="small" />
+                    @complete="search" placeholder="Auto Detect or Search Location" required size="small" />
 
                   <InputGroupAddon>
                     <Button type="button" @click="getLocation" iconOnly text>
@@ -185,9 +190,12 @@ let searchModal = ref(false);
                 <small id="location-help">Where are you looking for the property?</small>
               </div>
               <div class="md:w-48 lg:max-w-md w-full">
-                <Button @click="searchModal = true"  class="md:max-w-md w-full text-center md:text-right flex gap-3 md:justify-center items-center" size="small">
-<Icon name="ph:magnifying-glass" /> <span class="">Search</span>
-</Button>
+                <Button @click="searchModal = true"
+                  class="md:max-w-md w-full text-center md:text-right flex gap-3 md:justify-center items-center"
+                  size="small">
+                  <Icon name="ph:magnifying-glass" />
+                  <span class="">Search</span>
+                </Button>
               </div>
             </div>
           </div>
@@ -196,85 +204,76 @@ let searchModal = ref(false);
     </div>
     <Dialog v-model:visible="searchModal" modal>
       <!-- Hero Search Card -->
-     
-      
-          <template #header>
-            <div class="text-left">
-             <h3 class="text-2xl font-bold text-gray-500">
-                Search by location
-              </h3>
-              <p class="text-sm font-medium text-gray-500">
-                Find your perfect property all over india
-              </p>
 
-            </div>
-          </template>
+      <template #header>
+        <div class="text-left">
+          <h3 class="text-2xl font-bold text-gray-500">Search by location</h3>
+          <p class="text-sm font-medium text-gray-500">
+            Find your perfect property all over india
+          </p>
+        </div>
+      </template>
 
-       
-            <form class="flex flex-col gap-3 justify-center items-center" @submit.prevent="searchSubmit">
-              <div class="flex jsutify-center items-center flex-col">
-                <label for="slider" class="text-sm font-bold text-gray-500 my-3 block">Property Type :
-                  <span class="text-blue-500">{{
-                    searchForm.propertyType
-                    }}</span></label>
-                <SelectButton v-model="searchForm.propertyType" :options="propertyType" aria-labelledby="custom">
-                  <template #option="slotProps">
-                    <Icon :name="slotProps.option == 'Residential'
-                        ? 'ph:house'
-                        : 'ph:buildings'
-                      " class="mr-2" />
-                  </template>
-                </SelectButton>
-              </div>
-              <div class="" v-if="searchForm.propertyType === 'Residential'">
-                <SelectButton v-model="searchForm.bhkNo" :pt="{ button: 'px-3 py-2', label: 'text-sm md:text-lg' }"
-                  :options="bhkOptions" optionLabel="name" multiple aria-labelledby="multiple" />
-              </div>
-              <div class="w-full">
-                <label for="slider" class="text-lg text-gray-500 my-3 block">Location</label>
+      <form class="flex flex-col gap-3 justify-center items-center" @submit.prevent="searchSubmit">
+        <div class="flex jsutify-center items-center flex-col">
+          <label for="slider" class="text-sm font-bold text-gray-500 my-3 block">Property Type :
+            <span class="text-blue-500">{{
+              searchForm.propertyType
+              }}</span></label>
+          <SelectButton v-model="searchForm.propertyType" :options="propertyType" aria-labelledby="custom">
+            <template #option="slotProps">
+              <Icon :name="slotProps.option == 'Residential'
+                  ? 'ph:house'
+                  : 'ph:buildings'
+                " class="mr-2" />
+            </template>
+          </SelectButton>
+        </div>
+        <div class="" v-if="searchForm.propertyType === 'Residential'">
+          <SelectButton v-model="searchForm.bhkNo" :pt="{ button: 'px-3 py-2', label: 'text-sm md:text-lg' }"
+            :options="bhkOptions" optionLabel="name" multiple aria-labelledby="multiple" />
+        </div>
+        <div class="w-full">
+          <label for="slider" class="text-lg text-gray-500 my-3 block">Location</label>
 
-                <InputGroup class="bg-none h-12">
-                  <InputGroupAddon class="relative">
-                    <Icon name="ph:magnifying-glass" class="text-gray-500 absolute top-2/4 -mt-2" />
-                  </InputGroupAddon>
+          <InputGroup class="bg-none h-12">
+            <InputGroupAddon class="relative">
+              <Icon name="ph:magnifying-glass" class="text-gray-500 absolute top-2/4 -mt-2" />
+            </InputGroupAddon>
 
-                  <AutoComplete v-model="searchForm.location" optionLabel="name" :suggestions="filteredSuggestions"
-                    @complete="search" placeholder="Auto Detect or Search Location" required />
+            <AutoComplete v-model="searchForm.location" optionLabel="name" :suggestions="filteredSuggestions"
+              @complete="search" placeholder="Auto Detect or Search Location" required />
 
-                  <InputGroupAddon>
-                    <Button type="button" @click="getLocation" iconOnly text>
-                      <Icon name="ph:map-pin" />
-                    </Button>
-                  </InputGroupAddon>
-                </InputGroup>
-
-                <small id="location-help">Where are you looking for the property?</small>
-              </div>
-
-              <div class="w-full">
-                <label for="slider" class="text-lg text-gray-500 my-3 block">Price Range(₹{{ searchForm.priceRange[0] *
-                  1000 }} -
-                  ₹{{
-                    searchForm.priceRange[1] * 1000
-                  }})</label>
-                <div class="px-2">
-                  <Slider v-model="searchForm.priceRange" range class="w-14rem" />
-                </div>
-              </div>
-              <Button type="submit" class="flex gap-3 w-full">
-                <Icon name="ph:magnifying-glass" />
-                <div class="">Find Property..</div>
+            <InputGroupAddon>
+              <Button type="button" @click="getLocation" iconOnly text>
+                <Icon name="ph:map-pin" />
               </Button>
-            </form>
-       
-    
+            </InputGroupAddon>
+          </InputGroup>
 
+          <small id="location-help">Where are you looking for the property?</small>
+        </div>
+
+        <div class="w-full">
+          <label for="slider" class="text-lg text-gray-500 my-3 block">Price Range(₹{{ searchForm.priceRange[0] * 1000
+            }} -
+            ₹{{
+              searchForm.priceRange[1] * 1000
+            }})</label>
+          <div class="px-2">
+            <Slider v-model="searchForm.priceRange" range class="w-14rem" />
+          </div>
+        </div>
+        <Button type="submit" class="flex gap-3 w-full">
+          <Icon name="ph:magnifying-glass" />
+          <div class="">Find Property..</div>
+        </Button>
+      </form>
     </Dialog>
   </div>
 </template>
 
 <style scoped>
-
 .slanted-text {
   display: inline-block;
   position: relative;
@@ -286,9 +285,8 @@ let searchModal = ref(false);
   top: 50%;
   left: 0;
   width: 100%;
-  height: 2px; 
-  background-color: white; 
-  transform: rotate(-5deg); 
+  height: 2px;
+  background-color: white;
+  transform: rotate(-5deg);
 }
-
 </style>

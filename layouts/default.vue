@@ -24,11 +24,11 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener("scroll", handleScroll);
 });
-let pwaOpen = ref(false);
+let pwaOpen = ref(true);
 </script>
 <template>
   <div class="max-w-screen overflow-hidden">
-    <NavBar v-if="showMenu" class="fixed top-0 w-full z-50 bg-white" :user="user" :loginStatus="loginStatus" />
+    <NavBar v-if="showMenu" class="fixed top-0 w-full z-50 bg-white"  :user="user" :loginStatus="loginStatus" />
     <div class="md:py-32 py-20 min-h-[90vh]">
       <slot />
     </div>

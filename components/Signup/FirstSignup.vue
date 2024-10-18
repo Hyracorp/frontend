@@ -72,17 +72,18 @@ async function formSubmit() {
       <InputText v-model="formData.email" type="text" class="p-3 w-full" placeholder="Enter your correct Email ID" />
     </div>
     <div class="w-full">
-      <InputText v-model="formData.password" type="password" class="w-full" placeholder="Create a strong Password" />
-    </div>
-    <div class="w-full">
-      <Password v-model="formData.password2" type="password" class="w-full" placeholder="Create a strong Password"
+      <Password v-model="formData.password" type="password" class="w-full" placeholder="Create a strong Password"
         toggleMask />
     </div>
+    <div class="w-full">
+      <InputText v-model="formData.password2" type="password" class="w-full" placeholder="Create a strong Password" />
+    </div>
+
     <div class="w-full">
       <Dropdown v-model="formData.userType" :options="userTypes" placeholder="Select User Type" class="w-full" />
     </div>
     <div class="w-full">
-      <Button label="Signup" severity="info" class="p-3 w-full" raised @click="formSubmit" />
+      <Button label="Signup"  class="p-3 w-full"  @click="formSubmit" />
     </div>
   </div>
 </template>

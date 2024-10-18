@@ -28,7 +28,7 @@ export const usePropertyAPI = (customFetch) => ({
     });
     return properties;
   },
-  fetchFetchAmenities: async (): Promise => {
+  fetchAmenities: async (): Promise => {
     const amenities = await customFetch("/property/amenities", {
       method: "GET",
     });

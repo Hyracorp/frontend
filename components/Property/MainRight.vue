@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Booking from "./Booking.vue";
 import { usePropertyStore } from "@/stores/property";
-import { ref, computed } from 'vue';
+import { ref, computed } from "vue";
 
 const store = usePropertyStore();
 const property = computed(() => store.property);
@@ -24,41 +24,44 @@ const responsiveOptions = ref([
   },
 ]);
 const cloudinary_base_url = computed(() => store.getCloudinaryBaseURL);
+let imageModal = ref(false);
+let activeIndex = ref(0);
+
 </script>
 
 <template>
   <div>
     <div v-if="property" class="relative w-full">
       <div class="bg-gray-200 rounded-xl shadow-lg overflow-hidden">
-        <Galleria 
-          :value="property.photos" 
-          :responsiveOptions="responsiveOptions" 
-          :numVisible="5" 
-          :circular="true"
-          :showItemNavigators="true" 
-          class="overflow-hidden rounded-xl"
-        >
+        <Galleria v-model:activeIndex="activeIndex" :value="property.photos" :responsiveOptions="responsiveOptions" :numVisible="5" :circular="true"
+          :showItemNavigators="true" class="overflow-hidden rounded-xl">
           <template #item="slotProps">
             <div class="relative w-full">
-              <img 
-                :src="slotProps.item.photo_url !== null
-                    ? `${cloudinary_base_url}${slotProps.item.photo_url}` 
-                    : 'https://dummyimage.com/600x400/e3e3e3/000000&text=image+not+added'"
-                :alt="slotProps.item.title" 
-                class="w-full h-80 object-cover rounded-xl shadow-md transition-transform transform hover:scale-105" 
-              />
-           
+              <img :src="slotProps.item.photo_url !== null
+                ? `${cloudinary_base_url}${slotProps.item.photo_url}`
+                : 'https://dummyimage.com/600x400/e3e3e3/000000&text=image+not+added'
+                " :alt="slotProps.item.title"
+                class="w-full h-80 object-cover rounded-xl shadow-md transition-transform transform hover:scale-105"
+                @click="imageModal = true; activeIndex = activeIndex" />
             </div>
           </template>
           <template #thumbnail="slotProps">
-            <img 
-              :src="`${cloudinary_base_url}${slotProps.item.photo_url}`" 
-              alt="Property Thumbnail" 
-              class="thumbnail-img" 
-            />
+            <img :src="`${cloudinary_base_url}${slotProps.item.photo_url}`" alt="Property Thumbnail"
+              class="thumbnail-img" />
           </template>
           <template #caption="slotProps">
-            <div class="text-xl mb-2 font-bold text-white">{{ slotProps.item.title }}</div>
+            <div class="text-xl mb-2 font-bold text-white">
+              {{ slotProps.item.title }}
+            </div>
+          </template>
+        </Galleria>
+        <Galleria v-model:visible="imageModal" v-model:activeIndex="activeIndex" :value="property.photos"
+          containerStyle="max-width: 850px" :fullScreen="true" :showThumbnails="false">
+          <template #item="slotProps">
+            <img :src="slotProps.item.photo_url !== null
+              ? `${cloudinary_base_url}${slotProps.item.photo_url}`
+              : 'https://dummyimage.com/600x400/e3e3e3/000000&text=image+not+added'"
+ :alt="slotProps.item.title" style="width: 100%; display: block" />
           </template>
         </Galleria>
       </div>
@@ -91,11 +94,13 @@ const cloudinary_base_url = computed(() => store.getCloudinaryBaseURL);
   object-cover: cover;
   border-radius: 8px;
   border: 2px solid #ccc;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
 }
 
 .thumbnail-img:hover {
-  transform: scale(1.10);
+  transform: scale(1.1);
   opacity: 1;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
@@ -106,13 +111,14 @@ const cloudinary_base_url = computed(() => store.getCloudinaryBaseURL);
   display: flex;
   justify-content: center;
 }
-.p-galleria-thumbnail-item{
-overflow: hidden!important;
-}
-.p-galleria-thumbnail-item-start {
-overflow: hidden!important;
+
+.p-galleria-thumbnail-item {
+  overflow: hidden !important;
 }
 
+.p-galleria-thumbnail-item-start {
+  overflow: hidden !important;
+}
 
 .galleria-thumbnail .p-thumbnail {
   transition: opacity 0.3s ease;

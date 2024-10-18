@@ -118,7 +118,7 @@ async function formSubmit() {
         toggleMask />
     </div>
     <div class="w-full mb-4">
-      <Button label="Login" severity="info" class="p-3 w-full" raised @click="formSubmit" />
+      <Button label="Login"  class="p-3 w-full"  @click="formSubmit" />
     </div>
   </div>
 </template>

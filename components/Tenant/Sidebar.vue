@@ -13,7 +13,7 @@ defineEmits(['sidebar-toggle'])
 </script>
 <template>
     <div>
-        <Sidebar :visible="visible" :modal="device.isMobileOrTablet" :pt="{ 'root': 'w-64' }"> 
+        <Drawer :visible="visible" :modal="device.isMobileOrTablet" :pt="{ 'root': 'w-64' }"> 
             <template #container>
 
         <div class="flex flex-col ">
@@ -34,7 +34,7 @@ defineEmits(['sidebar-toggle'])
             <Menu :model="items" :pt="{ 'root': 'border-0 px-2','content':'py-3' }" >
                 <template #item="{item}">
                     <NuxtLink    :to="item.link"  @click="()=>{if(device.isMobileOrTablet) $emit('sidebar-toggle')}">
-                    <div :class="`p-2 ${item.link==$route.path?'font-bold':'hover:font-bold'}`"  >
+                    <div :class="`p-2 ${item.link==$route.path?'font-bold':'hover:font-bold'} flex gap-3 items-center`"  >
                         
                         <Icon :name="item.icon" class="text-3xl" />
                         <span class="ml-2">{{ item.label }}</span>
@@ -45,6 +45,6 @@ defineEmits(['sidebar-toggle'])
             </Menu>
         </div>
         </template>
-</Sidebar>
+</Drawer>
     </div>
 </template>

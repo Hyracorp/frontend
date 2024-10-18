@@ -1,29 +1,55 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import Lara from "@primevue/themes/lara";
+import { definePreset } from "@primevue/themes";
+
+const MyPreset = definePreset(Lara, {
+  semantic: {
+    primary: {
+      50: "{indigo.50}",
+      100: "{indigo.100}",
+      200: "{indigo.200}",
+      300: "{indigo.300}",
+      400: "{indigo.400}",
+      500: "{indigo.500}",
+      600: "{indigo.600}",
+      700: "{indigo.700}",
+      800: "{indigo.800}",
+      900: "{indigo.900}",
+      950: "{indigo.950}",
+    },
+  },
+});
 export default defineNuxtConfig({
   modules: [
-    "@nuxtjs/tailwindcss",
-    "nuxt-primevue",
     "@pinia/nuxt",
+    "@primevue/nuxt-module",
+    "@nuxtjs/tailwindcss",
     "@vite-pwa/nuxt",
-    "nuxt-icon",
     "@nuxtjs/device",
     "@nuxt/eslint",
     "@nuxtjs/seo",
     "@nuxt/fonts",
+    "@nuxt/icon",
   ],
 
   primevue: {
     options: {
+      theme: {
+        preset: MyPreset,
+        options: {
+          darkModeSelector: false,
+        }
+        
+      },
+
       ripple: true,
     },
-    cssLayerOrder: "tailwind-base, primevue, tailwind-utilities",
+    autoImport: true,
   },
-
   pinia: {
     storesDirs: ["./stores/**"],
   },
 
-  css: ["primevue/resources/themes/lara-light-blue/theme.css"],
   fonts: {
     experimental: {
       processCSSVariables: true,
@@ -92,9 +118,9 @@ export default defineNuxtConfig({
       type: "module",
     },
   },
-  alias: {
-    pinia: "/node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia.mjs",
-  },
+  // alias: {
+  //   pinia: "/node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia.mjs",
+  // },
 
   // SEO
   site: {
@@ -106,5 +132,5 @@ export default defineNuxtConfig({
   ogImage: {
     enabled: false,
   },
-  devtools: { enabled: true },
+  compatibilityDate: "2024-10-17",
 });

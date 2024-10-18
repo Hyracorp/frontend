@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Button from 'primevue/button';
 import { usePropertyStore } from "@/stores/property";
 const { $api } = useNuxtApp();
 const propertyAPI = usePropertyAPI($api);
@@ -18,16 +19,16 @@ onMounted(async () => {
       <h1 class="text-3xl font-bold text-gray-600">Featured Properties</h1>
     </div>
     <div class="max-w-screen overflow-hidden overflow-x-auto">
-    
-      <div class="flex gap-3">
+      <div v-if="featuredCollection?.length > 0" class="flex gap-3 py-2">
         <Card v-for="data in featuredCollection" :key="data.id" class="max-w-md min-w-72 w-full rounded-xl">
           <template #header>
             <div class="overflow-hidden rounded-t-xl">
-              <img alt="user header" :src="data.first_photo_url??
-                    'https://dummyimage.com/600x400/e3e3e3/000000&text=image+not+added'" class="w-full h-56 object-cover" />
+              <img alt="user header" :src="data.first_photo_url ??
+                'https://dummyimage.com/600x400/e3e3e3/000000&text=image+not+added'
+                " class="w-full h-56 object-cover" />
             </div>
           </template>
-          <template #title> {{ data.title }}  </template>
+          <template #title> {{ data.title }} </template>
           <template #subtitle> {{ data.city }} , {{ data.state }} </template>
           <template #content> </template>
           <template #footer>
@@ -44,6 +45,14 @@ onMounted(async () => {
             </div>
           </template>
         </Card>
+      </div>
+      <div v-else  class="flex gap-3" >
+        <div v-for="index in 3" :key="index" class="max-w-md min-w-72 w-full rounded-xl">
+          <Skeleton height="7rem" />
+          <Skeleton class="mt-2" />
+          <Skeleton class="mt-2" />
+          <Skeleton class="mt-2" />
+        </div>
       </div>
     </div>
   </div>

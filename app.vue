@@ -1,27 +1,29 @@
 <template>
-  <VitePwaManifest />
-  <div v-if="loading" class="loading-container flex justify-center items-center h-screen w-screen bg-gray-100">
-    <div class="loader">
-      <img src="/img/pwa-192x192.png" class="w-36 animate-spin" >
-    </div>
-  </div>
   <div>
-    <NuxtLayout>
-      <Toast class="pl-10 md:p-0" />
-      <NuxtPage />
-    </NuxtLayout>
+    <VitePwaManifest />
+    <div v-if="loading" class="loading-container flex justify-center items-center h-screen w-screen bg-gray-100">
+      <div class="loader">
+        <img src="/img/pwa-192x192.png" class="w-36 animate-spin" />
+      </div>
+    </div>
+    <div>
+      <NuxtLayout>
+        <Toast class="pl-10 md:p-0" />
+        <NuxtPage />
+      </NuxtLayout>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 useSeoMeta({
-  title: 'Hyracorp - Search Across 1000s of Properties',
-  ogTitle: 'Hyracorp Property Search',
-  description: 'Search across 10000+ verified property listings',
-  ogDescription: 'Search across 10000+ verified property listings',
-  ogImage: 'https://app.hyracorp.com/img/og.jpeg',
-  twitterCard: 'summary_large_image',
-})
+  title: "Hyracorp - Search Across 1000s of Properties",
+  ogTitle: "Hyracorp Property Search",
+  description: "Search across 10000+ verified property listings",
+  ogDescription: "Search across 10000+ verified property listings",
+  ogImage: "https://app.hyracorp.com/img/og.jpeg",
+  twitterCard: "summary_large_image",
+});
 
 const nuxtApp = useNuxtApp();
 const loading = ref(true);
@@ -41,8 +43,6 @@ const propertyStore = usePropertyStore();
 onMounted(async () => {
   await authStore.init();
 });
-
-
 </script>
 
 <style scoped>
