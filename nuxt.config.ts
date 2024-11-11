@@ -1,8 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import Lara from "@primevue/themes/lara";
+import Aura from "@primevue/themes/aura";
 import { definePreset } from "@primevue/themes";
 
-const MyPreset = definePreset(Lara, {
+const MyPreset = definePreset(Aura, {
   semantic: {
     primary: {
       50: "{indigo.50}",

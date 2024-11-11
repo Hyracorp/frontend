@@ -52,10 +52,10 @@ const editMode = ref(false);
 <template>
   <div class="">
     <div class="">
-      <Dialog v-model:visible="showAddPropertyModal" modal>
+      <Dialog v-model:visible="showAddPropertyModal" modal class="min-w-sm max-w-lg w-full">
         <addProperty @close="showAddPropertyModal = false" @success="addSuccess" :propertyId="currentItem" :editMode="editMode" />
       </Dialog>
-      <Dialog @hide="addImageSuccess" v-model:visible="imageUploadModal" modal>
+      <Dialog @hide="addImageSuccess" v-model:visible="imageUploadModal" modal class="min-w-sm max-w-lg w-full">
         <ImageUpload :propertyId="currentItem" @success="addImageSuccess" />
       </Dialog>
     </div>
